@@ -4,8 +4,7 @@ const { Schema } = mongoose;
 const PhotoSchema = new Schema({
   photographer: {
     type: Schema.Types.ObjectId,
-    ref: 'user',
-    index: true
+    ref: 'user'
   },
   title: {
     type: String,
@@ -21,8 +20,7 @@ const PhotoSchema = new Schema({
   },
   album: {
     type: Schema.Types.ObjectId,
-    ref: 'album',
-    index: true
+    ref: 'album'
   },
   tags: [{
     type: Schema.Types.ObjectId,
@@ -46,11 +44,5 @@ PhotoSchema.index({
   description: "text"
 });
 PhotoSchema.index({ photographer: 1, title: 1, album: 1 }, { unique: true });
-
-PhotoSchema.virtual("comments", {
-  ref: "comment",
-  localField: "_id",
-  foreignField: "photo"
-});
 
 module.exports = mongoose.model('photo', PhotoSchema)

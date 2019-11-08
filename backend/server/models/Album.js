@@ -3,7 +3,7 @@ const {  Schema } = mongoose;
 
 
 const AlbumSchema = new Schema({
-  user: {
+  photographer: {
     type: Schema.Types.ObjectId,
     ref: 'user'
   },

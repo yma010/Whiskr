@@ -8,8 +8,7 @@ const CommentSchema = new Schema({
   },
   photo: {
     type: Schema.Types.ObjectId,
-    ref: 'photo',
-    index: true
+    ref: 'photo'
   },
   body: {
     type: String,
