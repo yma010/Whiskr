@@ -1,12 +1,17 @@
 const graphql = require("graphql");
-const {  GraphQLObjectType, GraphQLString, GraphQLInt } = graphql;
+const { 
+  GraphQLID, 
+  GraphQLObjectType, 
+  GraphQLString, 
+  GraphQLInt,
+  GraphQLList } = graphql;
 const mongoose = require("mongoose");
 
-const UserType = require("./user_type");
-const PhotoType = require("./photo_type");
-const AlbumType = require("./album_type");
-const TagType = require("./tag_type");
-const CommentType = require("./comment_type");
+const UserType = require("./types/user_type");
+const PhotoType = require("./types/photo_type");
+const AlbumType = require("./types/album_type");
+const TagType = require("./types/tag_type");
+const CommentType = require("./types/comment_type");
 const User = mongoose.model("user");
 const Photo = mongoose.model("photo");
 const Album = mongoose.model("album");
@@ -21,7 +26,9 @@ const mutation = new GraphQLObjectType({
     signup: {
       type: UserType,
       args: {
-        name: { type: GraphQLString },
+        firstName: { type: GraphQLString },
+        lastName: { type: GraphQLString },
+        age: { type: GraphQLInt },
         email: { type: GraphQLString },
         password: { type: GraphQLString }
       },
@@ -32,7 +39,7 @@ const mutation = new GraphQLObjectType({
     logout: {
       type: UserType,
       args: {
-        id: { type: GraphQLID }
+        _id: { type: GraphQLID }
       },
       resolve(_, args) {
         return AuthService.logout(args);
@@ -63,10 +70,8 @@ const mutation = new GraphQLObjectType({
         photographer: { type: GraphQLID },
         title: { type: GraphQLString },
         description: { type: GraphQLString },
-        views: { type: GraphQLInt },
-        album: { type: GraphQLID },
-        tags: { type: GraphQLList(GraphQLID) },
-        comments: { type: GraphQLList(GraphQLID) },
+        albums: { type: new GraphQLList(GraphQLID) },
+        tags: { type: GraphQLList(GraphQLID) }
       },
       resolve(_, args){
         return new Photo(args).save();
@@ -75,10 +80,10 @@ const mutation = new GraphQLObjectType({
     deletePhoto: {
       type: PhotoType,
       args: {
-        id: { type: GraphQLID }
+        _id: { type: GraphQLID }
       },
-      resolve(parentValue, { id }){
-        return Photo.remove({ _id: id })
+      resolve(parentValue, { _id }){
+        return Photo.deleteOne({ _id })
       }
     },
     newAlbum: {
@@ -95,10 +100,10 @@ const mutation = new GraphQLObjectType({
     deleteAlbum: {
       type: AlbumType,
       args: {
-        id: { type: GraphQLID }
+        _id: { type: GraphQLID }
       },
-      resolve(parentValue, { id }){
-        return Album.remove({ _id: id })
+      resolve(parentValue, { _id }){
+        return Album.deleteOne({ _id })
       }
     },
     newComment: {
@@ -115,10 +120,10 @@ const mutation = new GraphQLObjectType({
     deleteComment: {
       type: CommentType,
       args: {
-        id: { type: GraphQLID }
+        _id: { type: GraphQLID }
       },
-      resolve(parentValue, { id }){
-        return Comment.remove({ _id: id })
+      resolve(parentValue, { _id }){
+        return Comment.deleteOne({ _id })
       }
     }
   }

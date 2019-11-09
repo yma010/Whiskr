@@ -1,5 +1,5 @@
 const Validator = require('validator');
-const validText = require('./valid_text');
+const validText = require('./valid-text');
 
 module.exports = function validateSignupInput(data) {
   let errors = {};
@@ -8,7 +8,6 @@ module.exports = function validateSignupInput(data) {
   data.lastName = validText(data.lastName) ? data.lastName : '';
   data.email = validText(data.email) ? data.email : '';
   data.password = validText(data.password) ? data.password : '';
-  data.age = validText(data.zipCode) ? data.zipCode : '';
 
   if (Validator.isEmpty(data.firstName)) {
     errors.firstName = 'Required';
@@ -34,8 +33,12 @@ module.exports = function validateSignupInput(data) {
     errors.password = 'Password must be at least 12 characters';
   }
 
-  if (Validator.isEmpty(data.age)) {
-    errors.zipCode = 'Required';
+  if (!data.age) {
+    errors.age = "Required";
+  }
+
+  if (typeof data.age !== "number") {
+    errors.age = "Age must be a number"
   }
 
   return {

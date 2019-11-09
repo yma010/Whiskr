@@ -10,7 +10,6 @@ const {
 
 const Photo = mongoose.model("photo");
 const User = mongoose.model("user");
-const Album = mongoose.model("album");
 
 const PhotoType = new GraphQLObjectType({
   name: "PhotoType",
@@ -26,10 +25,12 @@ const PhotoType = new GraphQLObjectType({
         return User.findById(parentValue.photographer);
       }
     },
-    album: {
-      type: require("./album_type"),
+    albums: {
+      type: new GraphQLList(require("./album_type")),
       resolve(parentValue) {
-        return Album.findById(parentValue.album);
+        return Photo.findById(parentValue._id)
+          .populate("albums")
+          .then(photo => photo.albums);
       }
     },
     tags: {

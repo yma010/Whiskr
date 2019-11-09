@@ -7,12 +7,12 @@ const validateLoginInput = require("../validation/login");
 
 const signup = async data => {
   try {
-    const { message, isValid } = validateSignupInput(data);
+    const { errors, isValid } = validateSignupInput(data);
     if (!isValid) {
-      throw new Error(message);
+      throw new Error(Object.values(errors));
     }
 
-    const { name, email, password } = data;
+    const { firstName, lastName, age, email, password } = data;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       throw new Error("This user already exists");
@@ -21,7 +21,9 @@ const signup = async data => {
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User(
       {
-        name,
+        firstName,
+        lastName,
+        age,
         email,
         password: hashedPassword
       },
@@ -41,9 +43,9 @@ const signup = async data => {
 
 const login = async data => {
   try {
-    const { message, isValid } = validateLoginInput(data);
+    const { errors, isValid } = validateLoginInput(data);
     if (!isValid) {
-      throw new Error(message);
+      throw new Error(Object.values(errors));
     }
 
     const { email, password } = data;
@@ -63,8 +65,8 @@ const login = async data => {
   }
 };
 
-const logout = async id => {
-  const user = await User.findById(id);
+const logout = async data => {
+  const user = await User.findById(data._id);
   const token = "";
   
 	return { token, loggedIn: false, ...user._doc, password: null };

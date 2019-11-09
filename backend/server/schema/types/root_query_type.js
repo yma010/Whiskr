@@ -26,7 +26,7 @@ const RootQueryType = new GraphQLObjectType({
       user: {
         type: UserType,
         args: {
-          id: {
+          _id: {
             type: new GraphQLNonNull(GraphQLID)
           }
         },
@@ -35,46 +35,46 @@ const RootQueryType = new GraphQLObjectType({
         }
       },
       photos: {
-        type: new GraphQLNonNull(GraphQLID),
+        type: new GraphQLList(PhotoType),
         resolve(){
           return Photo.find({})
         }
       },
       photo: {
         type: PhotoType,
-        args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+        args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
         resolve(_, args){
           return Photo.findById(args._id);
         }
       },
       albums: {
-        type: new GraphQLNonNull(GraphQLID),
+        type: new GraphQLList(AlbumType),
         resolve(){
           return Album.find({});
         }
       },
       album: {
         type: AlbumType,
-        args: { id: { type: new GraphQLNonNull(GraphQLID)}},
+        args: { _id: { type: new GraphQLNonNull(GraphQLID)}},
         resolve(_, args){
           return Album.findById(args._id);
         }
       },
       tags: {
-        type: new GraphQLNonNull(GraphQLID),
+        type: new GraphQLList(TagType),
         resolve(){
           return Tag.find({});
         } 
       },
       tag: {
         type: TagType,
-        args: { id: { type: new GraphQLNonNull(GraphQLID) }},
+        args: { _id: { type: new GraphQLNonNull(GraphQLID) }},
         resolve(){
           return Tag.findById(args._id);
         }
       }, 
       comments: {
-        type: new GraphQLNonNull(GraphQLID),
+        type: new GraphQLList(CommentType),
         resolve() {
           return Comment.find({});
         }
@@ -82,7 +82,7 @@ const RootQueryType = new GraphQLObjectType({
       comment: {
         type: CommentType,
         args: {
-          id: {
+          _id: {
             type: new GraphQLNonNull(GraphQLID)
           }
         },

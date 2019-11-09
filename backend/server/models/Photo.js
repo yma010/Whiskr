@@ -18,10 +18,10 @@ const PhotoSchema = new Schema({
     type: Number,
     default: 0
   },
-  album: {
+  albums: [{
     type: Schema.Types.ObjectId,
     ref: 'album'
-  },
+  }],
   tags: [{
     type: Schema.Types.ObjectId,
     ref: 'tag'
