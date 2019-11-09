@@ -20,4 +20,31 @@ const CommentSchema = new Schema({
   }
 });
 
+// before first save: add to photo
+CommentSchema.pre("save", async function() {
+  const comment = this;
+  if (!comment.isNew) return;
+
+  const Photo = mongoose.model("photo");
+
+  await Photo.findById(comment.photo)
+    .then(photo => {
+      photo.comments.push(comment);
+      return photo.save();
+    });
+});
+
+// before deleteOne: remove from photo
+CommentSchema.pre("deleteOne", async function () {
+  const Photo = mongoose.model("photo");
+  const Comment = mongoose.model("comment");
+  const comment = await Comment.findById(this.getFilter());
+
+  await Photo.findById(comment.photo)
+    .then(photo => {
+      photo.comments.pull(comment);
+      return photo.save();
+    });
+});
+
 module.exports = mongoose.model("comment", CommentSchema);
