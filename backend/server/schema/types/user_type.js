@@ -5,7 +5,8 @@ const {
   GraphQLString, 
   GraphQLID, 
   GraphQLBoolean, 
-  GraphQLInt } = graphql;
+  GraphQLInt,
+  GraphQLList } = graphql;
 const User = mongoose.model("user");
 
 const UserType = new GraphQLObjectType({
@@ -19,7 +20,7 @@ const UserType = new GraphQLObjectType({
 		token: { type: GraphQLString },
     loggedIn: { type: GraphQLBoolean },
     photos: {
-      type: require("./photo_type"),
+      type: new GraphQLList(require("./photo_type")),
       resolve(parentValue) {
         return User.findById(parentValue._id)
           .populate("photos")
@@ -27,7 +28,7 @@ const UserType = new GraphQLObjectType({
       }
     },
     albums: {
-      type: require("./album_type"),
+      type: new GraphQLList(require("./album_type")),
       resolve(parentValue) {
         return User.findById(parentValue._id)
           .populate("albums")
