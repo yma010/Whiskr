@@ -1,7 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './components/App';
 import * as serviceWorker from "./serviceWorker";
 import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
@@ -10,6 +8,8 @@ import { ApolloProvider } from "react-apollo";
 import { onError } from "apollo-link-error";
 import { ApolloLink } from "apollo-link";
 import { HashRouter } from "react-router-dom";
+
+import App from './components/App';
 import { VERIFY_USER } from './graphql/mutations';
 
 const cache = new InMemoryCache({
