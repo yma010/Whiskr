@@ -13,10 +13,14 @@ const HeaderNav = () => {
           </Link>
           <ul className="header-nav-links">
             <li>
-              <Link>You</Link>          {/* needs to be filled in */}
+              <Link>                    {/* needs to be filled in */}
+                <span>You</span>
+              </Link>
             </li>
             <li>
-              <Link>Explore</Link>      {/* needs to be filled in */}
+              <Link>                    {/* needs to be filled in */}
+                <span>Explore</span>
+              </Link>      
             </li>
           </ul>
         </div>

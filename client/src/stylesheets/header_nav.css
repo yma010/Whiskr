@@ -12,7 +12,9 @@
 .header-nav-right,
 .header-nav-links,
 .header-nav-links a,
-.header-search-bar {
+.header-nav-links li,
+.header-search-bar,
+.whiskr-logo {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -56,7 +58,7 @@
   margin-left: 24px;
 }
 
-.header-nav-links a {
+.header-nav-links span {
   padding: 10px;
   font-size: 14px;
 }
