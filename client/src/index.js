@@ -6,7 +6,7 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "react-apollo";
 import { onError } from "apollo-link-error";
-import { ApolloLink } from "apollo-link";
+import { setContext } from "apollo-link-context";
 import { HashRouter } from "react-router-dom";
 
 import App from './components/App';
@@ -17,11 +17,17 @@ const cache = new InMemoryCache({
 });
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql",
-  headers: {
-    // pass our token into the header of each request
-    authorization: localStorage.getItem("auth-token")
-  }
+  uri: "http://localhost:5000/graphql"
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('auth-token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? token : ''
+    }
+  };
 });
 
 const errorLink = onError(({ graphQLErrors }) => {
@@ -29,12 +35,13 @@ const errorLink = onError(({ graphQLErrors }) => {
 });
 
 const client = new ApolloClient({
-  link: ApolloLink.from([errorLink, httpLink]),
+  link: authLink.concat(httpLink, errorLink),
   cache,
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
     console.log("networkError", networkError);
-  }
+  },
+  resolvers: {}
 });
 
 const token = localStorage.getItem("auth-token");
