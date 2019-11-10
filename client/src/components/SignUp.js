@@ -1,28 +1,28 @@
-import React, {useState, useEffect} from "react";
-import { Mutation } from 'react-apollo';
+import React, {useState} from "react";
 import {  SIGNUP_USER } from "../graphql/mutations";
 import { useMutation } from '@apollo/react-hooks';
 
 function SignUp() {
   let input;
-  const [registerUser, {data}] = useMutation(SIGNUP_USER, {
-    update: updateCache,
-    onCompleted: assignToken
-  });
   const [inputs, setInputs] =useState({});
   
   const assignToken = (data) => {
-          const { token } = data.register;
-          localStorage.setItem("auth-token", token);
-          this.props.history.push("/");
+    const { token } = data.register;
+    localStorage.setItem("auth-token", token);
+    this.props.history.push("/");
   };
-
-    const updateCache = (client, { data }) => {
-      console.log(data);
-      client.writeData({
-        data: { isLoggedIn: data.register.loggedIn }
-      });
-    }
+  
+  const updateCache = (client, { data }) => {
+    console.log(data);
+    client.writeData({
+      data: { isLoggedIn: data.register.loggedIn }
+    });
+  }
+  
+  const [SignUpUser, {data}] = useMutation(SIGNUP_USER, {
+    update: updateCache,
+    onCompleted: assignToken
+  });
   
   const handleInputChange = (event) => {
     event.persist();
@@ -32,20 +32,20 @@ function SignUp() {
     return (
     <form onSubmit={e => {
       e.preventDefault();
-      registerUser({ variables: { 
-        firstname: inputs.firstName,
+      SignUpUser({ variables: { 
+        firstName: inputs.firstName,
         lastName: inputs.lastName,
         age: inputs.age,
         email: inputs.email,
         password: inputs.password
       } });
-      input.value= '';
+     
     }}>
-      <input type="text" onChange={handleInputChange} value={inputs.firstName} placeholder="First name"/>
-      <input type="text" onChange={handleInputChange} value={inputs.lastName} placeholder="Last name"/>
-      <input type="text" onChange={handleInputChange} value={inputs.age} placeholder="Age"/>
-      <input type="text" onChange={handleInputChange} values={inputs.email} placeholder="Email"/>
-      <input type="passsword" onChange={handleInputChange} values={inputs.password} placeholder="Password"/>
+      <input type="text" onChange={handleInputChange} name="firstName" value={inputs.firstName} placeholder="First name"/>
+        <input type="text" onChange={handleInputChange} name="lastName" value={inputs.lastName} placeholder="Last name"/>
+        <input type="text" onChange={handleInputChange} name="age" value={inputs.age} placeholder="Age"/>
+        <input type="text" onChange={handleInputChange} name="email"  values={inputs.email} placeholder="Email"/>
+        <input type="passsword" onChange={handleInputChange} name="password" values={inputs.password} placeholder="Password"/>
       <button type="submit">Sign Up</button>
     </form>
   )

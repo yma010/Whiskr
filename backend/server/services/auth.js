@@ -44,6 +44,7 @@ const signup = async data => {
 const login = async data => {
   try {
     const { errors, isValid } = validateLoginInput(data);
+    console.log(data);
     if (!isValid) {
       throw new Error(Object.values(errors));
     }

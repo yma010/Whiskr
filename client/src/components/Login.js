@@ -1,28 +1,27 @@
-import React from "react";
-import { Mutation } from 'react-apollo';
-import { LOGIN_USER } from "../graphql/mutations";
+import React, { useState }from "react";
+import {  LOGIN_USER } from "../graphql/mutations";
 import { useMutation } from '@apollo/react-hooks';
+
 
 function Login() {
   const [inputs, setInputs] = useState({});
 
-  const [LoginUser, { data }] = useMutation(SIGNUP_USER, {
-    update: updateCache,
-    onCompleted: assignToken
-  });
   
-
-  const assignToken = (data) => {
-    const { token } = data.register;
-    localStorage.setItem("auth-token", token);
-    this.props.history.push("/");
-  };
+  
   const updateCache = (client, { data }) => {
     console.log(data);
     client.writeData({
       data: { isLoggedIn: data.register.loggedIn }
     });
   }
+  const [LoginUser, { data }] = useMutation(LOGIN_USER, {
+    onCompleted({data}){
+          const { token } = data.login;
+          localStorage.setItem("auth-token", token);
+          this.props.history.push("/");
+        }
+  });
+
   const handleInputChange = (event) => {
     event.persist();
     setInputs(inputs => ({ ...inputs, [event.target.name]: event.target.value }));
@@ -36,9 +35,9 @@ function Login() {
       inputs.email = '';
       inputs.password = '';
     }}>
-      <input type="text" onChange={handleInputChange} values={inputs.email} placeholder="Email" />
-      <input type="passsword" onChange={handleInputChange} values={inputs.password} placeholder="Password" />
-      <button type="submit">Sign Up</button>
+      <input type="text" onChange={handleInputChange} name="email" value={inputs.email} placeholder="Email" />
+      <input type="passsword" onChange={handleInputChange} name="password" value={inputs.password} placeholder="Password" />
+      <button type="submit">Login</button>
     </form>
   )
 
