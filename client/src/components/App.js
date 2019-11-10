@@ -1,6 +1,8 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
 
+import "../stylesheets/reset.css";
+
 import HeaderNav from './HeaderNav';
 import Login from './Login';
 import SignUp from './SignUp';
