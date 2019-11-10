@@ -20,16 +20,14 @@ const HeaderNav = () => {
             </li>
           </ul>
         </div>
-        <div className="header-nav-right">
+        <ul className="header-nav-right">
           <form className="header-search-bar">
             <i className="search-icon" />
             <input type="text" placeholder="Cat photos" />
           </form>
-          <ul className="header-user-links">
-            <li className="header-upload-button"><Link /></li>    {/* needs to be filled in */}
-            <li className="header-profile-button"><Link /></li>    {/* needs to be filled in */}
-          </ul>
-        </div>
+          <li className="header-upload-button"><Link /></li>    {/* needs to be filled in */}
+          <li className="header-avatar-button"><button /></li>    {/* needs to be filled in */}
+        </ul>
       </header>
     </div>
   );
