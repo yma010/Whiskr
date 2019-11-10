@@ -6,6 +6,7 @@ import "../stylesheets/header_nav.css";
 const HeaderNav = () => {
   const [isYouDropdownOpen, setYouDropdownOpen] = useState(false);
   const [isExploreDropdownOpen, setExploreDropdownOpen] = useState(false);
+  const [isSearchFocused, setSearchFocus] = useState(false);
 
   return (
     <div className="header-nav-container">
@@ -44,9 +45,14 @@ const HeaderNav = () => {
           </ul>
         </div>
         <ul className="header-nav-right">
-          <form className="header-search-bar">
-            <i className="search-icon" />
-            <input type="text" placeholder="Cat photos" />
+          <form className={isSearchFocused ? "header-search-bar focused" : "header-search-bar"}>
+            <button className="search-icon" />
+            <input 
+              onFocus={() => setSearchFocus(true)}
+              onBlur={() => setSearchFocus(false)}
+              type="text" 
+              placeholder="Cat photos" 
+            />
           </form>
           <li className="header-upload-button"><Link /></li>    {/* link needs to be filled in */}
           <li className="header-avatar-button"><button /></li>    {/* link needs to be filled in */}

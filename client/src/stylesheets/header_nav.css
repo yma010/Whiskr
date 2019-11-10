@@ -130,6 +130,12 @@
   height: 33px;
   margin-right: 9px;
   border-radius: 2px;
+  color: black;
+}
+
+.header-search-bar.focused {
+  background-color: #fff;
+  width: 240px;
 }
 
 .search-icon {
