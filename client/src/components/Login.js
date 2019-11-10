@@ -1,25 +1,22 @@
 import React, { useState }from "react";
 import {  LOGIN_USER } from "../graphql/mutations";
-import { useMutation } from '@apollo/react-hooks';
+import { useMutation, useApolloClient } from '@apollo/react-hooks';
 
 
 function Login() {
   const [inputs, setInputs] = useState({});
-
+  const client = useApolloClient();
   
-  
-  const updateCache = (client, { data }) => {
-    console.log(data);
-    client.writeData({
-      data: { isLoggedIn: data.register.loggedIn }
-    });
-  }
   const [LoginUser, { data }] = useMutation(LOGIN_USER, {
-    onCompleted({data}){
-          const { token } = data.login;
-          localStorage.setItem("auth-token", token);
-          this.props.history.push("/");
-        }
+    onCompleted(data){
+      const { token } = data.login;
+      localStorage.setItem("auth-token", token);
+        client.writeData({
+          data: { isLoggedIn: data.register.loggedIn }
+        });
+      this.props.history.push("/");
+      },
+ 
   });
 
   const handleInputChange = (event) => {
