@@ -7,14 +7,14 @@ export const SIGNUP_USER = gql`
     $age: Int, 
     $email: String, 
     $password: String,
-    ) {
+  ) {
     signup(
       firstName: $firstName, 
       lastName: $lastName, 
       age: $age
       email: $email, 
       password: $password, 
-      ) {
+    ) {
       token
       loggedIn
     }
