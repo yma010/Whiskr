@@ -128,7 +128,25 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, { _id }){
         return Comment.deleteOne({ _id })
       }
-    }
+    },
+    newTag: {
+      type: TagType,
+      args: {
+        name: { type: GraphQLString },
+      },
+      resolve(parentValue, args) {
+        return new Tag(args).save();
+      }
+    },
+    deleteTag: {
+      type: TagType,
+      args: {
+        _id: { type: GraphQLID }
+      },
+      resolve(parentValue, { _id }) {
+        return Tag.deleteOne({ _id })
+      }
+    },
   }
 });
 
