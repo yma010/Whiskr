@@ -5,7 +5,8 @@ const {
   GraphQLString,
   GraphQLID,
   GraphQLInt,
-  GraphQLList
+  GraphQLList,
+  GraphQLBoolean
 } = graphql;
 
 const Photo = mongoose.model("photo");
@@ -19,6 +20,8 @@ const PhotoType = new GraphQLObjectType({
     description: { type: GraphQLString },
     dateTaken: { type: GraphQLString },
     views: { type: GraphQLInt },
+    isPublic: { type: GraphQLBoolean },
+    imageURL: { type: GraphQLString },
     photographer: {
       type: require("./user_type"),
       resolve(parentValue) {
