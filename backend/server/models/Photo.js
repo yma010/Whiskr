@@ -7,16 +7,22 @@ const PhotoSchema = new Schema({
     ref: 'user'
   },
   title: {
-    type: String,
-    required: true
+    type: String
   },
   description: {
-    type: String,
-    required: true
+    type: String
   },
-  views : {
+  views: {
     type: Number,
     default: 0
+  },
+  isPublic: {
+    type: Boolean,
+    required: true
+  },
+  imageURL: {
+    type: String,
+    required: true
   },
   albums: [{
     type: Schema.Types.ObjectId,
@@ -39,10 +45,68 @@ const PhotoSchema = new Schema({
   }
 });
 
+// index for text search
 PhotoSchema.index({
   title: "text",
   description: "text"
 });
-PhotoSchema.index({ photographer: 1, title: 1, album: 1 }, { unique: true });
 
-module.exports = mongoose.model('photo', PhotoSchema)
+// before first save: add to user, albums, tags
+PhotoSchema.pre("save", async function() {
+  const photo = this;
+  if (!photo.isNew) return;
+  
+  const User = mongoose.model("user");
+  await Promise.all([
+    User.findById(photo.photographer)
+      .then(user => {
+        user.photos.push(photo);
+        return user.save();
+      }),
+    photo.populate("albums", (_, photo) => (
+      Promise.all(photo.albums.map(album => {
+        album.photos.push(photo);
+        return album.save();
+      }))
+    )),
+    photo.populate("tags", (_, photo) => (
+      Promise.all(photo.tags.map(tag => {
+        tag.photos.push(photo);
+        return tag.save();
+      }))
+    ))
+  ]);
+});
+
+// pre delete:
+// 1) remove from user, albums, tags (remove empty albums, tags)
+// 2) destroy comments
+PhotoSchema.pre("deleteOne", async function() {
+  const Photo = mongoose.model("photo");
+  const User = mongoose.model("user");
+  const Comment = mongoose.model("comment");
+  const photo = await Photo.findById(this.getFilter());
+
+  await Promise.all([
+    User.findById(photo.photographer)
+      .then(user => {
+        user.photos.pull(photo);
+        return user.save();
+      }),
+    photo.populate("albums", (_, photo) => (
+      Promise.all(photo.albums.map(album => {
+        album.photos.pull(photo);
+        return album.photos.length === 0 ? album.remove() : album.save();
+      }))
+    )),
+    photo.populate("tags", (_, photo) => (
+      Promise.all(photo.tags.map(tag => {
+        tag.photos.pull(photo);
+        return tag.photos.length === 0 ? tag.remove() : tag.save();
+      }))
+    )),
+    Comment.deleteMany({ _id: { $in: photo.comments } })
+  ]);
+});
+
+module.exports = mongoose.model('photo', PhotoSchema);
