@@ -21,10 +21,10 @@ const HeaderNav = () => {
           </ul>
         </div>
         <div className="header-nav-right">
-          <div className="header-search-bar">
+          <form className="header-search-bar">
             <i className="search-icon" />
             <input type="text" placeholder="Cat photos" />
-          </div>
+          </form>
           <ul className="header-user-links">
             <li className="header-upload-button"><Link /></li>    {/* needs to be filled in */}
             <li className="header-profile-button"><Link /></li>    {/* needs to be filled in */}
