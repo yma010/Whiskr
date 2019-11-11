@@ -23,7 +23,10 @@ function Login(props) {
         client.writeData({
           data: { 
             isLoggedIn: data.login.loggedIn,
-            currentUserId: data._id
+            currentUser: {
+              _id: data.login._id,
+              firstName: data.login.firstName
+            }
           }
         });
       }

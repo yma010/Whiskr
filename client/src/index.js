@@ -12,6 +12,18 @@ import { HashRouter } from "react-router-dom";
 import App from './components/App';
 import { VERIFY_USER } from './graphql/mutations';
 
+const Root = () => {
+  return (
+    <ApolloProvider client={client}>
+      <HashRouter>
+        <App />
+      </HashRouter>
+    </ApolloProvider>
+  );
+};
+
+const renderApp = () => ReactDOM.render(<Root />, document.getElementById("root"));
+
 const cache = new InMemoryCache({
   dataIdFromObject: object => object._id || null
 });
@@ -48,8 +60,7 @@ const token = localStorage.getItem("auth-token");
 
 cache.writeData({
   data: {
-    isLoggedIn: Boolean(token),
-    currentUserId: null
+    isLoggedIn: Boolean(token)
   }
 });
 
@@ -60,22 +71,17 @@ if (token) {
       cache.writeData({
         data: {
           isLoggedIn: data.verifyUser.loggedIn,
-          currentUserId: data._id
+          currentUser: {
+            _id: data.verifyUser._id,
+            firstName: data.verifyUser.firstName,
+            __typeName: "UserType"
+          }
         }
       });
-    });
+      renderApp();
+    })
+} else {
+  renderApp();
 }
-
-const Root = () => {
-  return (
-    <ApolloProvider client={client}>
-      <HashRouter>
-        <App />
-      </HashRouter>
-    </ApolloProvider>
-  );
-};
-
-ReactDOM.render(<Root />, document.getElementById("root"));
 
 serviceWorker.unregister()

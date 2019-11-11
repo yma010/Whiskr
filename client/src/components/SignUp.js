@@ -32,7 +32,10 @@ function SignUp(props) {
     client.writeData({
       data: { 
         isLoggedIn: data.signup.loggedIn, 
-        currentUserId: data._id
+        currentUser: {
+          _id: data.signup._id,
+          firstName: data.signup.firstName
+        }
       }
     });
   };
