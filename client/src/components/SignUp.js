@@ -30,7 +30,10 @@ function SignUp(props) {
   const updateCache = (client, { data }) => {
     console.log(data);
     client.writeData({
-      data: { isLoggedIn: data.signup.loggedIn }
+      data: { 
+        isLoggedIn: data.signup.loggedIn, 
+        currentUserId: data._id
+      }
     });
   };
   

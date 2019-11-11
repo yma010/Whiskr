@@ -21,7 +21,10 @@ function Login(props) {
       },
       update(client, { data }) {
         client.writeData({
-          data: { isLoggedIn: data.login.loggedIn }
+          data: { 
+            isLoggedIn: data.login.loggedIn,
+            currentUserId: data._id
+          }
         });
       }
     }
