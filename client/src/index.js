@@ -46,6 +46,13 @@ const client = new ApolloClient({
 
 const token = localStorage.getItem("auth-token");
 
+cache.writeData({
+  data: {
+    isLoggedIn: Boolean(token),
+    currentUserId: null
+  }
+});
+
 if (token) {
   client
     .mutate({ mutation: VERIFY_USER, variables: { token } })
