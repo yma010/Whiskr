@@ -60,6 +60,7 @@
   padding: 10px;
   margin: 0;
   margin-bottom: .5rem;
+  font-size: 16px;
 }
 
 :after, :before {
@@ -87,6 +88,7 @@
   border-style: none;
   overflow: visible;
   cursor: pointer;
+  font-weight: 600;
 }
 
 a {
@@ -104,4 +106,13 @@ a {
 
 .card-container p {
   font-size: .875rem;
+}
+
+.card-container input {
+    transition: border .1s ease;
+    border-radius: .25rem;
+    border-width: .0625rem;
+    border-style: solid;
+    background-color: transparent;
+    outline: none;
 }
