@@ -43,16 +43,6 @@
     color: #128fdc;
     height: 3.5rem;
     cursor: text;
-    /* margin-bottom: .5rem; */
-    /* padding: 0; */
-    /* margin: 0; */
-    /* transition: border .1s ease; */
-    /* border-radius: 20.25rem; */
-    /* border-width: .0625rem; */
-    /* border-style: solid; */
-    /* background-color: transparent; */
-    /* border-style: none; */
-    /* outline: none; */
 }
 
 .card-input input {
@@ -91,7 +81,7 @@
   font-weight: 600;
 }
 
-a {
+.card-container a {
   color: #006dac;
   text-decoration: none;
 }
@@ -108,11 +98,11 @@ a {
   font-size: .875rem;
 }
 
-.card-container input {
-    transition: border .1s ease;
+/* .card-container input {
+    transition: border .1s ease; 
     border-radius: .25rem;
     border-width: .0625rem;
     border-style: solid;
     background-color: transparent;
-    outline: none;
-}
+     outline: none;
+} */
