@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useApolloClient } from "@apollo/react-hooks";
 
 import { IS_LOGGED_IN, CURRENT_USER } from "../graphql/queries";
 import "../stylesheets/header_nav.css";
@@ -10,15 +10,15 @@ const HeaderNav = () => {
   const [isExploreDropdownOpen, setExploreDropdownOpen] = useState(false);
   const [isSearchFocused, setSearchFocus] = useState(false);
   const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const { data: { isLoggedIn, currentUserId } } = useQuery(IS_LOGGED_IN);
-  
-  let firstName;
-  const { data: currentUser } = useQuery(CURRENT_USER, {
-    variables: { _id: currentUserId }
+  const { data: { isLoggedIn } } = useQuery(IS_LOGGED_IN);
+  const { data: { currentUser } } = useQuery(CURRENT_USER);
+  const client = useApolloClient();
+
+  document.addEventListener("click", e => {
+    if (!e.target.closest(".header-avatar-button")) {
+      setProfileDropdownOpen(false);
+    }
   });
-  if (currentUser) {
-    firstName = currentUser.firstName;
-  }
 
   const youDropdown = (
     <ul className="header-dropdown">
@@ -55,6 +55,30 @@ const HeaderNav = () => {
     </ul>
   );
 
+  let profileDropdown;
+  if (isLoggedIn) {
+    profileDropdown = (
+      <div className="profile-dropdown-container">
+        <span className="profile-dropdown-arrow" />
+        <div className="header-profile-dropdown">
+          <h4>Hi, <Link>{currentUser.firstName}!</Link></h4>
+          <button onClick={e => {
+            e.preventDefault();
+            localStorage.removeItem("auth-token");
+            client.writeData({
+              data: {
+                isLoggedIn: false,
+                currentUser: null
+              }
+            });
+          }}>
+            Log out
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="header-nav-container">
       <header className="header-nav">
@@ -84,9 +108,7 @@ const HeaderNav = () => {
           {isLoggedIn ? (
           <li className="header-avatar-button">
             <button onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}/>
-            {/* {isprofileDropdownOpen ? 
-            
-            ): "" } */}
+            {isProfileDropdownOpen ? profileDropdown : "" }
           </li>
           ) : (
           <li>{sessionLinks}</li>)}

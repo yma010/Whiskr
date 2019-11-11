@@ -14,7 +14,9 @@
 .header-nav-links a,
 .header-nav-links li,
 .header-search-bar,
-.whiskr-logo {
+.whiskr-logo,
+.header-session-links,
+.header-session-links li {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -171,9 +173,10 @@
 
 .header-avatar-button {
   margin-left: 23px;
+  position: relative;
 }
 
-.header-avatar-button button {
+.header-avatar-button > button {
   background-image: url("../public/camera-avatar.png");
   height: 33px;
   width: 33px;
@@ -184,7 +187,103 @@
   transition: box-shadow .15s ease-in-out;
 }
 
-.header-avatar-button button:hover {
+.header-avatar-button > button:hover {
   box-shadow: inset 0 0 25px rgba(0, 0, 0, .2), 
     inset 0 0 0 1px rgba(0, 0, 0, .2);
+}
+
+.header-profile-dropdown {
+  opacity: 1;
+  transition: opacity .3s ease-in-out;
+  width: 300px;
+  position: absolute;
+  top: 50.5px;
+  right: 0px;
+  background-color: white;
+  color: black;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(0,0,0,.3), 0 1px 4px 0 rgba(0,0,0,.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+}
+
+.profile-dropdown-arrow {
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px #aaa, -1px -1px 4px rgba(0,0,0,.2);
+  transform: rotate(45deg);
+  position: absolute;
+  right: 5px;
+  top: 46.5px;
+  z-index: 1;
+}
+
+.header-profile-dropdown::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #fff;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  position: absolute;
+  right: 5.5px;
+  top: -4.5px;
+  z-index: 1;
+}
+
+.header-profile-dropdown h4 > a {
+  display: inline-block;
+}
+
+.header-profile-dropdown h4 {
+  font-size: 20px;
+  padding: 15px 20px;
+  border-bottom: 1px solid #e1e1e1;
+  width: 100%;
+}
+
+.header-profile-dropdown button {
+  margin: 12px 0;
+  padding: 6px 20px;
+  font-size: 15px;
+  line-height: 15px;
+  cursor: pointer;
+  color: #212124;
+  width: 100%;
+  text-align: left;
+}
+
+.header-profile-dropdown button:hover {
+  background-color: #f1f1f1;
+}
+
+.header-session-links li {
+  margin-left: 23px;
+  font-size: 16px;
+}
+
+.header-session-links li:first-of-type a:hover {
+  opacity: 0.7;
+}
+
+.header-session-links li:last-of-type a {
+  padding: 0 20px;
+  transition: all .15s ease-in-out;
+  border-radius: 3px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #128fdc;
+}
+
+.header-session-links li:last-of-type a:hover {
+  background-color: #1c9be9;
+}
+
+.header-session-links li:last-of-type a:focus {
+  background-color: #1c9be9;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.6);
 }
