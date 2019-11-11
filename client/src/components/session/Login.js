@@ -50,7 +50,8 @@ function Login(props) {
               <input type="password" onChange={handleInputChange} name="password" value={inputs.password} placeholder="Password" />
             </div>
             <button type="submit" className="submit">Sign In</button>
-            <p>Not a Whiskr member? <Link to='/signup'>Sign up here</Link></p>
+            <div className='grey-bar'></div>
+            <p className="message-link">Not a Whiskr member? <Link to='/signup'>Sign up here</Link></p>
     </form>
           </div>
         </div>
