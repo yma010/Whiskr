@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as serviceWorker from "./serviceWorker";
 import ApolloClient from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { createUploadLink } from 'apollo-upload-client';
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "react-apollo";
 import { onError } from "apollo-link-error";
@@ -20,6 +21,13 @@ const httpLink = createHttpLink({
   uri: "http://localhost:5000/graphql"
 });
 
+const uploadLink = createUploadLink({
+  uri: 'http://localhost:4000', 
+  headers: {
+    "keep-alive": "true"
+  }
+})
+
 const authLink = setContext((_, { headers }) => {
   const token = localStorage.getItem('auth-token');
   return {
@@ -35,7 +43,7 @@ const errorLink = onError(({ graphQLErrors }) => {
 });
 
 const client = new ApolloClient({
-  link: authLink.concat(httpLink, errorLink),
+  link: authLink.concat(httpLink, errorLink), uploadLink,
   cache,
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
