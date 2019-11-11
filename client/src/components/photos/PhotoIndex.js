@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import {useQuery} from '@apollo/react-hooks';
 import {FETCH_PHOTOS} from '../../graphql/queries';
-
+import './photoindex.css'
 
 function PhotoIndex() {
   const {loading, error, data } = useQuery(FETCH_PHOTOS);
@@ -16,22 +16,37 @@ function PhotoIndex() {
   }
 
   let photos;
-  photos = data.photos.map(photo => {
-    if(photo.isPublic){
+  photos = data.photos.map((photo, i) => {
       return (
-      <li key={photo.id}>
-          <Link to={`/users/${photo.photographer._id}`}>
-            {photo.photographer.firstname} {photo.photographer.lastName}
-            </Link> 
-          <Link to={`/photos/${photo._id}`}>{photo.imageURL}</Link>
-          {photo.title}
-          {photo.views}
-      </li>
+      <div  className="single-card" key={i}>
+          <li key={photo.id}>
+          <div className="card-identity">
+              <Link to={`/users/${photo.photographer._id}`}> 
+                {photo.photographer.firstName} {photo.photographer.lastName} 
+              </Link> 
+          </div>        
+          <div className="card-photo">
+            <Link to={`/photos/${photo._id}`}> 
+              <img src={photo.imageURL} alt={photo.description}></img> 
+            </Link>
+          </div>
+          <div className="card-info">
+            {photo.title}
+            <div className="grey-div"></div>
+            {photo.views}
+          </div> 
+          </li> 
+      </div>
       )
-    }
   })
   return (
-    {photos}
+    <div className="feed-container">
+      <div className="feed">
+        <ul>
+          {photos}
+        </ul>
+      </div>
+    </div>
   )
 };
 

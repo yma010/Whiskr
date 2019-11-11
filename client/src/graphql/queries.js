@@ -7,8 +7,8 @@ export const IS_LOGGED_IN = gql`
 `;
 
 export const FETCH_PHOTOS = gql`
- query fetchPhotos{
-   photos (first: 3) {
+ {
+   photos {
      _id
      title
      views
