@@ -41,12 +41,12 @@
     flex-direction: column;
     display: flex;
     color: #128fdc;
+    height: 3.5rem;
+    cursor: text;
     /* margin-bottom: .5rem; */
     /* padding: 0; */
     /* margin: 0; */
-    height: 3.5rem;
     /* transition: border .1s ease; */
-    cursor: text;
     /* border-radius: 20.25rem; */
     /* border-width: .0625rem; */
     /* border-style: solid; */

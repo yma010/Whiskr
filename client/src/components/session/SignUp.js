@@ -57,7 +57,7 @@ function SignUp(props) {
       <input type="text" onChange={handleInputChange} name="lastName" value={inputs.lastName} placeholder="Last name"/>
       </div>
       <div className="card-input">
-      <input type="number" onChange={handleInputChange} name="age" value={inputs.age} placeholder="Your age"/>
+              <input type="number" onChange={handleInputChange} name="age" min="13" value={inputs.age} placeholder="Your age"/>
         </div>
       <div className="card-input">
         <input type="text" onChange={handleInputChange} name="email"  values={inputs.email} placeholder="Email address"/>
