@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
-
-import { LOGIN_USER } from "../graphql/mutations";
+import './forms.css';
+import { LOGIN_USER } from "../../graphql/mutations";
 
 
 function Login(props) {
@@ -33,16 +33,28 @@ function Login(props) {
   };
 
   return (
+      <div className="card-container">
+        <div className='card'>
+          <div className="card-content">
+            <h6 className='form-header'>Sign In for Whiskr</h6>
     <form onSubmit={e => {
       e.preventDefault();
       loginUser({
         variables: { email: inputs.email, password: inputs.password }
       });
     }}>
-      <input type="text" onChange={handleInputChange} name="email" value={inputs.email} placeholder="Email address" />
-      <input type="password" onChange={handleInputChange} name="password" value={inputs.password} placeholder="Password" />
-      <button type="submit">Sign in</button>
+            <div className="card-input">
+              <input type="text" onChange={handleInputChange} name="email" value={inputs.email} placeholder="Email address" />
+            </div>
+            <div className="card-input">
+              <input type="password" onChange={handleInputChange} name="password" value={inputs.password} placeholder="Password" />
+            </div>
+            <button type="submit" className="submit">Sign In</button>
+            <p>Not a Whiskr member? <Link to='/signup'>Sign up here</Link></p>
     </form>
+          </div>
+        </div>
+      </div>
   );
 }
 
