@@ -4,7 +4,8 @@ const {
   GraphQLObjectType, 
   GraphQLString, 
   GraphQLInt,
-  GraphQLList } = graphql;
+  GraphQLList,
+  GraphQLBoolean } = graphql;
 const mongoose = require("mongoose");
 
 const UserType = require("./types/user_type");
@@ -71,7 +72,9 @@ const mutation = new GraphQLObjectType({
         title: { type: GraphQLString },
         description: { type: GraphQLString },
         albums: { type: new GraphQLList(GraphQLID) },
-        tags: { type: GraphQLList(GraphQLID) }
+        tags: { type: GraphQLList(GraphQLID) },
+        imageURL: { type: GraphQLString },
+        isPublic: { type: GraphQLBoolean }
       },
       resolve(_, args){
         return new Photo(args).save();
@@ -108,7 +111,7 @@ const mutation = new GraphQLObjectType({
     },
     newComment: {
       type: CommentType,
-      arg: {
+      args: {
         author: { type: GraphQLID },
         photo: { type: GraphQLID },
         body: { type: GraphQLString },
@@ -125,7 +128,25 @@ const mutation = new GraphQLObjectType({
       resolve(parentValue, { _id }){
         return Comment.deleteOne({ _id })
       }
-    }
+    },
+    newTag: {
+      type: TagType,
+      args: {
+        name: { type: GraphQLString },
+      },
+      resolve(parentValue, args) {
+        return new Tag(args).save();
+      }
+    },
+    deleteTag: {
+      type: TagType,
+      args: {
+        _id: { type: GraphQLID }
+      },
+      resolve(parentValue, { _id }) {
+        return Tag.deleteOne({ _id })
+      }
+    },
   }
 });
 
