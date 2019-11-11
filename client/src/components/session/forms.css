@@ -20,7 +20,6 @@
   margin: 0 auto;
 }
 
-
 .card-content {
   position: relative;
   padding: 0;
@@ -38,11 +37,11 @@
 
 .card-input {
   position: relative; 
-    flex-direction: column;
-    display: flex;
-    color: #128fdc;
-    height: 3.5rem;
-    cursor: text;
+  flex-direction: column;
+  display: flex;
+  color: #128fdc;
+  height: 3.5rem;
+  cursor: text;
 }
 
 .card-input input {
@@ -98,11 +97,12 @@
   font-size: .875rem;
 }
 
-/* .card-container input {
-    transition: border .1s ease; 
-    border-radius: .25rem;
-    border-width: .0625rem;
-    border-style: solid;
-    background-color: transparent;
-     outline: none;
-} */
+.card-container input {
+  transition: border .1s ease; 
+  border-radius: .25rem;
+  border-width: .0625rem;
+  border-style: solid;
+  background-color: transparent;
+  outline: none;
+  color: #898989;
+}
