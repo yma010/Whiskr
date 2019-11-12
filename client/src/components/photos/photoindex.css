@@ -27,7 +27,10 @@
   border-radius: 4px;
   margin-bottom: 120px;
   transition: box-shadow .2s;
-  margin: 1%;
+  margin: 1.5%;
+}
+.single-card:hover {
+  box-shadow: 0 16px 32px 0 rgba(0,0,0,.1);
 }
 
 .user-avatar {
@@ -52,6 +55,7 @@
   font-size: 14px;
   max-width: 80%;
   display: flex;
+  cursor: pointer;
 }
 
 .card-photo{
@@ -82,7 +86,7 @@
 
 .photo-title{
   margin: 0;
-  width: 100%;
+  margin-left: 16px;
   height: 48px;
   overflow: hidden;
   margin-top: 0;
