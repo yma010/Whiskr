@@ -1,18 +1,20 @@
 .feed-container {
-  width: 1080px;
+  width: 100%;
   margin: auto;
   padding-bottom: 100px;
   padding-top: 120px;
-  background-color: #f3f5f6;
+  background-color: #dee0e0;
   opacity: 1;
 }
 
 .feed {
   display: flex;
-  height: 10028.3px;
   width: 1080px;
   margin: auto;
   box-sizing: border-box;
+}
+.feed ul {
+      margin: 0 20px 0 25px;
 }
 
 .single-card {
@@ -34,9 +36,14 @@
 }
 
 .user-avatar {
-  width: 32px;
-  height: 32px;
+ background-image: url("../../public/camera-avatar.png");
+  height: 33px;
+  width: 33px;
+  background-size: cover;
   border-radius: 100%;
+  cursor: pointer;
+  box-shadow: inset 0 0 20px rgba(0,0,0,.08);
+  transition: box-shadow .15s ease-in-out;
   margin: 0;
   margin-right: 16px;
   display: flex;
