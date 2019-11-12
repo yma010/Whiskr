@@ -40,16 +40,16 @@ function Login(props) {
   };
 
   return (
-      <div className="card-container">
-        <div className='card'>
-          <div className="card-content">
-            <h6 className='form-header'>Sign In for Whiskr</h6>
-    <form onSubmit={e => {
-      e.preventDefault();
-      loginUser({
-        variables: { email: inputs.email, password: inputs.password }
-      });
-    }}>
+    <div className="card-container">
+      <div className='card'>
+        <div className="card-content">
+          <h6 className='form-header'>Sign In for Whiskr</h6>
+          <form onSubmit={e => {
+            e.preventDefault();
+            loginUser({
+              variables: { email: inputs.email, password: inputs.password }
+            });
+          }}>
             <div className="card-input">
               <input type="text" onChange={handleInputChange} name="email" value={inputs.email} placeholder="Email address" />
             </div>
@@ -65,10 +65,10 @@ function Login(props) {
             </a>
             <div className='grey-bar'></div>
             <p className="message-link">Not a Whiskr member? <Link to='/signup'>Sign up here</Link></p>
-    </form>
-          </div>
+          </form>
         </div>
       </div>
+    </div>
   );
 }
 
