@@ -3,8 +3,20 @@ import { UPLOAD_FILE_STREAM } from '../graphql/mutations';
 import { Mutation } from 'react-apollo'
 
 class Upload extends React.Component {
+  // constructor(props){
+  //   super(props)
 
-  render()   {
+  //   this.state = {
+      
+  //   }
+  // }
+
+  // update(field) {
+  //   return e => this.setState({ [field]: e.target.value });
+  // }
+
+  render() {
+    
     return (
       <div>
           <Mutation mutation={UPLOAD_FILE_STREAM}>
@@ -27,6 +39,7 @@ class Upload extends React.Component {
                 </form>)}
                 }
           </Mutation>
+          <p>hi</p>
       </div>
     )
   }
