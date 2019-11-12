@@ -55,10 +55,12 @@ function Login(props) {
             });
           }}>
             <div className="card-input">
-              <input type="text" onChange={handleInputChange} name="email" value={inputs.email} placeholder="Email address" />
+              <label className={inputs.email ? "small" : ""}>Email address</label>
+              <input required type="text" onChange={handleInputChange} name="email" value={inputs.email} />
             </div>
             <div className="card-input">
-              <input type="password" onChange={handleInputChange} name="password" value={inputs.password} placeholder="Password" />
+              <label className={inputs.password ? "small" : ""}>Password</label>
+              <input required type="password" onChange={handleInputChange} name="password" value={inputs.password} />
             </div>
               <button type="submit" className="submit">Sign in</button>
               <a 

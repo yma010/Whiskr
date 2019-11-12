@@ -86,19 +86,24 @@ function SignUp(props) {
             });
           }}>
             <div className="card-input">
-              <input type="text" onChange={handleInputChange} name="firstName" value={inputs.firstName} placeholder="First name"/>
+              <label className={inputs.firstName ? "small" : ""}>First name</label>
+              <input required type="text" onChange={handleInputChange} name="firstName" value={inputs.firstName} />
             </div>
             <div className="card-input">
-              <input type="text" onChange={handleInputChange} name="lastName" value={inputs.lastName} placeholder="Last name"/>
+              <label className={inputs.lastName ? "small" : ""}>Last name</label>
+              <input required type="text" onChange={handleInputChange} name="lastName" value={inputs.lastName} />
             </div>
             <div className="card-input">
-              <input type="number" onChange={handleInputChange} name="age" min="13" value={inputs.age} placeholder="Your age"/>
+              <label className={inputs.age ? "small" : ""}>Your age</label>
+              <input required type="number" onChange={handleInputChange} name="age" min="13" value={inputs.age} />
             </div>
             <div className="card-input">
-              <input type="text" onChange={handleInputChange} name="email"  values={inputs.email} placeholder="Email address"/>
+              <label className={inputs.email ? "small" : ""}>Email address</label>
+              <input required type="text" onChange={handleInputChange} name="email"  values={inputs.email} />
             </div>
             <div className="card-input">
-              <input type="password" onChange={handleInputChange} name="password" values={inputs.password} placeholder="Password"/>
+              <label className={inputs.password ? "small" : ""}>Password</label>
+              <input required type="password" onChange={handleInputChange} name="password" values={inputs.password} />
             </div>
               <button type="submit" className="submit">Sign up</button>
               <a type="submit" className="demo-login" onClick={() => demoLogin()}>Demo login</a>
