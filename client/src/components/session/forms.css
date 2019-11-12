@@ -120,7 +120,7 @@ label.small {
 }
 
 .submit,
-form a.demo-login {
+.demo-login {
   background-color: #128fdc;
   transition: background-color .2s;
   color: #fff;
@@ -160,7 +160,9 @@ form a.demo-login:hover {
   font-size: .875rem;
 }
 
-.card-container p a {
+.card-container p button {
   display: inline;
   cursor: pointer;
+  white-space: pre;
+  color: #006DAC;
 }

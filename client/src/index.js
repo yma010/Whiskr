@@ -6,7 +6,6 @@ import { InMemoryCache } from "apollo-cache-inmemory";
 import { createUploadLink } from 'apollo-upload-client';
 import { createHttpLink } from "apollo-link-http";
 import { ApolloProvider } from "react-apollo";
-import { ApolloLink } from 'apollo-link';
 import { onError } from "apollo-link-error";
 import { setContext } from "apollo-link-context";
 import { HashRouter } from "react-router-dom";
@@ -68,7 +67,8 @@ const client = new ApolloClient({
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
     console.log("networkError", networkError);
-  }
+  },
+  resolvers: {}
 });
 
 const token = localStorage.getItem("auth-token");

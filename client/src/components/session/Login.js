@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import './forms.css';
 import { LOGIN_USER } from "../../graphql/mutations";
@@ -74,18 +74,22 @@ function Login(props) {
             </div>
               <button type="submit" className="submit">Sign in</button>
               
-              <a 
+              <button 
                 type="submit" 
                 className="demo-login" 
-                onClick={() => loginUser({ variables: { email: "niles_mowgli@hotmail.com", password: "hunterhunter" } })}>
+                onClick={e => { 
+                  e.preventDefault(); 
+                  loginUser({ variables: { email: "niles_mowgli@hotmail.com", password: "hunterhunter" } })
+                }}>
                 Demo login
-              </a>
+              </button>
             <div className='grey-bar'></div>
             <p>Not a Whiskr member? 
-              <a onClick={() => {
+              <button onClick={e => {
+                  e.preventDefault();
                   setIsDisappearing(true); 
                   setTimeout(() => props.history.push("/signup"), 300)
-              }}> Sign up here</a>
+              }}> Sign up here</button>
             </p>
           </form>
         </div>
