@@ -11,6 +11,7 @@ export const CURRENT_USER = gql`
     currentUser @client {
       _id  
       firstName
+      __typeName
     }
   }
 `;

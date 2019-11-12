@@ -39,11 +39,8 @@ export const VERIFY_USER = gql`
     verifyUser(token: $token) {
       _id
       firstName
-      lastName
-      age
-      email
+      token
       loggedIn
-      __typename
     }
   }
 `;
