@@ -51,7 +51,7 @@
 }
 
 .card-photo img {
-  width: 480px;
+  width: 100%;
   height: auto;
 }
 
@@ -64,6 +64,8 @@
 .single-card a {
   text-decoration: none;
   color: #212124;
+  width: 480px;
+    height: 358.08px;
 }
 
 .single-card li {
