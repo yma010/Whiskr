@@ -43,7 +43,11 @@ function Login(props) {
     <div className="card-container">
       <div className='card'>
         <div className="card-content">
-          <h6 className='form-header'>Sign In for Whiskr</h6>
+          <div className="flickr-dots">
+            <span className="blue-dot"/>
+            <span className="pink-dot"/>
+          </div>
+          <h6 className='form-header'>Log in to Whiskr</h6>
           <form onSubmit={e => {
             e.preventDefault();
             loginUser({
@@ -56,13 +60,13 @@ function Login(props) {
             <div className="card-input">
               <input type="password" onChange={handleInputChange} name="password" value={inputs.password} placeholder="Password" />
             </div>
-            <button type="submit" className="submit">Sign in</button>
-            <a 
-              type="submit" 
-              className="demo-login" 
-              onClick={() => loginUser({ variables: { email: "niles_mowgli@hotmail.com", password: "hunterhunter" } })}>
-              Demo login
-            </a>
+              <button type="submit" className="submit">Sign in</button>
+              <a 
+                type="submit" 
+                className="demo-login" 
+                onClick={() => loginUser({ variables: { email: "niles_mowgli@hotmail.com", password: "hunterhunter" } })}>
+                Demo login
+              </a>
             <div className='grey-bar'></div>
             <p className="message-link">Not a Whiskr member? <Link to='/signup'>Sign up here</Link></p>
           </form>

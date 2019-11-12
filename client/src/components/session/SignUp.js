@@ -74,33 +74,37 @@ function SignUp(props) {
     <div className="card-container">
       <div className='card'>
         <div className="card-content">
+          <div className="flickr-dots">
+            <span className="blue-dot"/>
+            <span className="pink-dot"/>
+          </div>
           <h6 className='form-header'>Sign up for Whiskr</h6>
-    <form onSubmit={e => {
-      e.preventDefault();
-      signUpUser({ 
-        variables: { ...inputs, age: parseInt(inputs.age) }
-      });
-    }}>
-      <div className="card-input">
-      <input type="text" onChange={handleInputChange} name="firstName" value={inputs.firstName} placeholder="First name"/>
-      </div>
-      <div className="card-input">
-      <input type="text" onChange={handleInputChange} name="lastName" value={inputs.lastName} placeholder="Last name"/>
-      </div>
-      <div className="card-input">
+          <form onSubmit={e => {
+            e.preventDefault();
+            signUpUser({ 
+              variables: { ...inputs, age: parseInt(inputs.age) }
+            });
+          }}>
+            <div className="card-input">
+              <input type="text" onChange={handleInputChange} name="firstName" value={inputs.firstName} placeholder="First name"/>
+            </div>
+            <div className="card-input">
+              <input type="text" onChange={handleInputChange} name="lastName" value={inputs.lastName} placeholder="Last name"/>
+            </div>
+            <div className="card-input">
               <input type="number" onChange={handleInputChange} name="age" min="13" value={inputs.age} placeholder="Your age"/>
-        </div>
-      <div className="card-input">
-        <input type="text" onChange={handleInputChange} name="email"  values={inputs.email} placeholder="Email address"/>
-      </div>
-      <div className="card-input">
-        <input type="password" onChange={handleInputChange} name="password" values={inputs.password} placeholder="Password"/>
-      </div>
-      <button type="submit" className="submit">Sign up</button>
-      <a type="submit" className="demo-login" onClick={() => demoLogin()}>Demo login</a>
-      <div className='grey-bar'></div>
-      <p>Already a Whiskr member? <Link to='/login'>Sign in here</Link></p>
-    </form>
+            </div>
+            <div className="card-input">
+              <input type="text" onChange={handleInputChange} name="email"  values={inputs.email} placeholder="Email address"/>
+            </div>
+            <div className="card-input">
+              <input type="password" onChange={handleInputChange} name="password" values={inputs.password} placeholder="Password"/>
+            </div>
+              <button type="submit" className="submit">Sign up</button>
+              <a type="submit" className="demo-login" onClick={() => demoLogin()}>Demo login</a>
+            <div className='grey-bar'></div>
+            <p>Already a Whiskr member? <Link to='/login'>Sign in here</Link></p>
+          </form>
         </div>
       </div>
     </div>

@@ -24,6 +24,27 @@
   justify-content: center;
 }
 
+.flickr-dots {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 22px;
+}
+
+.flickr-dots > span {
+  height: 10px;
+  width: 10px;
+  border-radius: 100%;
+}
+
+.blue-dot {
+  background-color: #005fde;
+  margin-right: 2px;
+}
+
+.pink-dot {
+  background-color: #ff0084;
+}
+
 .card-content {
   position: relative;
   padding: 0;
@@ -33,10 +54,8 @@
 .form-header {
   text-align: center;
   font-weight: 400;
-  margin-bottom: 1rem;
-  font-size: 1.25rem;
-  padding: 10px;
-  margin: 0;
+  font-size: 20px;
+  margin-bottom: 16px;
 }
 
 .card-input {
