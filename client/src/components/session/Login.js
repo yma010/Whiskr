@@ -56,7 +56,13 @@ function Login(props) {
             <div className="card-input">
               <input type="password" onChange={handleInputChange} name="password" value={inputs.password} placeholder="Password" />
             </div>
-            <button type="submit" className="submit">Sign In</button>
+            <button type="submit" className="submit">Sign in</button>
+            <a 
+              type="submit" 
+              className="demo-login" 
+              onClick={() => loginUser({ variables: { email: "niles_mowgli@hotmail.com", password: "hunterhunter" } })}>
+              Demo login
+            </a>
             <div className='grey-bar'></div>
             <p className="message-link">Not a Whiskr member? <Link to='/signup'>Sign up here</Link></p>
     </form>
