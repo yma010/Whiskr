@@ -5,3 +5,12 @@ export const IS_LOGGED_IN = gql`
     isLoggedIn @client
   }
 `;
+
+export const CURRENT_USER = gql`
+  query CurrentUser {
+    currentUser @client {
+      _id  
+      firstName
+    }
+  }
+`;
