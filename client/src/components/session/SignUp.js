@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import './forms.css';
-import { SIGNUP_USER } from "../../graphql/mutations";
+import { SIGNUP_USER, LOGIN_USER } from "../../graphql/mutations";
 
 function SignUp(props) {
   const [inputs, setInputs] = useState({
@@ -18,6 +18,30 @@ function SignUp(props) {
     {
       onCompleted: data => assignToken(data),
       update: (client, data) => updateCache(client, data)
+    }
+  );
+
+  const [demoLogin] = useMutation(
+    LOGIN_USER,
+    {
+      variables: { email: "niles_mowgli@hotmail.com", password: "hunterhunter" },
+      onCompleted(data) {
+        const { token } = data.login;
+        localStorage.setItem("auth-token", token);
+        props.history.push("/");
+      },
+      update(client, { data }) {
+        client.writeData({
+          data: {
+            isLoggedIn: data.login.loggedIn,
+            currentUser: {
+              _id: data.login._id,
+              firstName: data.login.firstName,
+              __typeName: "UserType"
+            }
+          }
+        });
+      }
     }
   );
 
@@ -73,8 +97,9 @@ function SignUp(props) {
         <input type="password" onChange={handleInputChange} name="password" values={inputs.password} placeholder="Password"/>
       </div>
       <button type="submit" className="submit">Sign up</button>
-           <div className='grey-bar'></div>
-            <p>Already a Whiskr member? <Link to='/login'>Sign in here</Link></p>
+      <a type="submit" className="demo-login" onClick={() => demoLogin()}>Demo login</a>
+      <div className='grey-bar'></div>
+      <p>Already a Whiskr member? <Link to='/login'>Sign in here</Link></p>
     </form>
         </div>
       </div>

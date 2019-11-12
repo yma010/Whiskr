@@ -27,8 +27,8 @@ const seed = async function() {
   const demoUser = new User({
     firstName: "Niles",
     lastName: "Mowgli",
-    age: 11,
-    email: "kitty@aol.com",
+    age: 13,
+    email: "niles_mowgli@hotmail.com",
     password: "hunterhunter"
   });
   await demoUser.save();
