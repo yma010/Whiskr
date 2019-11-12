@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery, useApolloClient } from "@apollo/react-hooks";
 
-import { IS_LOGGED_IN, CURRENT_USER } from "../graphql/queries";
+import { CURRENT_USER } from "../graphql/queries";
 import "../stylesheets/header_nav.css";
 
 const HeaderNav = () => {
@@ -10,7 +10,6 @@ const HeaderNav = () => {
   const [isExploreDropdownOpen, setExploreDropdownOpen] = useState(false);
   const [isSearchFocused, setSearchFocus] = useState(false);
   const [isProfileDropdownOpen, setProfileDropdownOpen] = useState(false);
-  const { data: { isLoggedIn } } = useQuery(IS_LOGGED_IN);
   const { data: { currentUser } } = useQuery(CURRENT_USER);
   const client = useApolloClient();
 
@@ -56,7 +55,7 @@ const HeaderNav = () => {
   );
 
   let profileDropdown;
-  if (isLoggedIn) {
+  if (currentUser) {
     profileDropdown = (
       <div className="profile-dropdown-container">
         <span className="profile-dropdown-arrow" />
@@ -85,7 +84,7 @@ const HeaderNav = () => {
         <div className="header-nav-left">
           <Link to="/" className="whiskr-logo"><span>whiskr</span></Link>
           <ul className="header-nav-links">
-            {isLoggedIn ? (
+            {currentUser ? (
             <li 
               onMouseEnter={() => setYouDropdownOpen(true)}
               onMouseLeave={() => setYouDropdownOpen(false)}
@@ -105,7 +104,7 @@ const HeaderNav = () => {
         <ul className="header-nav-right">
           <li>{searchBar}</li>
           <li className="header-upload-button"><Link /></li>    {/* link needs to be filled in */}
-          {isLoggedIn ? (
+          {currentUser ? (
           <li className="header-avatar-button">
             <button onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}/>
             {isProfileDropdownOpen ? profileDropdown : "" }

@@ -25,7 +25,8 @@ function Login(props) {
             isLoggedIn: data.login.loggedIn,
             currentUser: {
               _id: data.login._id,
-              firstName: data.login.firstName
+              firstName: data.login.firstName,
+              __typeName: "UserType"
             }
           }
         });

@@ -34,7 +34,8 @@ function SignUp(props) {
         isLoggedIn: data.signup.loggedIn, 
         currentUser: {
           _id: data.signup._id,
-          firstName: data.signup.firstName
+          firstName: data.signup.firstName,
+          __typeName: "UserType"
         }
       }
     });
