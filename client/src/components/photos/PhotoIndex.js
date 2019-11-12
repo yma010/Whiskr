@@ -21,7 +21,7 @@ function PhotoIndex() {
       <div  className="single-card" key={i}>
           <li key={photo.id}>
           <div className="card-identity">
-            <div className="user-avatar" /> 
+            <div className="user-avatar" />  {/*user avatar image here*/}
             <Link to={`/users/${photo.photographer._id}`}> 
               {photo.photographer.firstName} {photo.photographer.lastName} 
             </Link> 

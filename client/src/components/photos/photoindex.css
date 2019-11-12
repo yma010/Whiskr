@@ -13,8 +13,9 @@
   margin: auto;
   box-sizing: border-box;
 }
+
 .feed ul {
-      margin: 0 20px 0 25px;
+  margin: 0 20px 0 25px;
 }
 
 .single-card {
@@ -31,6 +32,7 @@
   transition: box-shadow .2s;
   margin: 1.5%;
 }
+
 .single-card:hover {
   box-shadow: 0 16px 32px 0 rgba(0,0,0,.1);
 }
@@ -111,12 +113,13 @@
 
 .activity-card-counts{
   display: inline-flex;
-  color: #b3b3b3;
+  color: #949393;
   font-size: 12px;
   font-weight: 400;
   margin-right: 5px;
 }
+
 .view-count{
-  color: #b3b3b3;
+  color: #949393;
   margin-right: 10px;
 }
