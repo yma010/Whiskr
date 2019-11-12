@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
-
-import { SIGNUP_USER } from "../graphql/mutations";
+import './forms.css';
+import { SIGNUP_USER } from "../../graphql/mutations";
 
 function SignUp(props) {
   const [inputs, setInputs] = useState({
@@ -46,19 +46,38 @@ function SignUp(props) {
   };
   
   return (
+    <div className="card-container">
+      <div className='card'>
+        <div className="card-content">
+          <h6 className='form-header'>Sign up for Whiskr</h6>
     <form onSubmit={e => {
       e.preventDefault();
       signUpUser({ 
         variables: { ...inputs, age: parseInt(inputs.age) }
       });
     }}>
+      <div className="card-input">
       <input type="text" onChange={handleInputChange} name="firstName" value={inputs.firstName} placeholder="First name"/>
+      </div>
+      <div className="card-input">
       <input type="text" onChange={handleInputChange} name="lastName" value={inputs.lastName} placeholder="Last name"/>
-      <input type="number" onChange={handleInputChange} name="age" value={inputs.age} placeholder="Your age"/>
-      <input type="text" onChange={handleInputChange} name="email"  values={inputs.email} placeholder="Email address"/>
-      <input type="password" onChange={handleInputChange} name="password" values={inputs.password} placeholder="Password"/>
-      <button type="submit">Sign up</button>
+      </div>
+      <div className="card-input">
+              <input type="number" onChange={handleInputChange} name="age" min="13" value={inputs.age} placeholder="Your age"/>
+        </div>
+      <div className="card-input">
+        <input type="text" onChange={handleInputChange} name="email"  values={inputs.email} placeholder="Email address"/>
+      </div>
+      <div className="card-input">
+        <input type="password" onChange={handleInputChange} name="password" values={inputs.password} placeholder="Password"/>
+      </div>
+      <button type="submit" className="submit">Sign up</button>
+           <div className='grey-bar'></div>
+            <p>Already a Whiskr member? <Link to='/login'>Sign in here</Link></p>
     </form>
+        </div>
+      </div>
+    </div>
   );
 }
 

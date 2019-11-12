@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
 
-import "../stylesheets/reset.css";
-
 import HeaderNav from './HeaderNav';
-import Login from './Login';
-import SignUp from './SignUp';
+import Login from './session/Login';
+import SignUp from './session/SignUp';
+
+import "../stylesheets/reset.css";
 
 
 const App = () => {
