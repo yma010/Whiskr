@@ -30,9 +30,18 @@
   margin: 1%;
 }
 
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  margin: 0;
+  margin-right: 16px;
+  display: flex;
+}
+
+
 .card-identity{
-  max-width: 480px;
-  width: 100%;
+  width: 480px;
   height: 64px;
   padding: 16px;
   vertical-align: middle;
@@ -42,6 +51,7 @@
   font-weight: 600;
   font-size: 14px;
   max-width: 80%;
+  display: flex;
 }
 
 .card-photo{
@@ -64,8 +74,6 @@
 .single-card a {
   text-decoration: none;
   color: #212124;
-  width: 480px;
-    height: 358.08px;
 }
 
 .single-card li {
