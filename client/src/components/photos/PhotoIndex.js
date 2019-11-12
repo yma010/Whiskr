@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {useQuery} from '@apollo/react-hooks';
 import {FETCH_PHOTOS} from '../../graphql/queries';
 import './photoindex.css'
+import PhotoComments from '../comments/PhotoComments';
 
 function PhotoIndex() {
   const {loading, error, data } = useQuery(FETCH_PHOTOS);
@@ -37,7 +38,8 @@ function PhotoIndex() {
             </div>
             <div className="photo-actions">
                 <div className="activity-card-counts">
-                  <span className="view-count">{photo.views} Views</span> 
+                  <span className="view-count">{photo.views} Views</span>
+                  <Link to={`/photo/${photo._id}/comments`}>Comments</Link> 
                 </div>
             </div>
           </div> 

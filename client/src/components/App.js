@@ -6,6 +6,7 @@ import Login from './session/Login';
 import SignUp from './session/SignUp';
 import PhotoIndex from './photos/PhotoIndex';
 import "../stylesheets/reset.css";
+import PhotoComments from './comments/PhotoComments';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Switch>
         <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
+        <Route path='/photo/:id/comments' component={PhotoComments}/>
         <Route path='/' component={PhotoIndex} />
       </Switch>
     </div>
