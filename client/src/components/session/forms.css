@@ -1,0 +1,108 @@
+.card-container { 
+  min-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  padding-bottom: 4rem;
+  padding: 2rem;
+  width: 100%;
+  color: #212124;
+  font-family: Proxima Nova, Helvetica,sans-serif;
+  line-height: 1.3;
+}
+
+.card {
+  width: 20rem;
+  position: relative;
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: .25rem;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.card-content {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+
+.form-header {
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  padding: 10px;
+  margin: 0;
+}
+
+.card-input {
+  position: relative; 
+  flex-direction: column;
+  display: flex;
+  color: #128fdc;
+  height: 3.5rem;
+  cursor: text;
+}
+
+.card-input input {
+  height: 3.5rem;
+  padding: 10px;
+  margin: 0;
+  margin-bottom: .5rem;
+  font-size: 16px;
+}
+
+:after, :before {
+  text-decoration: inherit;
+  vertical-align: inherit;
+}
+
+::selection {
+  background-color: #b3d4fc;
+  color: #000;
+  text-shadow: none;
+}
+
+.submit {
+  background-color: #128fdc;
+  color: #fff;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: .5rem;
+  padding-top: .5rem;
+  width: 100%;
+  font-size: 1rem;
+  border-radius: .25rem;
+  outline: none;
+  border-style: none;
+  overflow: visible;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.card-container a {
+  color: #006dac;
+  text-decoration: none;
+}
+
+.grey-bar {
+  height: 0.0625rem;
+  background-color: #e3e3e3;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.card-container p {
+  font-size: .875rem;
+}
+
+.card-container input {
+  transition: border .1s ease; 
+  border-radius: .25rem;
+  border-width: .0625rem;
+  border-style: solid;
+  background-color: transparent;
+  outline: none;
+  color: #898989;
+}

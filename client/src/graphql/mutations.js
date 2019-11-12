@@ -15,6 +15,8 @@ export const SIGNUP_USER = gql`
       email: $email, 
       password: $password, 
     ) {
+      _id
+      firstName
       token
       loggedIn
     }
@@ -24,6 +26,8 @@ export const SIGNUP_USER = gql`
 export const LOGIN_USER = gql`
   mutation LoginUser($email: String, $password: String) {
     login(email: $email, password: $password) {
+      _id
+      firstName
       token
       loggedIn
     }
@@ -33,6 +37,9 @@ export const LOGIN_USER = gql`
 export const VERIFY_USER = gql`
   mutation VerifyUser($token: String!) {
     verifyUser(token: $token) {
+      _id
+      firstName
+      token
       loggedIn
     }
   }
