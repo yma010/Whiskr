@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import './forms.css';
@@ -6,6 +6,15 @@ import { LOGIN_USER } from "../../graphql/mutations";
 
 
 function Login(props) {
+  const [isAppearing, setIsAppearing] = useState(true);
+  const [isDisappearing, setIsDisappearing] = useState(false);
+
+  useEffect(() => {
+    if (isAppearing) {
+      setTimeout(() => setIsAppearing(false), 100);
+    }
+  }, [isAppearing]);
+
   const [inputs, setInputs] = useState({
     email: "",
     password: ""
@@ -17,7 +26,8 @@ function Login(props) {
       onCompleted(data) {
         const { token } = data.login;
         localStorage.setItem("auth-token", token);
-        props.history.push("/");
+        setIsDisappearing(true); 
+        setTimeout(() => props.history.push("/"), 300);
       },
       update(client, { data }) {
         client.writeData({
@@ -41,7 +51,7 @@ function Login(props) {
 
   return (
     <div className="card-container">
-      <div className='card'>
+      <div className={isAppearing || isDisappearing ? 'card hidden' : 'card'}>
         <div className="card-content">
           <div className="flickr-dots">
             <span className="blue-dot"/>
@@ -63,6 +73,7 @@ function Login(props) {
               <input required type="password" onChange={handleInputChange} name="password" value={inputs.password} />
             </div>
               <button type="submit" className="submit">Sign in</button>
+              
               <a 
                 type="submit" 
                 className="demo-login" 
@@ -70,7 +81,12 @@ function Login(props) {
                 Demo login
               </a>
             <div className='grey-bar'></div>
-            <p className="message-link">Not a Whiskr member? <Link to='/signup'>Sign up here</Link></p>
+            <p>Not a Whiskr member? 
+              <a onClick={() => {
+                  setIsDisappearing(true); 
+                  setTimeout(() => props.history.push("/signup"), 300)
+              }}> Sign up here</a>
+            </p>
           </form>
         </div>
       </div>

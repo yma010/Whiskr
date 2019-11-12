@@ -1,10 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter, Link } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import './forms.css';
 import { SIGNUP_USER, LOGIN_USER } from "../../graphql/mutations";
 
 function SignUp(props) {
+  const [isAppearing, setIsAppearing] = useState(true);
+  const [isDisappearing, setIsDisappearing] = useState(false);
+
+  useEffect(() => {
+    if (isAppearing) {
+      setTimeout(() => setIsAppearing(false), 100);
+    }
+  }, [isAppearing]);
+
   const [inputs, setInputs] = useState({
     firstName: "",
     lastName: "",
@@ -16,7 +25,11 @@ function SignUp(props) {
   const [signUpUser] = useMutation(
     SIGNUP_USER, 
     {
-      onCompleted: data => assignToken(data),
+      onCompleted: data => {
+        assignToken(data);
+        setIsDisappearing(true); 
+        setTimeout(() => props.history.push("/"), 300);
+      },
       update: (client, data) => updateCache(client, data)
     }
   );
@@ -28,7 +41,8 @@ function SignUp(props) {
       onCompleted(data) {
         const { token } = data.login;
         localStorage.setItem("auth-token", token);
-        props.history.push("/");
+        setIsDisappearing(true); 
+        setTimeout(() => props.history.push("/"), 300);
       },
       update(client, { data }) {
         client.writeData({
@@ -72,7 +86,7 @@ function SignUp(props) {
   
   return (
     <div className="card-container">
-      <div className='card'>
+      <div className={isAppearing || isDisappearing ? 'card hidden' : 'card'}>
         <div className="card-content">
           <div className="flickr-dots">
             <span className="blue-dot"/>
@@ -108,7 +122,12 @@ function SignUp(props) {
               <button type="submit" className="submit">Sign up</button>
               <a type="submit" className="demo-login" onClick={() => demoLogin()}>Demo login</a>
             <div className='grey-bar'></div>
-            <p>Already a Whiskr member? <Link to='/login'>Sign in here</Link></p>
+            <p>Already a Whiskr member? 
+              <a onClick={() => {
+                  setIsDisappearing(true); 
+                  setTimeout(() => props.history.push("/login"), 300)
+              }}> Log in here</a>
+            </p>
           </form>
         </div>
       </div>
