@@ -44,3 +44,17 @@ export const VERIFY_USER = gql`
     }
   }
 `;
+
+export const NEW_COMMENT = gql`
+  mutation NewComment( $author: String!, $photo: ID!, $body: String!){
+    newComment(author: $author, photo: $photo, body: $body){
+      _id
+      body
+      author {
+        _id
+        firstName
+        lastName
+      }
+    }
+  }
+`;

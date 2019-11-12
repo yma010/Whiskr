@@ -1,0 +1,25 @@
+#comments {
+  margin-top: 100px;
+}
+
+.comment-card{
+  display: block;
+  padding: 10px;
+  background-color: cornsilk;
+}
+
+.comment-card a {
+  font-weight: 600;
+}
+
+.comment-card p {
+  background-color: white;
+}
+
+.comment-author-identity{
+
+}
+
+.comment-body {
+  
+}
