@@ -31,9 +31,14 @@ function PhotoIndex() {
             </Link>
           </div>
           <div className="card-info">
-            {photo.title}
-            <div className="grey-div"></div>
-            {photo.views}
+            <div className="photo-title">
+                <p>{photo.title}</p>
+            </div>
+            <div className="photo-actions">
+                <div className="activity-card-counts">
+                  <span className="view-count">{photo.views} Views</span> 
+                </div>
+            </div>
           </div> 
           </li> 
       </div>

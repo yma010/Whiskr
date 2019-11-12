@@ -1,29 +1,27 @@
 .feed-container {
-    width: 1080px;
-    margin: auto;
-    padding-bottom: 100px;
-    padding-top: 120px;
-    background-color: #f3f5f6;
-    opacity: 1;
+  width: 1080px;
+  margin: auto;
+  padding-bottom: 100px;
+  padding-top: 120px;
+  background-color: #f3f5f6;
+  opacity: 1;
 }
 
 .feed {
   display: flex;
-    height: 10028.3px;
-    width: 1080px;
-    margin: auto;
-    box-sizing: border-box;
+  height: 10028.3px;
+  width: 1080px;
+  margin: auto;
+  box-sizing: border-box;
 }
 
 .single-card {
-  
   display: inline-flex;
   background: #fff;
   width: 480px;
   margin-top: 0;
   justify-content: space-between;
-  border: red solid 2px; 
-  padding: 20px;
+  padding: 20px 0;
   box-sizing: border-box;
   letter-spacing: .03em;
   border-radius: 4px;
@@ -33,52 +31,71 @@
 }
 
 .card-identity{
-
+  max-width: 480px;
+  width: 100%;
+  height: 64px;
+  padding: 16px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  letter-spacing: .03em;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+  max-width: 80%;
 }
 
 .card-photo{
-cursor: pointer;
-    /* background-repeat: no-repeat; */
-    /* background-size: cover; */
-    /* max-width: 100%; */
-    /* background-position: 50% 50%; */
-    /* overflow: hidden; */
-    /* width: 480px;
-    height: 318.71999999999997px; */
+  cursor: pointer;
+  overflow: hidden;
+  width: 480px;
 }
 
 .card-photo img {
-    width: 100%;
-    height: auto;
+  width: 480px;
+  height: auto;
 }
 
 .card-info{
   font-weight: bold;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .single-card a {
   text-decoration: none;
   color: #212124;
-  /* color: #000;
-    font-weight: 600;
-    font-size: 14px;
-    float: left;
-    display: inline-block;
-    text-overflow: ellipsis;
-    max-width: 80%;
-    height: 20px;
-    white-space: nowrap;
-    overflow: hidden; */
 }
 
 .single-card li {
   list-style-type: none;
 }
 
-.grey-div{
-   height: 0.0625rem;
-  background-color: #e3e3e3;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
+.photo-title{
+  margin: 0;
   width: 100%;
+  height: 48px;
+  overflow: hidden;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+.photo-actions{
+  text-align: right;
+  height: 48px;
+  padding: 16px;
+  line-height: 16px;
+  border-top: 1px solid rgba(0,0,0,.15);
+}
+
+.activity-card-counts{
+  display: inline-flex;
+  color: #b3b3b3;
+  font-size: 12px;
+  font-weight: 400;
+  margin-right: 5px;
+}
+.view-count{
+  color: #b3b3b3;
+  margin-right: 10px;
 }
