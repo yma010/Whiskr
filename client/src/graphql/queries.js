@@ -22,3 +22,12 @@ export const FETCH_PHOTOS = gql`
    }
  }
 `
+
+export const CURRENT_USER = gql`
+  query CurrentUser {
+    currentUser @client {
+      _id  
+      firstName
+    }
+  }
+`;

@@ -66,13 +66,6 @@ const login = async data => {
   }
 };
 
-const logout = async data => {
-  const user = await User.findById(data._id);
-  const token = "";
-  
-	return { token, loggedIn: false, ...user._doc, password: null };
-};
-
 const verifyUser = async data => {
   try {
     const { token } = data;
@@ -80,14 +73,14 @@ const verifyUser = async data => {
     const decoded = jwt.verify(token, keys.secretOrKey);
     const { _id } = decoded;
 
-    const loggedIn = await User.findById(_id).then(user => {
-      return user ? true : false;
+    const [loggedIn, user] = await User.findById(_id).then(user => {
+      return user ? [true, user] : [false, null];
     });
 
-    return { loggedIn };
+    return { loggedIn, ...user._doc, password: null };
   } catch (err) {
     return { loggedIn: false };
   }
 };
 
-module.exports = { signup, logout, login, verifyUser };
+module.exports = { signup, login, verifyUser };
