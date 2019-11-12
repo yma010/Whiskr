@@ -1,0 +1,115 @@
+.feed-container {
+  width: 1080px;
+  margin: auto;
+  padding-bottom: 100px;
+  padding-top: 120px;
+  background-color: #f3f5f6;
+  opacity: 1;
+}
+
+.feed {
+  display: flex;
+  height: 10028.3px;
+  width: 1080px;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.single-card {
+  display: inline-flex;
+  background: #fff;
+  width: 480px;
+  margin-top: 0;
+  justify-content: space-between;
+  padding: 20px 0;
+  box-sizing: border-box;
+  letter-spacing: .03em;
+  border-radius: 4px;
+  margin-bottom: 120px;
+  transition: box-shadow .2s;
+  margin: 1.5%;
+}
+.single-card:hover {
+  box-shadow: 0 16px 32px 0 rgba(0,0,0,.1);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 100%;
+  margin: 0;
+  margin-right: 16px;
+  display: flex;
+}
+
+
+.card-identity{
+  width: 480px;
+  height: 64px;
+  padding: 16px;
+  vertical-align: middle;
+  box-sizing: border-box;
+  letter-spacing: .03em;
+  color: #000;
+  font-weight: 600;
+  font-size: 14px;
+  max-width: 80%;
+  display: flex;
+  cursor: pointer;
+}
+
+.card-photo{
+  cursor: pointer;
+  overflow: hidden;
+  width: 480px;
+}
+
+.card-photo img {
+  width: 100%;
+  height: auto;
+}
+
+.card-info{
+  font-weight: bold;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.single-card a {
+  text-decoration: none;
+  color: #212124;
+}
+
+.single-card li {
+  list-style-type: none;
+}
+
+.photo-title{
+  margin: 0;
+  margin-left: 16px;
+  height: 48px;
+  overflow: hidden;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 10px;
+}
+
+.photo-actions{
+  text-align: right;
+  height: 48px;
+  padding: 16px;
+  line-height: 16px;
+  border-top: 1px solid rgba(0,0,0,.15);
+}
+
+.activity-card-counts{
+  display: inline-flex;
+  color: #b3b3b3;
+  font-size: 12px;
+  font-weight: 400;
+  margin-right: 5px;
+}
+.view-count{
+  color: #b3b3b3;
+  margin-right: 10px;
+}
