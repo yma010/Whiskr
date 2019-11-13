@@ -10,7 +10,7 @@
 .feed {
   display: flex;
   justify-content: space-between;
-  height: 10028.3px;
+  height: fit-content;
   width: 1080px;
   margin: 0 auto;
   box-sizing: border-box;
