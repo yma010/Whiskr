@@ -12,14 +12,13 @@ function PhotoComments (props) {
     { variables: { _id: props.match.params.id }});
   const { data: {currentUser} } = useQuery(CURRENT_USER);
   const [DeleteComment] = useMutation(DELETE_COMMENT, 
-    // {
-    //   update: (cache, data) => { cache.writeQuery({
-    //     query: FETCH_PHOTO_COMMENTS,
-    //     variables: { _id: props.match.params.id } 
-    //   })}
-    // }
-    );
-    
+    { 
+      refetchQueries: [{query: FETCH_PHOTO_COMMENTS, 
+        variables: {
+          _id: props.match.params.id
+        }
+      }],
+    });
     
     if (loading) {
       return <div>Loading...</div>

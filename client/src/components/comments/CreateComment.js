@@ -9,8 +9,6 @@ function CreateComment(props) {
   const [newComment] = useMutation(
     NEW_COMMENT,
     {
-      // refetchQueries: {query: FETCH_PHOTO_COMMENTS, variables: {
-      //   _id: props.photoId}},
       onCompleted: (data) => { 
         setBody('')},
       update: (cache, data) => { updateCache(cache, data)}
@@ -32,12 +30,7 @@ function CreateComment(props) {
     if (photoInfo){
       let commentsArr = photoInfo.photo.comments;
       let newComment = data.newComment;
-      // let newPhoto = Object.assign({}, photoInfo.photo)
-      console.log(data.newComment)
-      // newPhoto.comments.push(newComment);
-      // console.log(commentsArr);
-      // console.log(newPhoto);
-      // console.log(photoInfo.photo);
+      
       cache.writeQuery({
         query: FETCH_PHOTO_COMMENTS,
          variables: {
@@ -48,11 +41,10 @@ function CreateComment(props) {
             _id: props.photoId,
             __typename: "PhotoType",
             comments: commentsArr.concat([newComment])
-          }
-          
+          } 
         }
       });
-      // return commentsArr;
+     
     }
   };
   
