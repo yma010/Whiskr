@@ -19,10 +19,17 @@ function PhotoIndex() {
     <div className="single-card" key={photo._id}>
       <li key={photo._id}>
         <div className="card-identity">
-          <img className="user-avatar" src={photo.photographer.avatarURL} alt="avatar" />
-          <Link to={`/users/${photo.photographer._id}`}>
-            {photo.photographer.firstName} {photo.photographer.lastName}
-          </Link>
+          <i
+            className="user-avatar" 
+            alt="avatar" 
+            style={{ backgroundImage: `url(${photo.photographer.avatarURL || '../../public/camera-avatar.png'})`}} 
+          />
+          <div>
+            <Link to={`/users/${photo.photographer._id}`}>
+              {photo.photographer.firstName} {photo.photographer.lastName}
+            </Link>
+            <span>Featured</span>
+          </div>
         </div>
         <div className="card-photo">
           <Link to={`/photos/${photo._id}`} title={photo.description}>
