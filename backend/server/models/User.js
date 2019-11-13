@@ -25,6 +25,9 @@ const UserSchema = new Schema({
     min: 12,
     max: 32
   },
+  avatarURL: {
+    type: String
+  },
   date: {
     type: Date,
     default: Date.now
