@@ -61,7 +61,8 @@ const seed = async function() {
       lastName: faker.name.lastName(),
       age: randomNum(13, 90),
       email: faker.internet.email(),
-      password: "password1234"
+      password: "password1234",
+      avatarURL: faker.image.avatar()
     });
     newUser.password = await bcrypt.hash(newUser.password, 10);
     users.push(newUser);
@@ -111,7 +112,8 @@ const seed = async function() {
       photos.push(newPhoto);
     }
   });
-  const savedPhotos = await Promise.all(photos.map(photo => photo.save()));
+  const shuffledPhotos = sampleFromArr(photos.length, photos);
+  const savedPhotos = await Promise.all(shuffledPhotos.map(photo => photo.save()));
 
   // create comments
   const comments = [];

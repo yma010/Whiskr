@@ -14,10 +14,21 @@ export const FETCH_PHOTOS = gql`
      views
      isPublic
      imageURL
+     description
      photographer {
        _id
       firstName
       lastName
+      avatarURL
+     }
+     comments {
+       _id
+       author {
+         _id
+         firstName
+         lastName
+       }
+       body
      }
    }
  }

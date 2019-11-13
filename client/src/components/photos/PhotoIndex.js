@@ -15,41 +15,61 @@ function PhotoIndex() {
     return <div>Error!</div>
   }
 
-  let photos;
-  photos = data.photos.map((photo, i) => {
-      return (
-      <div  className="single-card" key={i}>
-          <li key={photo.id}>
-          <div className="card-identity">
-            <img className="user-avatar" src={photo.imageURL} alt="avatar"/>
-            <Link to={`/users/${photo.photographer._id}`}> 
-              {photo.photographer.firstName} {photo.photographer.lastName} 
-            </Link> 
-          </div>        
-          <div className="card-photo">
-            <Link to={`/photos/${photo._id}`}> 
-              <img src={photo.imageURL} alt={photo.description}></img> 
+  const photoIndexItem = photo => (
+    <div className="single-card" key={photo._id}>
+      <li key={photo._id}>
+        <div className="card-identity">
+          <Link
+            className="user-avatar" 
+            to={`/users/${photo.photographer._id}`}
+            style={{ backgroundImage: `url(${photo.photographer.avatarURL || '../../public/camera-avatar.png'})`}} 
+          />
+          <div>
+            <Link to={`/users/${photo.photographer._id}`}>
+              {photo.photographer.firstName} {photo.photographer.lastName}
             </Link>
+            <span>Featured</span>
           </div>
-          <div className="card-info">
-            <div className="photo-title">
-                <p>{photo.title}</p>
+        </div>
+        <div className="card-photo">
+          <Link to={`/photos/${photo._id}`} title={photo.description}>
+            <img src={photo.imageURL} alt={photo.description}></img>
+          </Link>
+        </div>
+        <div className="card-info">
+          <div className="photo-title">
+            <p>{photo.title}</p>
+          </div>
+          <div className="photo-actions">
+            <div className="activity-card-counts">
+              <span className="view-count">{photo.views} Views</span>
+              <span>{photo.comments.length} Comments</span>
             </div>
-            <div className="photo-actions">
-                <div className="activity-card-counts">
-                  <span className="view-count">{photo.views} Views</span> 
-                </div>
+            <div className="photo-actions-links">
+              <i className="photo-actions-comment-icon" />
             </div>
-          </div> 
-          </li> 
-      </div>
-      )
-  })
+          </div>
+        </div>
+      </li>
+    </div>
+  );
+  
+  const leftColumnPhotos = [], rightColumnPhotos = [];
+  
+  data.photos.forEach((photo, idx) => {
+    idx % 2 === 0 ? 
+      leftColumnPhotos.push(photoIndexItem(photo))
+      : rightColumnPhotos.push(photoIndexItem(photo));
+  });
+
   return (
     <div className="feed-container">
       <div className="feed">
         <ul>
-          {photos}
+          {leftColumnPhotos}
+        </ul>
+        <ul>
+          {rightColumnPhotos}
         </ul>
       </div>
     </div>
