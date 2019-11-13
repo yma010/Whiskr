@@ -36,10 +36,9 @@ function CreateComment(props) {
       });
     }
   };
-
-
+  
   return (
-    <div>
+    <div className='new-comment-body'>
       <form onSubmit={e => {
         e.preventDefault();
         if (currentUser){
@@ -54,13 +53,15 @@ function CreateComment(props) {
           console.log('not logged in!')
         }
       }}>
-        <textarea type="text" 
+        <textarea  type="text" 
           onChange={(e)=> setBody(e.target.value)} 
           name="body" value={Inputbody}  
           placeholder="Add a comment">
         </textarea>
+        <div className='comment-arrow'></div>
         <button type="submit">Comment</button>
       </form>
+      
     </div>
   )
 

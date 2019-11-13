@@ -2,16 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { FETCH_PHOTO_COMMENTS, CURRENT_USER } from '../../graphql/queries';
-import './comments.css'
-import CreateComment from './CreateComment';
 import { DELETE_COMMENT } from '../../graphql/mutations';
-// import DeleteComment from './DeleteComment';
+import CreateComment from './CreateComment';
+import './comments.css'
+
 
 function PhotoComments (props) {
   const { loading, error, data } = useQuery(FETCH_PHOTO_COMMENTS,
     { variables: { _id: props.match.params.id }});
-    const { data: {currentUser} } = useQuery(CURRENT_USER);
-  const [deleteComment] = useMutation(DELETE_COMMENT);
+  const { data: {currentUser} } = useQuery(CURRENT_USER);
+  const [deleteComment] = useMutation(DELETE_COMMENT, 
+    {
+      update: (cache, data) => { cache.writeQuery({
+        query: FETCH_PHOTO_COMMENTS})}
+      
+    });
+    
     
     if (loading) {
       return <div>Loading...</div>
@@ -20,8 +26,7 @@ function PhotoComments (props) {
       console.log(error);
       return <div>Error!</div>
     }
-    
-    console.log(data);
+
     let { comments } = data.photo;
     if (!comments){
       return (
@@ -41,13 +46,14 @@ function PhotoComments (props) {
         }>
           Delete
           </button>
-    }else{
+    } else {
     deleteButton = <div></div>}
 
       return (
         <div key={i} className="comment-card">
           <li key={comment._id}>
             <div className='comment-author-identity'>
+              <div className="user-avatar"   />
               <Link to={`/users/${comment.author._id}`}>
                 {comment.author.firstName} {comment.author.lastName}
               </Link> 
@@ -62,10 +68,14 @@ function PhotoComments (props) {
     })
     return (
       <div id="comments">
+        <div className='comments-container'>
         <ul>
           {photoComments}
+          <div className="add-comment">
           <CreateComment photoId={data.photo._id} />
+          </div>
         </ul>
+        </div>
       </div>
     )
   } 
