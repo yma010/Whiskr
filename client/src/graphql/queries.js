@@ -14,6 +14,7 @@ export const FETCH_PHOTOS = gql`
      views
      isPublic
      imageURL
+     description
      photographer {
        _id
       firstName

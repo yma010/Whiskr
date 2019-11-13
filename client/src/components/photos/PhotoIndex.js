@@ -16,35 +16,36 @@ function PhotoIndex() {
   }
 
   let photos;
-  photos = data.photos.map((photo, i) => {
-      return (
-      <div  className="single-card" key={i}>
-          <li key={photo.id}>
-          <div className="card-identity">
-            <img className="user-avatar" src={photo.imageURL} alt="avatar"/>
-            <Link to={`/users/${photo.photographer._id}`}> 
-              {photo.photographer.firstName} {photo.photographer.lastName} 
-            </Link> 
-          </div>        
-          <div className="card-photo">
-            <Link to={`/photos/${photo._id}`}> 
-              <img src={photo.imageURL} alt={photo.description}></img> 
-            </Link>
+  photos = data.photos.map(photo => {
+    return (
+      <div className="single-card" key={photo._id}>
+        <li key={photo._id}>
+        <div className="card-identity">
+          <img className="user-avatar" src={photo.imageURL} alt="avatar"/>
+          <Link to={`/users/${photo.photographer._id}`}> 
+            {photo.photographer.firstName} {photo.photographer.lastName} 
+          </Link> 
+        </div>        
+        <div className="card-photo">
+          <Link to={`/photos/${photo._id}`} title={photo.description}> 
+            <img src={photo.imageURL} alt={photo.description}></img> 
+          </Link>
+        </div>
+        <div className="card-info">
+          <div className="photo-title">
+              <p>{photo.title}</p>
           </div>
-          <div className="card-info">
-            <div className="photo-title">
-                <p>{photo.title}</p>
+          <div className="photo-actions">
+            <div className="activity-card-counts">
+              <span className="view-count">{photo.views} Views</span> 
             </div>
-            <div className="photo-actions">
-                <div className="activity-card-counts">
-                  <span className="view-count">{photo.views} Views</span> 
-                </div>
-            </div>
-          </div> 
-          </li> 
+          </div>
+        </div> 
+        </li> 
       </div>
-      )
-  })
+    );
+  });
+
   return (
     <div className="feed-container">
       <div className="feed">
