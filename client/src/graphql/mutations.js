@@ -55,6 +55,9 @@ export const NEW_COMMENT = gql`
         firstName
         lastName
       }
+      photo{
+        _id
+      }
     }
   }
 `;

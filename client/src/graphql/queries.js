@@ -39,6 +39,9 @@ export const FETCH_PHOTO_COMMENTS = gql`
       _id
       comments{
         _id
+        photo {
+          _id
+        }
         author {
           _id
           firstName

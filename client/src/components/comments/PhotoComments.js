@@ -11,12 +11,14 @@ function PhotoComments (props) {
   const { loading, error, data } = useQuery(FETCH_PHOTO_COMMENTS,
     { variables: { _id: props.match.params.id }});
   const { data: {currentUser} } = useQuery(CURRENT_USER);
-  const [deleteComment] = useMutation(DELETE_COMMENT, 
-    {
-      update: (cache, data) => { cache.writeQuery({
-        query: FETCH_PHOTO_COMMENTS})}
-      
-    });
+  const [DeleteComment] = useMutation(DELETE_COMMENT, 
+    // {
+    //   update: (cache, data) => { cache.writeQuery({
+    //     query: FETCH_PHOTO_COMMENTS,
+    //     variables: { _id: props.match.params.id } 
+    //   })}
+    // }
+    );
     
     
     if (loading) {
@@ -40,9 +42,9 @@ function PhotoComments (props) {
     photoComments = comments.map( (comment, i) => {
      if (currentUser._id === comment.author._id) { 
        deleteButton = 
-       <button onClick={(e) => { 
+       <button  className='delete-button' onClick={(e) => { 
          e.preventDefault(); 
-         deleteComment({variables: {_id: comment._id}})}
+         DeleteComment({variables: {_id: comment._id}})}
         }>
           Delete
           </button>

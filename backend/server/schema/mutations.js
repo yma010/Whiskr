@@ -116,8 +116,8 @@ const mutation = new GraphQLObjectType({
         photo: { type: GraphQLID },
         body: { type: GraphQLString },
       },
-      resolve(parentValue, args){
-        return new Comment(args).save();
+      async resolve(parentValue, args){
+        return await new Comment(args).save();
       }
     },
     deleteComment: {
