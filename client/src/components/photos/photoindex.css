@@ -101,32 +101,49 @@
   list-style-type: none;
 }
 
-.photo-title{
+.photo-title {
   margin: 0;
-  margin-left: 16px;
   height: 48px;
   overflow: hidden;
   margin-top: 0;
   margin-bottom: 0;
-  padding: 10px;
+  padding: 0 16px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  font-weight: 400;
 }
 
 .photo-actions{
-  text-align: right;
+  display: flex;
+  justify-content: space-between;
   height: 48px;
   padding: 16px;
   line-height: 16px;
   border-top: 1px solid rgba(0,0,0,.15);
 }
 
-.activity-card-counts{
-  display: inline-flex;
+.activity-card-counts {
+  display: flex;
+  align-items: center;
+}
+
+.activity-card-counts span {
   color: #b3b3b3;
   font-size: 12px;
   font-weight: 400;
   margin-right: 5px;
 }
-.view-count{
-  color: #b3b3b3;
-  margin-right: 10px;
+
+.photo-actions-comment-icon {
+  height: 18px;
+  width: 18px;
+  background-image: url("../../public/sprites.png");
+  background-position: -470px -494px;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.photo-actions-comment-icon:hover {
+  filter: brightness(0);
 }

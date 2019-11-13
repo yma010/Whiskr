@@ -19,9 +19,9 @@ function PhotoIndex() {
     <div className="single-card" key={photo._id}>
       <li key={photo._id}>
         <div className="card-identity">
-          <i
+          <Link
             className="user-avatar" 
-            alt="avatar" 
+            to={`/users/${photo.photographer._id}`}
             style={{ backgroundImage: `url(${photo.photographer.avatarURL || '../../public/camera-avatar.png'})`}} 
           />
           <div>
@@ -43,6 +43,10 @@ function PhotoIndex() {
           <div className="photo-actions">
             <div className="activity-card-counts">
               <span className="view-count">{photo.views} Views</span>
+              <span>{photo.comments.length} Comments</span>
+            </div>
+            <div className="photo-actions-links">
+              <i className="photo-actions-comment-icon" />
             </div>
           </div>
         </div>

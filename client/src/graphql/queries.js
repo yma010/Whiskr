@@ -21,6 +21,15 @@ export const FETCH_PHOTOS = gql`
       lastName
       avatarURL
      }
+     comments {
+       _id
+       author {
+         _id
+         firstName
+         lastName
+       }
+       body
+     }
    }
  }
 `
