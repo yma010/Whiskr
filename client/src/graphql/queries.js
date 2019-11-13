@@ -19,6 +19,7 @@ export const FETCH_PHOTOS = gql`
        _id
       firstName
       lastName
+      avatarURL
      }
    }
  }
