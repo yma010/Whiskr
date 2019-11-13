@@ -47,7 +47,7 @@ function PhotoComments (props) {
       <div id="comments">
         <ul>
           {photoComments}
-          <CreateComment props={data.photo._id}/>
+          <CreateComment photoId={data.photo._id} />
         </ul>
       </div>
     )

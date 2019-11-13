@@ -1,38 +1,53 @@
-import React, { useState, useQuery } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/react-hooks';
-import { CURRENT_USER } from '../../graphql/queries';
-import './comments.css'
+import React, { useState } from 'react';
+import { useMutation, useQuery } from '@apollo/react-hooks';
+import { CURRENT_USER, FETCH_PHOTO_COMMENTS } from '../../graphql/queries';
+import './comments.css';
 import { NEW_COMMENT } from '../../graphql/mutations';
 
 
 function CreateComment(props) {
-  const [input, setInput] = useState({
-    body: ''
-  });
 
-  const [newComment] = useMutation(NEW_COMMENT,
+  const [newComment] = useMutation(
+    NEW_COMMENT,
     {
-      
-  });
+      update: (cache, data) => updateCache(cache, data)
+    });
+    
+  const {loading, error, data} = useQuery(CURRENT_USER);
+    let {currentUser} = data
+  const [Inputbody, setBody] = useState('');
 
-  const { data: { currentUser } } = useQuery(CURRENT_USER);
 
-
-  const handleInputChange = event => {
-    event.persist();
-    setInput(input =>  ({ [event.target.name]: event.target.value }))
+  const updateCache = (cache, {data}) => {
+    let comments;
+    try {
+      comments = cache.readQuery({ query: FETCH_PHOTO_COMMENTS});
+    } catch(err){
+      return;
+    }
+    if (comments){
+      let commentsArr = comments.comments;
+      let newComment = data.newComment;
+      cache.writeQuery({
+        query: FETCH_PHOTO_COMMENTS,
+        data: {comments: commentsArr.concat(newComment)}
+      });
+    }
   };
+
 
   return (
     <div>
       <form onSubmit={e => {
         e.preventDefault();
+        console.log({body: Inputbody,
+            photo: props.photoId,
+            author: currentUser._id})
         if (currentUser){
           newComment({
             variables: { 
-              body: input.body,
-              photo: props.match.params.id,
+              body: Inputbody,
+              photo: props.photoId,
               author: currentUser._id
             }
           })
@@ -40,11 +55,16 @@ function CreateComment(props) {
           console.log('not logged in!')
         }
       }}>
-        <textearea type="text" onChange={handleInputChange} name="body" value={input.body}  placeholder="Add a comment"></textearea>
+        <textarea type="text" 
+          onChange={(e)=> setBody(e.target.value)} 
+          name="body" value={Inputbody}  
+          placeholder="Add a comment">
+        </textarea>
         <button type="submit">Comment</button>
       </form>
     </div>
   )
+
 };
 
 export default CreateComment;
