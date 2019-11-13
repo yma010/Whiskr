@@ -72,7 +72,7 @@ function PhotoComments (props) {
         <ul>
           {photoComments}
           <div className="add-comment">
-          <CreateComment photoId={data.photo._id} />
+            <CreateComment photoId={data.photo._id} />   
           </div>
         </ul>
         </div>

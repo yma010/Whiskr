@@ -61,7 +61,6 @@ function CreateComment(props) {
         <div className='comment-arrow'></div>
         <button type="submit">Comment</button>
       </form>
-      
     </div>
   )
 

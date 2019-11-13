@@ -1,43 +1,40 @@
 #comments {
   margin-top: 100px;
   margin-right: 60px;
-    margin-bottom: 120px;
-    width: 500px;
+  margin-bottom: 120px;
+  width: 500px;
 }
 
 .comments-container {
-      margin-left: 18px;
-    clear: both;
-    border-top: 1px solid transparent;
-    margin-bottom: 20px;
+  margin-left: 18px;
+  clear: both;
+  border-top: 1px solid transparent;
+  margin-bottom: 20px;
 }
 
 .comments-container ul {
   list-style: none;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .comment-card{
-  display: block;
-  padding: 10px;
-  /* background-color: cornsilk; */
   margin: 5px 0 0;
-    padding: 5px 0 5px 40px;
-    min-height: 32px;
-    -webkit-transition: background-color .15s ease-in-out;
-    transition: background-color .15s ease-in-out;
-    overflow: hidden;
-    position: relative;
-    display: list-item;
-    text-align: -webkit-match-parent;
+  padding: 5px 0 5px 40px;
+  min-height: 32px;
+  -webkit-transition: background-color .15s ease-in-out;
+  transition: background-color .15s ease-in-out;
+  overflow: hidden;
+  position: relative;
+  display: list-item;
+  text-align: -webkit-match-parent;
 }
 
 .user-avatar {
   display: inline-flex;
   width: 32px;
   height: 32px;
-  border-radius: 50%;
+  border-radius: 100%;
   margin: 0;
   margin-right: 16px;
   display: flex;
@@ -47,7 +44,7 @@
 .comment-card a {
   font-weight: 600;
   margin-top: 10px;
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .comment-card p {
@@ -55,91 +52,91 @@
 }
 
 .comment-author-identity{
-display: flex;
-margin: 2px 0 2px 20px;
-    line-height: 1.3;
+  display: flex;
+  margin: 2px 0 2px 20px;
+  line-height: 1.3;
 }
 
 .comment-body {
-      word-wrap: break-word;
-    margin-left: 20px;
-    margin-right: 17px;
-    font-weight: 400;
-    line-height: 18px;
-    font-size: 14px;
-    margin-top: -5px;
+  word-wrap: break-word;
+  margin-left: 20px;
+  margin-right: 17px;
+  font-weight: 400;
+  line-height: 18px;
+  font-size: 14px;
+  margin-top: -5px;
 }
 
 .add-comment{
   margin: 0 0 0 61px;
-    position: relative;
+  position: relative;
 }
 
 .new-comment-body{
-
+  position: relative;
+  margin: 15px 0 0;
 }
 
 
 .new-comment-body textarea{
-    position: relative;
-    top: -1px;
-    width: 100%;
-    height: 92px;
-    box-shadow: inset 0 0 0 1px #9ea4a7;
-    border: none;
-    outline: none;
-    padding: 6px 10px;
-    box-sizing: border-box;
-    border-radius: 3px;
-    font-size: 14px;
-    line-height: 1.5;
-    background-color: #fff;
-    resize: none;
-    -webkit-appearance: none;
+  top: -1px;
+  width: 100%;
+  height: 92px;
+  position: relative;
+  box-shadow: inset 0 0 0 1px #9ea4a7;
+  border: none;
+  outline: none;
+  padding: 6px 10px;
+  box-sizing: border-box;
+  border-radius: 3px;
+  font-size: 14px;
+  line-height: 1.5;
+  background-color: #fff;
+  resize: none;
+  -webkit-appearance: none;
 }
 
 .comment-arrow{
   position: absolute;
-    width: 10px;
-    height: 21px;
-    overflow: hidden;
-    top: 10px;
-    left: -9px;   
+  width: 10px;
+  height: 21px;
+  overflow: hidden;
+  top: 10px;
+  left: -9px;   
 }
 
 .comment-arrow:before{
   content: "";
-    position: absolute;
-    top: 0;
-    left: 4px;
-    width: 20px;
-    height: 20px;
-    border-radius: 2px;
-    background: #fff;
-    border: 1px solid #9ea4a7;
-    -webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
-    -webkit-transition: background-color .15s ease-in-out;
-    transition: background-color .15s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  background: #fff;
+  border: 1px solid #9ea4a7;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: background-color .15s ease-in-out;
+  transition: background-color .15s ease-in-out;
 }
 
 
 .new-comment-body button{
-display: block;
-    float: right;
-    margin-right: 0;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    height: 32px;
-    -webkit-transition: background-color .15s ease-in-out;
-    transition: background-color .15s ease-in-out;
-    min-width: 100px;
-    padding: 0 20px;
-    font-size: 16px;
-    font-weight: 600;
-    background: #0091dc;
-    color: #fff;
-    border-color: transparent;
-        border-radius: 3px;
-
+  display: block;
+  float: right;
+  margin-right: 0;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  height: 32px;
+  -webkit-transition: background-color .15s ease-in-out;
+  transition: background-color .15s ease-in-out;
+  min-width: 100px;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: 600;
+  background: #0091dc;
+  color: #fff;
+  border-color: transparent;
+  border-radius: 3px;
 }
