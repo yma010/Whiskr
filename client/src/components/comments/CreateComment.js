@@ -10,15 +10,17 @@ function CreateComment(props) {
   const [newComment] = useMutation(
     NEW_COMMENT,
     {
-      update: (cache, data) => updateCache(cache, data)
+      onCompleted: (data) => { 
+        setBody('')},
+      update: (cache, data) => { updateCache(cache, data)}
     });
     
   const {loading, error, data} = useQuery(CURRENT_USER);
-    let {currentUser} = data
+    let {currentUser} = data;
   const [Inputbody, setBody] = useState('');
 
 
-  const updateCache = (cache, {data}) => {
+  const updateCache = (cache, data) => {
     let comments;
     try {
       comments = cache.readQuery({ query: FETCH_PHOTO_COMMENTS});
@@ -40,9 +42,6 @@ function CreateComment(props) {
     <div>
       <form onSubmit={e => {
         e.preventDefault();
-        console.log({body: Inputbody,
-            photo: props.photoId,
-            author: currentUser._id})
         if (currentUser){
           newComment({
             variables: { 
