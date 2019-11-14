@@ -5,6 +5,7 @@
   left: 0;
   right: 0;
   height: 50px;
+  z-index: 1;
 }
 
 .header-nav,
@@ -237,6 +238,11 @@
 
 .header-profile-dropdown h4 > a {
   display: inline-block;
+}
+
+.header-profile-dropdown h4 > a:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
 .header-profile-dropdown h4 {

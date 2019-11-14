@@ -45,6 +45,32 @@ export const VERIFY_USER = gql`
   }
 `;
 
+
+export const NEW_COMMENT = gql`
+  mutation NewComment( $author: ID!, $photo: ID!, $body: String!){
+    newComment(author: $author, photo: $photo, body: $body){
+      _id
+      body
+      author {
+        _id
+        firstName
+        lastName
+      }
+      photo{
+        _id
+      }
+    }
+  }
+`;
+
+export const DELETE_COMMENT = gql`
+  mutation DeleteComment($_id: ID!){
+    deleteComment(_id: $_id){
+      _id
+    }
+  }
+`;
+
 export const UPLOAD_FILE_STREAM = gql `
   mutation SingleUploadStream($file: Upload!) {
     singleUploadStream(file: $file) {
@@ -79,3 +105,4 @@ export const NEW_PHOTO = gql `
     }
   }
 `;
+

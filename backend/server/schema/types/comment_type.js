@@ -21,6 +21,7 @@ const CommentType = new GraphQLObjectType({
         return Photo.findById(parentValue.photo);
       }
     },
+    date: { type: GraphQLString },
     author: {
       type: require("./user_type"),
       resolve(parentValue) {
