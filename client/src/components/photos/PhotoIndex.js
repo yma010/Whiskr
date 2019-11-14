@@ -19,8 +19,8 @@ function PhotoIndex() {
   
   data.photos.forEach((photo, idx) => {
     idx % 2 === 0 ? 
-      leftColumnPhotos.push(<PhotoIndexItem photo={photo} />)
-      : rightColumnPhotos.push(<PhotoIndexItem photo={photo} />);
+      leftColumnPhotos.push(<PhotoIndexItem photo={photo} key={photo._id} />)
+      : rightColumnPhotos.push(<PhotoIndexItem photo={photo} key={photo._id} />);
   });
 
   return (

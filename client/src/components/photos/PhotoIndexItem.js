@@ -1,9 +1,30 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
-const photoIndexItem = ({ photo }) => {
+const PhotoIndexItem = ({ photo }) => {
+  const img = useRef(null);
+  const viewHeight = window.innerHeight;
+  const viewWidth = window.innerWidth;
+
+  const [isDisplayed, setIsDisplayed] = useState(false);
+
   return (
-    <li className="single-card" key={photo._id}>
+    <li className="single-card">
+      <div className={isDisplayed ? "photo-lightbox" : "photo-lightbox-hidden"}>
+        <button 
+          className="close-photo-lightbox"
+          onClick={() => setIsDisplayed(false)}
+        />
+        {isDisplayed ? (<Link 
+          to={`/photos/${photo._id}`} title={photo.description}
+          className="photo-lightbox-image"
+          style={{ 
+            backgroundImage: `url(${photo.imageURL})`,
+            height: img.current.offsetHeight / 480 * .85 * viewWidth > 0.85 * viewHeight ? "85vh" : `${img.current.offsetHeight / 480 * .85 * viewWidth}px`,
+            width: img.current.offsetHeight / 480 * .85 * viewWidth > 0.85 * viewHeight ? `${480 / img.current.offsetHeight * .85 * viewHeight}px` : "85vw"
+          }}
+        />) : ""}
+      </div>
       <div className="card-identity">
         <Link
           className="user-avatar"
@@ -17,11 +38,9 @@ const photoIndexItem = ({ photo }) => {
           <span>Featured</span>
         </div>
       </div>
-      <div className="card-photo">
-        <Link to={`/photos/${photo._id}`} title={photo.description}>
-          <img src={photo.imageURL} alt={photo.description}></img>
-        </Link>
-      </div>
+      <button className="card-photo" title={photo.description} onClick={() => setIsDisplayed(true)}>
+        <img src={photo.imageURL} alt={photo.description} ref={img}></img>
+      </button>
       <div className="card-info">
         <div className="photo-title">
           <p>{photo.title}</p>
@@ -40,4 +59,4 @@ const photoIndexItem = ({ photo }) => {
   );
 };
 
-export default photoIndexItem;
+export default PhotoIndexItem;
