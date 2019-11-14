@@ -1,6 +1,7 @@
 import React from 'react';
 import { UPLOAD_FILE_STREAM } from '../../graphql/mutations';
 import { Mutation } from 'react-apollo';
+import Dropzone from 'react-dropzone';
 import './upload.css';
 
 class Upload extends React.Component {
@@ -20,9 +21,13 @@ class Upload extends React.Component {
   }
 
   render() {
-    
-    return (
-      <div className="pictureUpload">
+
+    const emptyState = this.state.file === null;
+    let photoForm;
+
+    if (emptyState) {
+      photoForm = 
+      <div id="upload-container">
           <Mutation 
             mutation={UPLOAD_FILE_STREAM}>
             {singleUploadStream => (
@@ -37,11 +42,43 @@ class Upload extends React.Component {
                   });  
                 }                 
               }>
-              <input name={'document'} type={'file'} onChange={this.handleChange}/>
-                <button type="submit">Upload</button>
+              <div id="upload-subheader"><button className="upload" type="submit" disabled>Upload</button></div>
+              <label className="upload-photo-butt" htmlFor="upload-photo">Choose photos and videos to upload</label>
+              <input name={'document'} type={'file'} onChange={this.handleChange} id="upload-photo"/>
               </form>
             )}    
           </Mutation>
+      </div>
+
+    } else {
+      photoForm =
+      <div id="upload-container">
+          <Mutation 
+            mutation={UPLOAD_FILE_STREAM}>
+            {singleUploadStream => (
+              <form encType={'multipart/form-data'} onSubmit={e => {
+                e.preventDefault();
+                const file = this.state.file;
+
+                file && singleUploadStream({
+                  variables: {
+                    file: this.state.file     
+                    }
+                  });  
+                }                 
+              }>
+              <div id="upload-subheader"><button className="upload" type="submit">Upload</button></div>
+              <label className="upload-photo-butt" htmlFor="upload-photo">Choose photos and videos to upload</label>
+              <input name={'document'} type={'file'} onChange={this.handleChange} id="upload-photo"/>
+              </form>
+            )}    
+          </Mutation>
+      </div>
+    }
+    
+    return (
+      <div className="pictureUpload">
+        {photoForm}
       </div>
     );
   }
