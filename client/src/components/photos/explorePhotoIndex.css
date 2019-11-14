@@ -31,3 +31,14 @@
 .explore-single-photo .photo-title-description p:last-of-type {
   display: none;
 }
+
+.explore-single-photo .user-avatar {
+  flex-grow: 0;
+  margin: 0 16px 0 0;
+  min-width: 32px;
+  background-size: cover;
+}
+
+.explore-single-photo .photo-title-description {
+  width: 100%;
+}

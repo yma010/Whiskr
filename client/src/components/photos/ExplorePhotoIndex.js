@@ -9,7 +9,7 @@ import "./explorePhotoIndex.css";
 const ExplorePhotoIndex = () => {
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
   const [photoRowsAndHeights, setPhotoRowsAndHeights] = useState([]);
-  const { loading, error, data } = useQuery(FETCH_PHOTOS, {
+  const { loading, error } = useQuery(FETCH_PHOTOS, {
     onCompleted: data => setPhotoRowsAndHeights(constructRowsAndRowHeights(data.photos))
   });
 
