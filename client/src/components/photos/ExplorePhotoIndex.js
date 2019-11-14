@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { FETCH_PHOTOS } from '../../graphql/queries';
 
 import "./explorePhotoIndex.css";
 
 const ExplorePhotoIndex = () => {
-  const { loading, error, data } = useQuery(FETCH_PHOTOS);
+  const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
+  const [photoRowsAndHeights, setPhotoRowsAndHeights] = useState([]);
+  const { loading, error, data } = useQuery(FETCH_PHOTOS, {
+    onCompleted: data => setPhotoRowsAndHeights(constructRowsAndRowHeights(data.photos))
+  });
+
+  const maxRowHeight = 300;
+  const gutterSize = 4;
+
+  window.onresize = () => {
+    if (window.innerWidth !== rowWidth) {
+      const newWidth = 0.8 * window.innerWidth;
+      setPhotoRowsAndHeights(photoRowsAndHeights.map(rowAndHeight => {
+        const photos = rowAndHeight[0];
+        const totalGutterWidth = (photos.length - 1) * gutterSize;
+        const oldHeight = rowAndHeight[1];
+        const newHeight = oldHeight * (newWidth - totalGutterWidth) / (rowWidth - totalGutterWidth);
+        return [photos, newHeight];
+      }));
+      setRowWidth(newWidth);
+    }
+  };
+
 
   if (loading) {
     return <div>Loading...</div>
@@ -14,10 +36,6 @@ const ExplorePhotoIndex = () => {
     console.log(error);
     return <div>Error!</div>
   }
-
-  const rowWidth = 0.8 * window.innerWidth;
-  const maxRowHeight = 300;
-  const gutterSize = 4;
 
   const standardizedHeight = (photos, targetWidth) => {
     const widthsAtUnitHeight = photos.map(photo => photo.width / photo.height);
@@ -43,11 +61,11 @@ const ExplorePhotoIndex = () => {
 
     return rowsAndRowHeights;
   }
-
+  console.log(photoRowsAndHeights.map(rowAndHeight => rowAndHeight[1]));
   return (
     <div className="explore-container">
       <ul className="explore-rows">
-      {constructRowsAndRowHeights(data.photos).map((rowAndHeight, idx) => (
+      {photoRowsAndHeights.map((rowAndHeight, idx) => (
         <ul className="explore-single-row" key={idx}>
         {rowAndHeight[0].map(photo => {
           const height = rowAndHeight[1];
