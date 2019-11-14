@@ -138,11 +138,21 @@
   align-items: center;
 }
 
-.activity-card-counts span {
+.activity-card-counts span,
+.activity-card-counts a {
   color: #b3b3b3;
   font-size: 12px;
   font-weight: 400;
   margin-right: 5px;
+}
+
+.activity-card-counts a {
+  cursor: pointer;
+}
+
+.activity-card-counts a:hover {
+  text-decoration: underline;
+  color: black;
 }
 
 .photo-actions-comment-icon {
