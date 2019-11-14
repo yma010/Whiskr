@@ -7,6 +7,7 @@ import SignUp from './session/SignUp';
 import PhotoIndex from './photos/PhotoIndex';
 import "../stylesheets/reset.css";
 import PhotoComments from './comments/PhotoComments';
+import AlbumShow from './albums/AlbumShow';
 
 const App = () => {
   return (
@@ -16,7 +17,8 @@ const App = () => {
         <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
         <Route path='/photo/:id/comments' component={PhotoComments}/>
-        <Route exact path='/upload' component={Upload}/>>
+        <Route exact path='/upload' component={Upload}/>
+        <Route exact path='/photo/:id/album' component={AlbumShow}/>
         <Route path='/' component={PhotoIndex} />
       </Switch>
     </div>

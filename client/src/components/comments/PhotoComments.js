@@ -10,6 +10,7 @@ import './comments.css'
 function PhotoComments (props) {
   const { loading, error, data } = useQuery(FETCH_PHOTO_COMMENTS,
     { variables: { _id: props.match.params.id }});
+    console.log(data);
   const { data: {currentUser} } = useQuery(CURRENT_USER);
   const [DeleteComment] = useMutation(DELETE_COMMENT, 
     { 
