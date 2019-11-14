@@ -6,7 +6,6 @@ const express = require("express"),
       keys = require('../config/keys'),
       AWS = require('aws-sdk'),
       fs = require('fs'),
-      graphQL = require('graphql'),
       path = require('path');
 
 const { ApolloServer, gql } = require('apollo-server');
@@ -72,7 +71,8 @@ const resolvers = {
         Key: filename,
         Body: fileStream
       };
-      const result = await s3.upload(uploadParams).promise()
+      const result = await s3.upload(uploadParams, function(err, data) {
+      }).promise()
 
       console.log(result)
 

@@ -69,7 +69,7 @@ export const NEW_PHOTO = gql `
         title: $title,
         description: $description,
         albums: $albums,
-        imageURL: @imageURL,
+        imageURL: $imageURL,
         isPublic: $isPublic
       ) {
         title,
