@@ -45,7 +45,7 @@ function PhotoComments (props) {
          e.preventDefault(); 
          DeleteComment({variables: {_id: comment._id}})}
         }>
-          Delete
+          
           </button>
     } else {
     deleteButton = <div></div>}
@@ -53,16 +53,23 @@ function PhotoComments (props) {
       return (
         <div key={i} className="comment-card">
           <li key={comment._id}>
+            <div className="avatar" >
+              <span className="user-avatar"  />
+            </div>
+            <div className='comment-content'>
             <div className='comment-author-identity'>
-              <div className="user-avatar"   />
               <Link to={`/users/${comment.author._id}`}>
                 {comment.author.firstName} {comment.author.lastName}
               </Link> 
             </div>
-            {deleteButton}
             <div className='comment-body'>
               <p>{comment.body}</p>
+              </div>
             </div>
+            <div className='delete'>
+              {deleteButton}
+            </div>
+
           </li>
         </div>
       )
