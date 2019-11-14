@@ -9,27 +9,49 @@ class Upload extends React.Component {
     super(props)
 
     this.state = {
-      file: null
+      file: [],
+      filePrev: []
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChange = this.handleChange.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    // this.handleDrop = this.handleDrop.bind(this);
   }
 
   handleChange(e) {
     e.persist();
+    const filePrev = URL.createObjectURL(e.target.files[0]);
     const file = e.target.files[0];
-    this.setState ({ file });
+    console.log(e.target.files[0].name);
+    this.setState ({ file, filePrev });
   }
 
-  render() {
+  handleClick(e) {
+    e.preventDefault();
+    this.setState({
+      file: [],
+      filePrev: []
+    })
+  }
+  // formateFileName(file)
 
-    const emptyState = this.state.file === null;
+  // handleDrop(e) {  //Implement in Future
+  //   e.persist();
+  //   const file = e.target.files[0];
+  //   this.setState({ file });
+  // }
+
+  render() {
+    const { file } = this.state
+    console.log(file);
+    const emptyState = file.length === 0;
     let photoForm;
 
     if (emptyState) {
       photoForm = 
       <div id="upload-container">
           <Mutation 
-            mutation={UPLOAD_FILE_STREAM}>
+            mutation={UPLOAD_FILE_STREAM}
+            >
             {singleUploadStream => (
               <form encType={'multipart/form-data'} onSubmit={e => {
                 e.preventDefault();
@@ -43,10 +65,15 @@ class Upload extends React.Component {
                 }                 
               }>
               <div id="upload-subheader">
+
+                <div className="secondary-inputs">
+
                 <label className="upload-sub-photo-butt" htmlFor="upload-photo"> 
-                  <i class="icon-plus-sign"></i> Add</label>
+                  <i className="icon-plus-sign"></i> Add</label>
                 <input name={'document'} type={'file'} accept={"image/*,video/*,.m4v,.mkv,.m2ts,.ogg,.3gp"} onChange={this.handleChange} id="upload-photo"
                 className="input-butt-small"/>
+                </div>
+
                 <button className="upload" type="submit" disabled>Upload</button>
               </div>
               <label className="upload-photo-butt" htmlFor="upload-photo">Choose photos and videos to upload</label>
@@ -55,7 +82,6 @@ class Upload extends React.Component {
             )}    
           </Mutation>
       </div>
-
     } else {
       photoForm =
       <div id="upload-container">
@@ -71,16 +97,24 @@ class Upload extends React.Component {
                     file: this.state.file     
                     }
                   });  
-                }                 
+                  console.log("Success")
+                }
               }>
               <div id="upload-subheader">
-                <label className="upload-sub-photo-butt" htmlFor="upload-photo">Add</label>
+                
+                <div className="secondary-inputs">
+
+                <label className="upload-sub-photo-butt" htmlFor="upload-photo"> 
+                  <i className="icon-plus-sign"></i> Add</label>
                 <input name={'document'} type={'file'} accept={"image/*,video/*,.m4v,.mkv,.m2ts,.ogg,.3gp"} onChange={this.handleChange} id="upload-photo"
                 className="input-butt-small"/>
-                <button className="upload" type="submit">Upload</button>
+
+                <button className="remove-upload-butt" onClick={this.handleClick}><i className="icon-minus-sign"></i> Remove </button>
+                </div>
+
+                <button className="upload-active" type="submit">Upload</button>
               </div>
-              <label className="upload-photo-butt" htmlFor="upload-photo">Choose photos and videos to upload</label>
-              <input name={'document'} type={'file'} accept={"image/*,video/*,.m4v,.mkv,.m2ts,.ogg,.3gp"} onChange={this.handleChange} id="upload-photo"/>
+                <img className="upload-preview" src={this.state.filePrev}/>
               </form>
             )}    
           </Mutation>
