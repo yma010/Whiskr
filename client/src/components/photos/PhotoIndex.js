@@ -1,11 +1,19 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {FETCH_PHOTOS} from '../../graphql/queries';
+import PhotoIndexItem from "./PhotoIndexItem";
 import './photoindex.css'
 
 function PhotoIndex() {
+  const [noScroll, setNoScroll] = useState(false);
   const {loading, error, data } = useQuery(FETCH_PHOTOS);
+  useEffect(() => {
+    if (noScroll) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
+  });
 
   if (loading){
     return <div>Loading...</div>
@@ -14,42 +22,23 @@ function PhotoIndex() {
     console.log(error);
     return <div>Error!</div>
   }
+  
+  const leftColumnPhotos = [], rightColumnPhotos = [];
+  
+  data.photos.forEach((photo, idx) => {
+    idx % 2 === 0 ? 
+      leftColumnPhotos.push(<PhotoIndexItem photo={photo} key={photo._id} setNoScroll={setNoScroll} />)
+      : rightColumnPhotos.push(<PhotoIndexItem photo={photo} key={photo._id} setNoScroll={setNoScroll} />);
+  });
 
-  let photos;
-  photos = data.photos.map((photo, i) => {
-      return (
-      <div  className="single-card" key={i}>
-          <li key={photo.id}>
-          <div className="card-identity">
-            <img className="user-avatar" src={photo.imageURL} alt="avatar"/>
-            <Link to={`/users/${photo.photographer._id}`}> 
-              {photo.photographer.firstName} {photo.photographer.lastName} 
-            </Link> 
-          </div>        
-          <div className="card-photo">
-            <Link to={`/photos/${photo._id}`}> 
-              <img src={photo.imageURL} alt={photo.description}></img> 
-            </Link>
-          </div>
-          <div className="card-info">
-            <div className="photo-title">
-                <p>{photo.title}</p>
-            </div>
-            <div className="photo-actions">
-                <div className="activity-card-counts">
-                  <span className="view-count">{photo.views} Views</span> 
-                </div>
-            </div>
-          </div> 
-          </li> 
-      </div>
-      )
-  })
   return (
     <div className="feed-container">
       <div className="feed">
         <ul>
-          {photos}
+          {leftColumnPhotos}
+        </ul>
+        <ul>
+          {rightColumnPhotos}
         </ul>
       </div>
     </div>

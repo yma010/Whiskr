@@ -1,11 +1,20 @@
-import React, { useState } from "react";
-import { withRouter, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { useMutation } from '@apollo/react-hooks';
 import './forms.css';
 import { LOGIN_USER } from "../../graphql/mutations";
 
 
 function Login(props) {
+  const [isAppearing, setIsAppearing] = useState(true);
+  const [isDisappearing, setIsDisappearing] = useState(false);
+
+  useEffect(() => {
+    if (isAppearing) {
+      setTimeout(() => setIsAppearing(false), 100);
+    }
+  }, [isAppearing]);
+
   const [inputs, setInputs] = useState({
     email: "",
     password: ""
@@ -17,7 +26,8 @@ function Login(props) {
       onCompleted(data) {
         const { token } = data.login;
         localStorage.setItem("auth-token", token);
-        props.history.push("/");
+        setIsDisappearing(true); 
+        setTimeout(() => props.history.push("/"), 300);
       },
       update(client, { data }) {
         client.writeData({
@@ -40,35 +50,51 @@ function Login(props) {
   };
 
   return (
-      <div className="card-container">
-        <div className='card'>
-          <div className="card-content">
-            <h6 className='form-header'>Sign In for Whiskr</h6>
-    <form onSubmit={e => {
-      e.preventDefault();
-      loginUser({
-        variables: { email: inputs.email, password: inputs.password }
-      });
-    }}>
-            <div className="card-input">
-              <input type="text" onChange={handleInputChange} name="email" value={inputs.email} placeholder="Email address" />
-            </div>
-            <div className="card-input">
-              <input type="password" onChange={handleInputChange} name="password" value={inputs.password} placeholder="Password" />
-            </div>
-            <button type="submit" className="submit">Sign in</button>
-            <a 
-              type="submit" 
-              className="demo-login" 
-              onClick={() => loginUser({ variables: { email: "niles_mowgli@hotmail.com", password: "hunterhunter" } })}>
-              Demo login
-            </a>
-            <div className='grey-bar'></div>
-            <p className="message-link">Not a Whiskr member? <Link to='/signup'>Sign up here</Link></p>
-    </form>
+    <div className="card-container">
+      <div className={isAppearing || isDisappearing ? 'card hidden' : 'card'}>
+        <div className="card-content">
+          <div className="flickr-dots">
+            <span className="blue-dot"/>
+            <span className="pink-dot"/>
           </div>
+          <h6 className='form-header'>Log in to Whiskr</h6>
+          <form onSubmit={e => {
+            e.preventDefault();
+            loginUser({
+              variables: { email: inputs.email, password: inputs.password }
+            });
+          }}>
+            <div className="card-input">
+              <label className={inputs.email ? "small" : ""}>Email address</label>
+              <input required type="text" onChange={handleInputChange} name="email" value={inputs.email} />
+            </div>
+            <div className="card-input">
+              <label className={inputs.password ? "small" : ""}>Password</label>
+              <input required type="password" onChange={handleInputChange} name="password" value={inputs.password} />
+            </div>
+              <button type="submit" className="submit">Sign in</button>
+              
+              <button 
+                type="submit" 
+                className="demo-login" 
+                onClick={e => { 
+                  e.preventDefault(); 
+                  loginUser({ variables: { email: "niles_mowgli@hotmail.com", password: "hunterhunter" } })
+                }}>
+                Demo login
+              </button>
+            <div className='grey-bar'></div>
+            <p>Not a Whiskr member? 
+              <button onClick={e => {
+                  e.preventDefault();
+                  setIsDisappearing(true); 
+                  setTimeout(() => props.history.push("/signup"), 300)
+              }}> Sign up here</button>
+            </p>
+          </form>
         </div>
       </div>
+    </div>
   );
 }
 

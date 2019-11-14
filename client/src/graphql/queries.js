@@ -14,10 +14,21 @@ export const FETCH_PHOTOS = gql`
      views
      isPublic
      imageURL
+     description
      photographer {
        _id
       firstName
       lastName
+      avatarURL
+     }
+     comments {
+       _id
+       author {
+         _id
+         firstName
+         lastName
+       }
+       body
      }
    }
  }
@@ -32,3 +43,24 @@ export const CURRENT_USER = gql`
     }
   }
 `;
+
+export const FETCH_PHOTO_COMMENTS = gql`
+         query FetchPhotoComments($_id: ID!) {
+           photo(_id: $_id) {
+             _id
+             comments {
+               _id
+               photo {
+                 _id
+               }
+               author {
+                 _id
+                 firstName
+                 lastName
+                 avatarURL
+               }
+               body
+             }
+           }
+         }
+       `;

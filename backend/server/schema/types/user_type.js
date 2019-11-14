@@ -17,7 +17,8 @@ const UserType = new GraphQLObjectType({
 		lastName: { type: GraphQLString },
 		age: { type: GraphQLInt },
 		email: { type: GraphQLString },
-		token: { type: GraphQLString },
+    token: { type: GraphQLString },
+    avatarURL: { type: GraphQLString },
     loggedIn: { type: GraphQLBoolean },
     photos: {
       type: new GraphQLList(require("./photo_type")),
