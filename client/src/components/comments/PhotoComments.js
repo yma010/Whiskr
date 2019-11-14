@@ -39,16 +39,19 @@ function PhotoComments (props) {
     let photoComments;
     let deleteButton;
     photoComments = comments.map( (comment, i) => {
-     if (currentUser._id === comment.author._id) { 
-       deleteButton = 
-       <button  className='delete-button' onClick={(e) => { 
-         e.preventDefault(); 
-         DeleteComment({variables: {_id: comment._id}})}
-        }>
-          
-          </button>
-    } else {
-    deleteButton = <div></div>}
+     if (currentUser && currentUser._id === comment.author._id) {
+       deleteButton = (
+         <button
+           className="delete-button"
+           onClick={e => {
+             e.preventDefault();
+             DeleteComment({ variables: { _id: comment._id } });
+           }}
+         ></button>
+       );
+     } else {
+       deleteButton = <div></div>;
+     }
 
       return (
         <div key={i} className="comment-card">
