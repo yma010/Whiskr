@@ -2,19 +2,13 @@ version: "3"
 services:
   db:
     image: mongo:4.2
-  backend:
-    build: ./backend/
-    image: whiskr-backend:1
-    env_file:
-      - ./backend/.env
+  web:
+    build:
+      context: .
+    image: whiskr:1
     ports:
       - "5000:5000"
+    env_file:
+      - ./backend/.env
     depends_on:
       - db
-  client:
-    build: ./client/
-    image: whiskr-client:1
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
