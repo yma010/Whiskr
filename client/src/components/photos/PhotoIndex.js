@@ -1,11 +1,19 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import {FETCH_PHOTOS} from '../../graphql/queries';
+import PhotoIndexItem from "./PhotoIndexItem";
 import './photoindex.css'
 
 function PhotoIndex() {
+  const [noScroll, setNoScroll] = useState(false);
   const {loading, error, data } = useQuery(FETCH_PHOTOS);
+  useEffect(() => {
+    if (noScroll) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = "auto"
+    }
+  });
 
   if (loading){
     return <div>Loading...</div>
@@ -14,52 +22,13 @@ function PhotoIndex() {
     console.log(error);
     return <div>Error!</div>
   }
-
-  const photoIndexItem = photo => (
-    <div className="single-card" key={photo._id}>
-      <li key={photo._id}>
-        <div className="card-identity">
-          <Link
-            className="user-avatar" 
-            to={`/users/${photo.photographer._id}`}
-            style={{ backgroundImage: `url(${photo.photographer.avatarURL || '../../public/camera-avatar.png'})`}} 
-          />
-          <div>
-            <Link to={`/users/${photo.photographer._id}`}>
-              {photo.photographer.firstName} {photo.photographer.lastName}
-            </Link>
-            <span>Featured</span>
-          </div>
-        </div>
-        <div className="card-photo">
-          <Link to={`/photos/${photo._id}`} title={photo.description}>
-            <img src={photo.imageURL} alt={photo.description}></img>
-          </Link>
-        </div>
-        <div className="card-info">
-          <div className="photo-title">
-            <p>{photo.title}</p>
-          </div>
-          <div className="photo-actions">
-            <div className="activity-card-counts">
-              <span className="view-count">{photo.views} Views</span>
-              <Link to={`/photo/${photo._id}/comments`}>Comments</Link> 
-            </div>
-            <div className="photo-actions-links">
-              <Link to={`/photo/${photo._id}/comments`} className="photo-actions-comment-icon" />
-            </div>
-          </div>
-        </div>
-      </li>
-    </div>
-  );
   
   const leftColumnPhotos = [], rightColumnPhotos = [];
   
   data.photos.forEach((photo, idx) => {
     idx % 2 === 0 ? 
-      leftColumnPhotos.push(photoIndexItem(photo))
-      : rightColumnPhotos.push(photoIndexItem(photo));
+      leftColumnPhotos.push(<PhotoIndexItem photo={photo} key={photo._id} setNoScroll={setNoScroll} />)
+      : rightColumnPhotos.push(<PhotoIndexItem photo={photo} key={photo._id} setNoScroll={setNoScroll} />);
   });
 
   return (
