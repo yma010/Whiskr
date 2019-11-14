@@ -43,10 +43,10 @@ function PhotoIndex() {
           <div className="photo-actions">
             <div className="activity-card-counts">
               <span className="view-count">{photo.views} Views</span>
-              <span>{photo.comments.length} Comments</span>
+              <Link to={`/photo/${photo._id}/comments`}>Comments</Link> 
             </div>
             <div className="photo-actions-links">
-              <i className="photo-actions-comment-icon" />
+              <Link to={`/photo/${photo._id}/comments`} className="photo-actions-comment-icon" />
             </div>
           </div>
         </div>

@@ -43,3 +43,23 @@ export const CURRENT_USER = gql`
     }
   }
 `;
+
+export const FETCH_PHOTO_COMMENTS = gql`
+ query FetchPhotoComments($_id: ID!){
+    photo(_id: $_id){
+      _id
+      comments{
+        _id
+        photo {
+          _id
+        }
+        author {
+          _id
+          firstName
+          lastName
+        }
+        body
+      }
+    }
+  }
+`
