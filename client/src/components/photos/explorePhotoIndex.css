@@ -1,0 +1,22 @@
+.explore-container {
+  width: 100%;
+  height: fit-content;
+  background-color: #f3f5f6;
+  margin-top: 50px;
+}
+
+.explore-rows {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.explore-single-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.explore-single-photo {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
