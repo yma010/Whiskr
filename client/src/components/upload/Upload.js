@@ -42,7 +42,13 @@ class Upload extends React.Component {
                   });  
                 }                 
               }>
-              <div id="upload-subheader"><button className="upload" type="submit" disabled>Upload</button></div>
+              <div id="upload-subheader">
+                <label className="upload-sub-photo-butt" htmlFor="upload-photo"> 
+                  <i class="icon-plus-sign"></i> Add</label>
+                <input name={'document'} type={'file'} accept={"image/*,video/*,.m4v,.mkv,.m2ts,.ogg,.3gp"} onChange={this.handleChange} id="upload-photo"
+                className="input-butt-small"/>
+                <button className="upload" type="submit" disabled>Upload</button>
+              </div>
               <label className="upload-photo-butt" htmlFor="upload-photo">Choose photos and videos to upload</label>
               <input name={'document'} type={'file'} onChange={this.handleChange} id="upload-photo"/>
               </form>
@@ -67,9 +73,14 @@ class Upload extends React.Component {
                   });  
                 }                 
               }>
-              <div id="upload-subheader"><button className="upload" type="submit">Upload</button></div>
+              <div id="upload-subheader">
+                <label className="upload-sub-photo-butt" htmlFor="upload-photo">Add</label>
+                <input name={'document'} type={'file'} accept={"image/*,video/*,.m4v,.mkv,.m2ts,.ogg,.3gp"} onChange={this.handleChange} id="upload-photo"
+                className="input-butt-small"/>
+                <button className="upload" type="submit">Upload</button>
+              </div>
               <label className="upload-photo-butt" htmlFor="upload-photo">Choose photos and videos to upload</label>
-              <input name={'document'} type={'file'} onChange={this.handleChange} id="upload-photo"/>
+              <input name={'document'} type={'file'} accept={"image/*,video/*,.m4v,.mkv,.m2ts,.ogg,.3gp"} onChange={this.handleChange} id="upload-photo"/>
               </form>
             )}    
           </Mutation>
