@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Switch } from "react-router-dom";
-import Upload from './Upload';
+import Upload from './upload/Upload';
 import HeaderNav from './HeaderNav';
 import Login from './session/Login';
 import SignUp from './session/SignUp';

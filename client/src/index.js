@@ -59,8 +59,6 @@ const link = new RetryLink().split((operation) => operation.operationName==="Sin
       httpLink
       );
 
-console.log(link)
-
 const client = new ApolloClient({
   link: authLink.concat(link, errorLink),
   cache,
