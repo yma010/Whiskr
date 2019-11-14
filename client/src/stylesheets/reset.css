@@ -44,4 +44,5 @@ input[type="submit"] {
 }
 body {
   font-family: Proxima Nova, helvetica neue, helvetica, arial, sans-serif;
+  letter-spacing: .03em;
 }
