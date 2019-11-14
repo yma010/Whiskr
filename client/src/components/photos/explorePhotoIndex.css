@@ -5,6 +5,13 @@
   margin-top: 50px;
 }
 
+.explore-container h3 {
+  font-size: 24px;
+  padding: 16px 0 5px;
+  line-height: 30px;
+  font-weight: 300;
+}
+
 .explore-rows {
   width: 80vw;
   margin: 0 auto;
@@ -13,10 +20,14 @@
 .explore-single-row {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 4px;
+  margin-top: 4px;
 }
 
 .explore-single-photo {
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+.explore-single-photo .photo-title-description p:last-of-type {
+  display: none;
 }

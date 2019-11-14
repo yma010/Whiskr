@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { FETCH_PHOTOS } from '../../graphql/queries';
 
+import ExplorePhotoIndexItem from "./ExplorePhotoIndexItem";
+import "./photoindex.css";
 import "./explorePhotoIndex.css";
 
 const ExplorePhotoIndex = () => {
@@ -61,27 +63,16 @@ const ExplorePhotoIndex = () => {
 
     return rowsAndRowHeights;
   }
-  console.log(photoRowsAndHeights.map(rowAndHeight => rowAndHeight[1]));
+
   return (
     <div className="explore-container">
       <ul className="explore-rows">
+      <h3>Explore</h3>
       {photoRowsAndHeights.map((rowAndHeight, idx) => (
         <ul className="explore-single-row" key={idx}>
-        {rowAndHeight[0].map(photo => {
-          const height = rowAndHeight[1];
-          return (
-            <li
-              className="explore-single-photo"
-              key={photo._id}
-              style={{
-                backgroundImage: `url(${photo.imageURL})`,
-                height,
-                width: photo.width * height / photo.height
-              }}
-            >
-            </li>
-          );
-        })}
+        {rowAndHeight[0].map(photo => (
+          <ExplorePhotoIndexItem key={photo._id} photo={photo} height={rowAndHeight[1]} />
+        ))}
         </ul>
       ))}
       </ul>
