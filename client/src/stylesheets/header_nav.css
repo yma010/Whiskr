@@ -50,6 +50,7 @@
   font-size: 22.4px;
   opacity: 1;
   transition: opacity .15s ease-in-out;
+  letter-spacing: 0;
 }
 
 .header-nav a:hover {
