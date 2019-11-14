@@ -16,6 +16,14 @@ const PhotoSchema = new Schema({
     type: Number,
     default: 0
   },
+  height: {
+    type: Number,
+    required: true
+  },
+  width: {
+    type: Number,
+    required: true
+  },
   isPublic: {
     type: Boolean,
     required: true

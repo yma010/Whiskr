@@ -5,6 +5,7 @@ import HeaderNav from './HeaderNav';
 import Login from './session/Login';
 import SignUp from './session/SignUp';
 import PhotoIndex from './photos/PhotoIndex';
+import ExplorePhotoIndex from './photos/ExplorePhotoIndex';
 import "../stylesheets/reset.css";
 import PhotoComments from './comments/PhotoComments';
 
@@ -16,7 +17,8 @@ const App = () => {
         <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
         <Route path='/photo/:id/comments' component={PhotoComments}/>
-        <Route exact path='/upload' component={Upload}/>>
+        <Route exact path='/upload' component={Upload}/>
+        <Route path='/explore' component={ExplorePhotoIndex}/>
         <Route path='/' component={PhotoIndex} />
       </Switch>
     </div>
