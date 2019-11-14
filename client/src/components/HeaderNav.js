@@ -103,7 +103,7 @@ const HeaderNav = () => {
         </div>
         <ul className="header-nav-right">
           <li>{searchBar}</li>
-          <li className="header-upload-button"><Link /></li>    {/* link needs to be filled in */}
+          <li className="header-upload-button"><Link to='upload' /></li>    {/* link needs to be filled in */}
           {currentUser ? (
           <li className="header-avatar-button">
             <button onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}/>

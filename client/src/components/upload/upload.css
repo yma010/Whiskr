@@ -1,0 +1,46 @@
+#upload-container {
+  display: flex;
+  text-align: center;
+}
+
+#upload-subheader {
+  position: fixed;
+  top: 50px;
+  height: 40px;
+  width: 100%;
+  background: linear-gradient(
+            to bottom, rgba(238, 238, 238, 1) 0,
+            rgba(241, 241, 241, 1) 100%);
+}
+
+button.upload{
+  margin-top: 10px;
+  display: flex;
+  color: #bbb;
+  left: 900px;
+}
+
+.upload-photo-butt {
+  position: absolute;
+  margin-top: 150px;
+  cursor: pointer;
+  display: flex;
+  height: auto;
+  width: fit-content;
+  padding: 15px 9px;
+  border-radius: 4px;
+  border-style: inset;
+  background: rgba(21, 21, 23, .95);
+  color: white;
+  font-size: 100%;
+  text-align: center;
+  left: 500px;
+  right: 500xp;
+}
+
+#upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+
+}
