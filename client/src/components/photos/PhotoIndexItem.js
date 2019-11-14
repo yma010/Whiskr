@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
-const PhotoIndexItem = ({ photo }) => {
+const PhotoIndexItem = ({ photo, setNoScroll }) => {
   const img = useRef(null);
   const viewHeight = window.innerHeight;
   const viewWidth = window.innerWidth;
@@ -13,7 +13,7 @@ const PhotoIndexItem = ({ photo }) => {
       <div className={isDisplayed ? "photo-lightbox" : "photo-lightbox-hidden"}>
         <button 
           className="close-photo-lightbox"
-          onClick={() => setIsDisplayed(false)}
+          onClick={() => { setIsDisplayed(false); setNoScroll(false); }}
         />
         {isDisplayed ? (<Link 
           to={`/photos/${photo._id}`} title={photo.description}
@@ -38,7 +38,11 @@ const PhotoIndexItem = ({ photo }) => {
           <span>Featured</span>
         </div>
       </div>
-      <button className="card-photo" title={photo.description} onClick={() => setIsDisplayed(true)}>
+      <button 
+        className="card-photo" 
+        title={photo.description} 
+        onClick={() => { setIsDisplayed(true); setNoScroll(true); }}
+      >
         <img src={photo.imageURL} alt={photo.description} ref={img}></img>
       </button>
       <div className="card-info">

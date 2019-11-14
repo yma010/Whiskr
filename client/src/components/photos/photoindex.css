@@ -7,6 +7,10 @@
   opacity: 1;
 }
 
+.feed.no-scroll {
+  overflow: hidden;
+}
+
 .feed {
   display: flex;
   justify-content: space-between;
