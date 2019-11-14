@@ -12,6 +12,8 @@ export const FETCH_PHOTOS = gql`
      _id
      title
      views
+     height
+     width
      isPublic
      imageURL
      description
