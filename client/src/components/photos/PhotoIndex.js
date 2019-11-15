@@ -23,22 +23,23 @@ function PhotoIndex() {
   });
 
   useEffect(function() {
-    window.onscroll = debounce(() => {
-      if (document.body.clientHeight - window.scrollY < 3000) {
-        console.log("refetching");
-        window.onscroll = null;
-        fetchMore({
-          variables: { limit: photoBatch, offset: data.photos.length },
-          updateQuery: (prev, { fetchMoreResult }) => {
-            if (!fetchMoreResult) return prev;
-            return Object.assign({}, prev, {
-              photos: [...prev.photos, ...fetchMoreResult.photos]
-            });
-          }
-        })
-      }
-    }, 200);
-
+    if (data) {
+      window.onscroll = debounce(() => {
+        if (document.body.clientHeight - window.scrollY < 3000) {
+          console.log("refetching");
+          window.onscroll = null;
+          fetchMore({
+            variables: { limit: photoBatch, offset: data.photos.length },
+            updateQuery: (prev, { fetchMoreResult }) => {
+              if (!fetchMoreResult) return prev;
+              return Object.assign({}, prev, {
+                photos: [...prev.photos, ...fetchMoreResult.photos]
+              });
+            }
+          })
+        }
+      }, 200);
+    }
     return () => window.onscroll = null;
   });
 

@@ -10,7 +10,7 @@ import "./explorePhotoIndex.css";
 const ExplorePhotoIndex = () => {
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
 
-  const photoBatch = 40;
+  const photoBatch = 45;
   const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS, {
     variables: { limit: photoBatch, offset: 0 }
   });
@@ -19,33 +19,34 @@ const ExplorePhotoIndex = () => {
   const gutterSize = 4;
 
   useEffect(() => {
-    window.onresize = () => {
+    window.onresize = debounce(() => {
       if (window.innerWidth !== rowWidth) {
         const newWidth = 0.8 * window.innerWidth;
         setRowWidth(newWidth);
       }
-    };
+    }, 200);
 
     return () => window.onresize = null;
   });
 
   useEffect(() => {
-    window.onscroll = debounce(() => {
-      if (document.body.clientHeight - window.scrollY < 3000) {
-        console.log("refetching");
-        window.onscroll = null;
-        fetchMore({
-          variables: { limit: photoBatch, offset: data.photos.length },
-          updateQuery: (prev, { fetchMoreResult }) => {
-            if (!fetchMoreResult) return prev;
-            return Object.assign({}, prev, {
-              photos: [...prev.photos, ...fetchMoreResult.photos]
-            });
-          }
-        })
-      }
-    }, 200);
-
+    if (data) {
+      window.onscroll = debounce(() => {
+        if (document.body.clientHeight - window.scrollY < 3000) {
+          console.log("refetching");
+          window.onscroll = null;
+          fetchMore({
+            variables: { limit: photoBatch, offset: data.photos.length },
+            updateQuery: (prev, { fetchMoreResult }) => {
+              if (!fetchMoreResult) return prev;
+              return Object.assign({}, prev, {
+                photos: [...prev.photos, ...fetchMoreResult.photos]
+              });
+            }
+          })
+        }
+      }, 200);
+    }
     return () => window.onscroll = null;
   });
 
