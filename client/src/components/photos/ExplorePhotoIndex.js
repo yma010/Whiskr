@@ -19,12 +19,12 @@ const ExplorePhotoIndex = () => {
   const gutterSize = 4;
 
   useEffect(() => {
-    window.onresize = debounce(() => {
+    window.onresize = () => {
       if (window.innerWidth !== rowWidth) {
         const newWidth = 0.8 * window.innerWidth;
         setRowWidth(newWidth);
       }
-    }, 200);
+    };
 
     return () => window.onresize = null;
   });
