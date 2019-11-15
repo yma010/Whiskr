@@ -31,6 +31,7 @@ input[type="password"],
 input[type="email"],
 input[type="text"],
 input[type="submit"],
+input[type="number"]::-webkit-inner-spin-button,
 textarea,
 button {
   -webkit-appearance: none;
