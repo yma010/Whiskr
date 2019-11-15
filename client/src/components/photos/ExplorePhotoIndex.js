@@ -9,13 +9,12 @@ import "./explorePhotoIndex.css";
 const ExplorePhotoIndex = () => {
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
   const [photoRowsAndHeights, setPhotoRowsAndHeights] = useState([]);
-  const obj = useQuery(FETCH_PHOTOS, {
-    fetchPolicy: "no-cache",
+
+  const { loading, error, data } = useQuery(FETCH_PHOTOS, {
+    variables: { limit: 25, offset: 0 },
+    fetchPolicy: "network-only",
     onCompleted: data => setPhotoRowsAndHeights(constructRowsAndRowHeights(data.photos))
   });
-  const { loading, error } = obj;
-  console.log(`explore:`);
-  console.log(obj);
 
   const maxRowHeight = 300;
   const gutterSize = 4;
@@ -66,7 +65,7 @@ const ExplorePhotoIndex = () => {
       }
     }
 
-    if (newRow.length > 0 && rowHeight > maxRowHeight) {
+    if (newRow && newRow.length > 0 && rowHeight > maxRowHeight) {
       rowsAndRowHeights.push([newRow, maxRowHeight]);
     }
 

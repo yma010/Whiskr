@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import {useQuery} from '@apollo/react-hooks';
+import { debounce } from 'lodash';
+
 import {FETCH_PHOTOS} from '../../graphql/queries';
 import PhotoIndexItem from "./PhotoIndexItem";
 import './photoindex.css'
 
 function PhotoIndex() {
   const [noScroll, setNoScroll] = useState(false);
-  const obj = useQuery(FETCH_PHOTOS, {
-    fetchPolicy: "no-cache"
+
+  const photoBatch = 12;
+  const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS, {
+    variables: { limit: photoBatch, offset: 0 }
   });
+
   useEffect(() => {
     if (noScroll) {
       document.body.style.overflow = "hidden"
@@ -16,9 +21,26 @@ function PhotoIndex() {
       document.body.style.overflow = "auto"
     }
   });
-  const {loading, error, data } = obj;
-  console.log(`index:`);
-  console.log(obj);
+
+  useEffect(function() {
+    window.onscroll = debounce(() => {
+      if (document.body.clientHeight - window.scrollY < 3000) {
+        console.log("refetching");
+        window.onscroll = null;
+        fetchMore({
+          variables: { limit: photoBatch, offset: data.photos.length },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult) return prev;
+            return Object.assign({}, prev, {
+              photos: [...prev.photos, ...fetchMoreResult.photos]
+            });
+          }
+        })
+      }
+    }, 200);
+
+    return () => window.onscroll = null;
+  });
 
   if (loading){
     return <div>Loading...</div>
