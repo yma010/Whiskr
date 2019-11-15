@@ -30,7 +30,7 @@ const HeaderNav = () => {
 
   const exploreDropdown = (
     <ul className="header-dropdown">
-      <li><Link>Recent Photos</Link></li>       {/* link needs to be filled in */}
+      <li><Link to="/explore">Recent Photos</Link></li>       {/* link needs to be filled in */}
       <li><Link>Trending</Link></li>            {/* link needs to be filled in */}
     </ul>
   );
@@ -96,7 +96,7 @@ const HeaderNav = () => {
               onMouseEnter={() => setExploreDropdownOpen(true)}
               onMouseLeave={() => setExploreDropdownOpen(false)}
             >
-              <Link><span>Explore</span></Link>      {/* link needs to be filled in */}
+              <Link to="/explore"><span>Explore</span></Link>      {/* link needs to be filled in */}
               {isExploreDropdownOpen ? exploreDropdown : ""}
             </li>
           </ul>

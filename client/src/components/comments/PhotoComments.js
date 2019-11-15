@@ -29,40 +29,47 @@ function PhotoComments (props) {
     let photoComments;
     let deleteButton;
     photoComments = comments.map( (comment, i) => {
-     if (currentUser._id === comment.author._id) { 
-       deleteButton = 
-       <button  className='delete-button' onClick={(e) => { 
-         e.preventDefault(); 
-         DeleteComment({variables: {_id: comment._id}})}
-        }>
-          
-          </button>
-    } else {
-    deleteButton = <div></div>}
+     if (currentUser && currentUser._id === comment.author._id) {
+       deleteButton = (
+         <button
+           className="delete-button"
+           onClick={e => {
+             e.preventDefault();
+             DeleteComment({ variables: { _id: comment._id } });
+           }}
+         ></button>
+       );
+     } else {
+       deleteButton = <div></div>;
+     }
 
       return (
         <div key={i} className="comment-card">
           <li key={comment._id}>
-            <div className="avatar" >
-              <span className="user-avatar"  />
+            <div className="avatar">
+              <Link
+                className="user-avatar"
+                to={`/users/${comment.author._id}`}
+                style={{
+                  backgroundImage: `url(${comment.author.avatarURL ||
+                    "../../public/camera-avatar.png"})`
+                }}
+              />
             </div>
-            <div className='comment-content'>
-            <div className='comment-author-identity'>
-              <Link to={`/users/${comment.author._id}`}>
-                {comment.author.firstName} {comment.author.lastName}
-              </Link> 
-            </div>
-            <div className='comment-body'>
-              <p>{comment.body}</p>
+            <div className="comment-content">
+              <div className="comment-author-identity">
+                <Link to={`/users/${comment.author._id}`}>
+                  {comment.author.firstName} {comment.author.lastName}
+                </Link>
+              </div>
+              <div className="comment-body">
+                <p>{comment.body}</p>
               </div>
             </div>
-            <div className='delete'>
-              {deleteButton}
-            </div>
-
+            <div className="delete">{deleteButton}</div>
           </li>
         </div>
-      )
+      );
     })
     return (
       <div id="comments">

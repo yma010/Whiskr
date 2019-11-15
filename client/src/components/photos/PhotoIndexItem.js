@@ -37,7 +37,9 @@ const PhotoIndexItem = ({ photo, setNoScroll }) => {
           <span>{photo.comments.length} Comments</span>
         </div>
         <div className="photo-actions-links">
-          <i className="photo-actions-comment-icon" />
+          <Link to={`/photo/${photo._id}/comments`}>
+            <i className="photo-actions-comment-icon"   />
+          </Link>
         </div>
       </div>
     </div>

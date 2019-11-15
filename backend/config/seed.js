@@ -99,13 +99,17 @@ const seed = async function() {
   const usersWithAlbums = await User.find().populate("albums");
   usersWithAlbums.forEach(user => {
     for (let i = 0; i < 20; i++) {
+      const height = randomNum(200, 400);
+      const width = randomNum(200, 400);
       const newPhoto = new Photo({
         photographer: user._id,
         title: faker.random.words(randomNum(1, 3)),
         description: faker.random.words(randomNum(5, 10)),
         views: randomNum(5, 50),
+        width,
+        height,
         isPublic: true,
-        imageURL: `http://lorempixel.com/${randomNum(200, 400)}/${randomNum(200, 400)}/cats/${randomNum(1, 9)}`,
+        imageURL: `http://lorempixel.com/${width}/${height}/cats/${randomNum(1, 9)}`,
         albums: sampleFromArr(randomNum(1, user.albums.length), user.albums),
         tags: sampleFromArr(randomNum(1, 6), savedTags)
       });
