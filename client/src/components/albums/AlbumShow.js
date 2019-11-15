@@ -35,7 +35,28 @@ function AlbumShow(props){
   // }
 
   //renders buttons based on the active index
+  
+  
   let slides = album.photos.map((photo, index) => {
+    const cardIdentity = (
+      <div className="card-identity">
+        <Link
+          className="user-avatar"
+          to={`/users/${photo.photographer._id}`}
+          style={{
+            backgroundImage: `url(${photo.photographer.avatarURL ||
+              "../../public/camera-avatar.png"})`
+          }}
+        />
+        <div>
+          <Link to={`/users/${photo.photographer._id}`}>
+            {photo.photographer.firstName} {photo.photographer.lastName}
+          </Link>
+          <span>Featured</span>
+        </div>
+      </div>
+    ); 
+
     let style;
      style={ display: (index === activeIndex) ?  "block" : "none" }
 
@@ -43,16 +64,17 @@ function AlbumShow(props){
     if (index === activeIndex) { 
         comments = <PhotoComments photoId={photo._id} comments={photo.comments}/> 
     } else {
-        comments = <div></div>
+        comments = <div style={{display: 'none'}}></div>
     }
       return (
-        <div>
-          <li key={photo.id}>
+        <div style={style}>
+          <li key={photo.id} style={style}>
             <img
               src={photo.imageURL}
               alt={photo.description}
               style={style}
             ></img>
+            {cardIdentity}
             {comments}
           </li>
         </div>
@@ -66,22 +88,26 @@ function AlbumShow(props){
 
     return (
       <div className="heigth-controller">
-        <div className="top-carousel">
-          <button
-            className="prev-next-button"
-            onClick={e => setIndex(activeIndex - 1)}
-            style={styleP}
-          >
-            <span className="prev-icon"></span>
-          </button>
-          {slides}
-          <button
-            className="prev-next-button"
-            onClick={e => setIndex(activeIndex + 1)}
-            style={styleN}
-          >
-            <span className="next-icon"></span>
-          </button>
+        <div className="carousel-wrap">
+          <div className="top-carousel">
+            <button
+              className="prev-next-button"
+              onClick={e => setIndex(activeIndex - 1)}
+              style={styleP}
+            >
+              <span className="prev-icon"></span>
+            </button>
+            <div className="image-item">
+              {slides}
+            </div>
+            <button
+              className="prev-next-button"
+              onClick={e => setIndex(activeIndex + 1)}
+              style={styleN}
+            >
+              <span className="next-icon"></span>
+            </button>
+          </div>
         </div>
       </div>
     );

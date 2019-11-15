@@ -1,15 +1,30 @@
 .heigth-controller {
   height: 768px;
+}
+.carousel-wrap{
+  height: 668px;
   display: flex;
-    position: relative;
-    background: #212124;
-    user-select: none;
+  position: relative;
+  background: #212124;
+  user-select: none;
+  margin: auto;
+  margin-top: 107px;
+}
+
+.top-carousel {
+  margin: 150px;
+  display: flex;
+  /* margin: auto;
+  margin-top: 107px; */
+}
+
+.image-item{
+  padding: 50px 0;
+    z-index: 102;
 }
 
 .prev-next-button {
-   cursor: pointer;
   -webkit-appearance: none;
-  -moz-appearance: none;
   margin: 0;
   padding: 0;
   border: 0;
@@ -20,7 +35,6 @@
   text-decoration: none;
   list-style: none;
   cursor: inherit;
-  display: block;
   box-sizing: border-box;
 }
 
@@ -33,16 +47,18 @@
   margin-left: 10px;
 }
 
-.top-carousel {
-  margin: 150px;
-  width: 500px;
-  display: flex;
-}
-
 .next-icon{
   background-image: url('../../public/sprites.png'); 
   background-position: -433px -49px;
   width: 32px;
   height: 52px;
   margin-right: 10px;
+}
+
+.top-carousel img{
+    /* width: 445px;
+    height: 668px;
+    left: 475px;
+    top: 50px; */
+    /* position: absolute; */
 }
