@@ -9,13 +9,13 @@ import './comments.css'
 
 function PhotoComments (props) {
   const { loading, error, data } = useQuery(FETCH_PHOTO_COMMENTS,
-    { variables: { _id: props.match.params.id }});
+    { variables: { _id: props.photoId }});
   const { data: {currentUser} } = useQuery(CURRENT_USER);
   const [DeleteComment] = useMutation(DELETE_COMMENT, 
     { 
       refetchQueries: [{query: FETCH_PHOTO_COMMENTS, 
         variables: {
-          _id: props.match.params.id
+          _id: props.photoId
         }
       }],
     });
