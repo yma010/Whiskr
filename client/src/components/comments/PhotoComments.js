@@ -8,8 +8,6 @@ import './comments.css'
 
 
 function PhotoComments (props) {
-  const { loading, error, data } = useQuery(FETCH_PHOTO_COMMENTS,
-    { variables: { _id: props.photoId }});
   const { data: {currentUser} } = useQuery(CURRENT_USER);
   const [DeleteComment] = useMutation(DELETE_COMMENT, 
     { 
@@ -19,16 +17,8 @@ function PhotoComments (props) {
         }
       }],
     });
-    
-    if (loading) {
-      return <div>Loading...</div>
-    }
-    if (error) {
-      console.log(error);
-      return <div>Error!</div>
-    }
 
-    let { comments } = data.photo;
+    let  comments  = props.comments;
     if (!comments){
       return (
         <div id='comments'>
@@ -80,7 +70,7 @@ function PhotoComments (props) {
         <ul>
           {photoComments}
           <div className="add-comment">
-            <CreateComment photoId={data.photo._id} />   
+            <CreateComment photoId={props.photoId} />   
           </div>
         </ul>
         </div>

@@ -41,11 +41,10 @@ function AlbumShow(props){
 
      let comments;
     if (index === activeIndex) { 
-        comments = <PhotoComments photoId={photo._id}/> 
+        comments = <PhotoComments photoId={photo._id} comments={photo.comments}/> 
     } else {
         comments = <div></div>
     }
-
       return (
         <div>
           <li key={photo.id}>
@@ -58,31 +57,28 @@ function AlbumShow(props){
           </li>
         </div>
       );
-});
+    });
 
     let styleP;
     styleP = { display: activeIndex === 0 ? "none" : "block" };
     let styleN;
-    styleN = { display: activeIndex === album.photos.length-1 ? "none" : "block" };
+    styleN = { display: activeIndex === album.photos.length - 1 ? "none" : "block" };
 
     return (
       <div>
         <div className="top-carousel">
           <button
-            className="" onClick={e => setIndex(activeIndex -1)} style={styleP}>
+            className="" onClick={e => setIndex(activeIndex - 1)} style={styleP}>
             prev
           </button>
-
           {slides}
-        
           <button
-            className="" onClick={e => setIndex(activeIndex +1)} style={styleN}>
+            className="" onClick={e => setIndex(activeIndex + 1)} style={styleN}>
             next
           </button>
         </div>
       </div>
     );
-
 };
 
 export default AlbumShow;

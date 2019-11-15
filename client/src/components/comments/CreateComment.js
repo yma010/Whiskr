@@ -11,7 +11,11 @@ function CreateComment(props) {
     {
       onCompleted: (data) => { 
         setBody('')},
-      update: (cache, data) => { updateCache(cache, data)}
+      update: (cache, data) => { updateCache(cache, data)},
+      refetchQueries: [{query: FETCH_PHOTO_COMMENTS, 
+        variables: {
+          _id: props.photoId
+        }}]
     });
     
   const {loading, error, data} = useQuery(CURRENT_USER);
