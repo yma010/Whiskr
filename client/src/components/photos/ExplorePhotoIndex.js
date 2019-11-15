@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { FETCH_PHOTOS } from '../../graphql/queries';
+import { debounce } from 'lodash';
 
+import { FETCH_PHOTOS } from '../../graphql/queries';
 import ExplorePhotoIndexItem from "./ExplorePhotoIndexItem";
 import "./photoindex.css";
 import "./explorePhotoIndex.css";
@@ -9,19 +10,44 @@ import "./explorePhotoIndex.css";
 const ExplorePhotoIndex = () => {
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
 
-  const { loading, error, data } = useQuery(FETCH_PHOTOS, {
-    variables: { limit: 25, offset: 0 }
+  const photoBatch = 40;
+  const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS, {
+    variables: { limit: photoBatch, offset: 0 }
   });
 
   const maxRowHeight = 300;
   const gutterSize = 4;
 
-  window.onresize = () => {
-    if (window.innerWidth !== rowWidth) {
-      const newWidth = 0.8 * window.innerWidth;
-      setRowWidth(newWidth);
-    }
-  };
+  useEffect(() => {
+    window.onresize = () => {
+      if (window.innerWidth !== rowWidth) {
+        const newWidth = 0.8 * window.innerWidth;
+        setRowWidth(newWidth);
+      }
+    };
+
+    return () => window.onresize = null;
+  });
+
+  useEffect(() => {
+    window.onscroll = debounce(() => {
+      if (document.body.clientHeight - window.scrollY < 3000) {
+        console.log("refetching");
+        window.onscroll = null;
+        fetchMore({
+          variables: { limit: photoBatch, offset: data.photos.length },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult) return prev;
+            return Object.assign({}, prev, {
+              photos: [...prev.photos, ...fetchMoreResult.photos]
+            });
+          }
+        })
+      }
+    }, 200);
+
+    return () => window.onscroll = null;
+  });
 
   if (loading) {
     return <div>Loading...</div>
@@ -42,8 +68,8 @@ const ExplorePhotoIndex = () => {
     const rowsAndRowHeights = [];
     let newRow;
     let rowHeight;
-    while (photos.length > 1) {
-      newRow = photos.splice(0, 2);
+    while (photos.length > 0) {
+      newRow = photos.splice(0, 1);
       rowHeight = standardizedHeight(newRow, rowWidth);
       while (rowHeight > maxRowHeight && photos.length > 0) {
         newRow = newRow.concat(photos.splice(0, 1));
