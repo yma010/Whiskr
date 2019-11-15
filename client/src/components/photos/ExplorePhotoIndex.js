@@ -9,9 +9,13 @@ import "./explorePhotoIndex.css";
 const ExplorePhotoIndex = () => {
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
   const [photoRowsAndHeights, setPhotoRowsAndHeights] = useState([]);
-  const { loading, error } = useQuery(FETCH_PHOTOS, {
+  const obj = useQuery(FETCH_PHOTOS, {
+    fetchPolicy: "no-cache",
     onCompleted: data => setPhotoRowsAndHeights(constructRowsAndRowHeights(data.photos))
   });
+  const { loading, error } = obj;
+  console.log(`explore:`);
+  console.log(obj);
 
   const maxRowHeight = 300;
   const gutterSize = 4;
@@ -47,10 +51,11 @@ const ExplorePhotoIndex = () => {
 
   const constructRowsAndRowHeights = photos => {
     const rowsAndRowHeights = [];
-
+    let newRow;
+    let rowHeight;
     while (photos.length > 1) {
-      let newRow = photos.splice(0, 2);
-      let rowHeight = standardizedHeight(newRow, rowWidth);
+      newRow = photos.splice(0, 2);
+      rowHeight = standardizedHeight(newRow, rowWidth);
       while (rowHeight > maxRowHeight && photos.length > 0) {
         newRow = newRow.concat(photos.splice(0, 1));
         rowHeight = standardizedHeight(newRow, rowWidth);
@@ -59,6 +64,10 @@ const ExplorePhotoIndex = () => {
       if (rowHeight < maxRowHeight) {
         rowsAndRowHeights.push([newRow, rowHeight]);
       }
+    }
+
+    if (newRow.length > 0 && rowHeight > maxRowHeight) {
+      rowsAndRowHeights.push([newRow, maxRowHeight]);
     }
 
     return rowsAndRowHeights;

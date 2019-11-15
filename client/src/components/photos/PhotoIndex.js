@@ -6,7 +6,9 @@ import './photoindex.css'
 
 function PhotoIndex() {
   const [noScroll, setNoScroll] = useState(false);
-  const {loading, error, data } = useQuery(FETCH_PHOTOS);
+  const obj = useQuery(FETCH_PHOTOS, {
+    fetchPolicy: "no-cache"
+  });
   useEffect(() => {
     if (noScroll) {
       document.body.style.overflow = "hidden"
@@ -14,6 +16,9 @@ function PhotoIndex() {
       document.body.style.overflow = "auto"
     }
   });
+  const {loading, error, data } = obj;
+  console.log(`index:`);
+  console.log(obj);
 
   if (loading){
     return <div>Loading...</div>
