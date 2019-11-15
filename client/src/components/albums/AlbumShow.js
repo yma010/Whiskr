@@ -65,16 +65,22 @@ function AlbumShow(props){
     styleN = { display: activeIndex === album.photos.length - 1 ? "none" : "block" };
 
     return (
-      <div>
+      <div className="heigth-controller">
         <div className="top-carousel">
           <button
-            className="" onClick={e => setIndex(activeIndex - 1)} style={styleP}>
-            prev
+            className="prev-next-button"
+            onClick={e => setIndex(activeIndex - 1)}
+            style={styleP}
+          >
+            <span className="prev-icon"></span>
           </button>
           {slides}
           <button
-            className="" onClick={e => setIndex(activeIndex + 1)} style={styleN}>
-            next
+            className="prev-next-button"
+            onClick={e => setIndex(activeIndex + 1)}
+            style={styleN}
+          >
+            <span className="next-icon"></span>
           </button>
         </div>
       </div>

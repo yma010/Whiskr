@@ -1,4 +1,48 @@
+.heigth-controller {
+  height: 768px;
+  display: flex;
+    position: relative;
+    background: #212124;
+    user-select: none;
+}
+
+.prev-next-button {
+   cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  text-decoration: none;
+  list-style: none;
+  cursor: inherit;
+  display: block;
+  box-sizing: border-box;
+}
+
+.prev-icon{
+  display: block;
+  background-image: url('../../public/sprites.png');
+  background-position:-433px -102px;
+  width: 32px;
+  height: 52px;
+  margin-left: 10px;
+}
+
 .top-carousel {
   margin: 150px;
   width: 500px;
+  display: flex;
+}
+
+.next-icon{
+  background-image: url('../../public/sprites.png'); 
+  background-position: -433px -49px;
+  width: 32px;
+  height: 52px;
+  margin-right: 10px;
 }
