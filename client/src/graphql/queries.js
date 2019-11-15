@@ -63,3 +63,36 @@ export const FETCH_PHOTO_COMMENTS = gql`
     }
   }
 `
+
+export const FETCH_ALBUM_FROM_PHOTO = gql`
+         query FetchAlbum($_id: ID!) {
+           photo(_id: $_id) {
+             
+             albums {
+               photos {
+                 _id
+                 title
+                 views
+                 isPublic
+                 imageURL
+                 description
+                 photographer {
+                   _id
+                   firstName
+                   lastName
+                   avatarURL
+                 }
+                 comments {
+                   _id
+                   author {
+                     _id
+                     firstName
+                     lastName
+                   }
+                   body
+                 }
+               }
+             }
+           }
+         }
+       `;
