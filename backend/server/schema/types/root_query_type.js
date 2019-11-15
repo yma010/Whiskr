@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull } = graphql;
+const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull, GraphQLInt } = graphql;
 
 const UserType = require("./user_type");
 const PhotoType = require("./photo_type");
@@ -36,8 +36,12 @@ const RootQueryType = new GraphQLObjectType({
       },
       photos: {
         type: new GraphQLList(PhotoType),
-        resolve(){
-          return Photo.find({})
+        args: {
+          limit: { type: GraphQLInt },
+          offset: { type: GraphQLInt }
+        },
+        resolve(_, { limit, offset }){
+          return Photo.find({}).skip(offset).limit(limit);
         }
       },
       photo: {
