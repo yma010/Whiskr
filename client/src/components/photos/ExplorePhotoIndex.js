@@ -11,9 +11,7 @@ const ExplorePhotoIndex = () => {
   const [photoRowsAndHeights, setPhotoRowsAndHeights] = useState([]);
 
   const { loading, error, data } = useQuery(FETCH_PHOTOS, {
-    variables: { limit: 25, offset: 0 },
-    fetchPolicy: "network-only",
-    onCompleted: data => setPhotoRowsAndHeights(constructRowsAndRowHeights(data.photos))
+    variables: { limit: 25, offset: 0 }
   });
 
   const maxRowHeight = 300;
@@ -33,7 +31,6 @@ const ExplorePhotoIndex = () => {
     }
   };
 
-
   if (loading) {
     return <div>Loading...</div>
   }
@@ -48,7 +45,8 @@ const ExplorePhotoIndex = () => {
     return (targetWidth - gutterSize * (photos.length - 1)) / rowWidthAtUnitHeight;
   };
 
-  const constructRowsAndRowHeights = photos => {
+  const constructRowsAndRowHeights = cachedPhotos => {
+    const photos = cachedPhotos.slice();
     const rowsAndRowHeights = [];
     let newRow;
     let rowHeight;
@@ -76,7 +74,7 @@ const ExplorePhotoIndex = () => {
     <div className="explore-container">
       <ul className="explore-rows">
       <h3>Explore</h3>
-      {photoRowsAndHeights.map((rowAndHeight, idx) => (
+      {constructRowsAndRowHeights(data.photos).map((rowAndHeight, idx) => (
         <ul className="explore-single-row" key={idx}>
         {rowAndHeight[0].map(photo => (
           <ExplorePhotoIndexItem key={photo._id} photo={photo} height={rowAndHeight[1]} />
