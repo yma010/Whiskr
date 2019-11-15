@@ -36,5 +36,8 @@
     "nodemon": "^1.19.4",
     "s3-streams": "^0.4.0",
     "validator": "^12.0.0"
+  },
+  "devDependencies": {
+    "image-size": "^0.8.3"
   }
 }

@@ -2,12 +2,30 @@ const mongoose = require("mongoose");
 const db = require('./keys').mongoURI;
 const faker = require('faker');
 const bcrypt = require('bcryptjs');
+const path = require("path");
+const sizeOf = require("image-size");
 
 const Tag = require('../server/models/Tag');
 const Comment = require('../server/models/Comment');
 const Album = require('../server/models/Album');
 const Photo = require('../server/models/Photo');
 const User = require('../server/models/User');
+
+const numSeedPhotos = 59;
+const seedPhotoIds = [];
+for (let i = 0; i < numSeedPhotos; i++) {
+  if (i !== 31) {
+    seedPhotoIds.push(i);
+  }
+}
+const seedPhotos = seedPhotoIds.map(photoId => {
+  const { width, height } = sizeOf(path.resolve(__dirname, "whiskr_seed_photos", `whiskr${photoId}.jpeg`));
+  return {
+    width,
+    height,
+    imageURL: `https://whiskr-seeds.s3-us-west-1.amazonaws.com/whiskr_photos/whiskr${photoId}.JPG`
+  };
+});
 
 const randomNum = (lowerBound, upperBound) => (
   Math.floor(Math.random() * (upperBound  + 1 - lowerBound)) + lowerBound
@@ -55,7 +73,7 @@ const seed = async function() {
 
   // construct user seeds, add to users array
   // save all users; grab saved documents in new array
-  while (users.length < 6) {
+  while (users.length < 11) {
     const newUser = new User({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
@@ -95,26 +113,25 @@ const seed = async function() {
   const savedTags = await Promise.all(tags.map(tag => tag.save()));
 
   // create photos
-  const photos = [];
+  let photos = [];
+  const numPhotosPerUser = 20;
   const usersWithAlbums = await User.find().populate("albums");
   usersWithAlbums.forEach(user => {
-    for (let i = 0; i < 20; i++) {
-      const height = randomNum(200, 400);
-      const width = randomNum(200, 400);
+    sampleFromArr(numPhotosPerUser, seedPhotos).forEach(seedPhoto => {
       const newPhoto = new Photo({
         photographer: user._id,
         title: faker.random.words(randomNum(1, 3)),
         description: faker.random.words(randomNum(5, 10)),
         views: randomNum(5, 50),
-        width,
-        height,
+        width: seedPhoto.width,
+        height: seedPhoto.height,
         isPublic: true,
-        imageURL: `http://lorempixel.com/${width}/${height}/cats/${randomNum(1, 9)}`,
+        imageURL: seedPhoto.imageURL,
         albums: sampleFromArr(randomNum(1, user.albums.length), user.albums),
         tags: sampleFromArr(randomNum(1, 6), savedTags)
       });
       photos.push(newPhoto);
-    }
+    });
   });
   const shuffledPhotos = sampleFromArr(photos.length, photos);
   const savedPhotos = await Promise.all(shuffledPhotos.map(photo => photo.save()));
@@ -140,3 +157,39 @@ const seed = async function() {
 };
 
 seed();
+
+// const prepareSeedPhotosAndSeed = async () => {
+//   const numSeedPhotos = 59;
+//   const seedPhotoIds = [];
+//   for (let i = 0; i < numSeedPhotos; i++) {
+//     if (i !== 31) {
+//       seedPhotoIds.push(i);
+//     }
+//   }
+//   seedPhotos = seedPhotoIds.map(photoId => {
+//     const { width, height } = sizeOf(`../../../whiskr_seed_photos/whiskr${photoId}`);
+//     return {
+//       width,
+//       height,
+//       imageURL: `https://whiskr-seeds.s3-us-west-1.amazonaws.com/whiskr_photos/whiskr${photoId}.JPG`
+//     };
+//   });
+
+//   seedPhotoIds.forEach(photoId => {
+//     const img = document.createElement("img");
+//     img.onload = () => {
+//       seedPhotos.push({
+//         width: img.width,
+//         height: img.height,
+//         imageURL: img.src
+//       });
+
+//       if (seedPhotos.length === numSeedPhotos) {
+//         seed();
+//       }
+//     };
+//     img.src = `https://whiskr-seeds.s3-us-west-1.amazonaws.com/whiskr_photos/whiskr${photoId}.JPG`;
+//   });
+// };
+
+// prepareSeedPhotosAndSeed();
