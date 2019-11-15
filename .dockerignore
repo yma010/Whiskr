@@ -22,3 +22,5 @@ npm-debug.log
 
 /backend/config/keys-dev.js
 /backend/.env
+
+whiskr_seed_photos/
