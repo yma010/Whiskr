@@ -77,7 +77,7 @@ const HeaderNav = () => {
       </div>
     );
   }
-
+  console.log(currentUser);
   return (
     <div className="header-nav-container">
       <header className="header-nav">
@@ -106,7 +106,12 @@ const HeaderNav = () => {
           <li className="header-upload-button"><Link to='upload' /></li>    {/* link needs to be filled in */}
           {currentUser ? (
           <li className="header-avatar-button">
-            <button onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}/>
+            <button 
+              style={{
+                backgroundImage: `url(${currentUser.avatarURL || "../public/camera-avatar.png"})`
+              }}
+              onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}
+            />
             {isProfileDropdownOpen ? profileDropdown : "" }
           </li>
           ) : (

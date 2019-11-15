@@ -17,6 +17,7 @@ export const SIGNUP_USER = gql`
     ) {
       _id
       firstName
+      avatarURL
       token
       loggedIn
     }
@@ -28,6 +29,7 @@ export const LOGIN_USER = gql`
     login(email: $email, password: $password) {
       _id
       firstName
+      avatarURL
       token
       loggedIn
     }
@@ -39,6 +41,7 @@ export const VERIFY_USER = gql`
     verifyUser(token: $token) {
       _id
       firstName
+      avatarURL
       token
       loggedIn
     }
