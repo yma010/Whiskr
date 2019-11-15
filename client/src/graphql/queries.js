@@ -59,6 +59,7 @@ export const FETCH_PHOTO_COMMENTS = gql`
           _id
           firstName
           lastName
+          avatarURL
         }
         body
       }
@@ -90,6 +91,7 @@ export const FETCH_ALBUM_FROM_PHOTO = gql`
                      _id
                      firstName
                      lastName
+                     avatarURL
                    }
                    body
                  }
