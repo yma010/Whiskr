@@ -8,7 +8,6 @@ import "./explorePhotoIndex.css";
 
 const ExplorePhotoIndex = () => {
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
-  const [photoRowsAndHeights, setPhotoRowsAndHeights] = useState([]);
 
   const { loading, error, data } = useQuery(FETCH_PHOTOS, {
     variables: { limit: 25, offset: 0 }
@@ -20,13 +19,6 @@ const ExplorePhotoIndex = () => {
   window.onresize = () => {
     if (window.innerWidth !== rowWidth) {
       const newWidth = 0.8 * window.innerWidth;
-      setPhotoRowsAndHeights(photoRowsAndHeights.map(rowAndHeight => {
-        const photos = rowAndHeight[0];
-        const totalGutterWidth = (photos.length - 1) * gutterSize;
-        const oldHeight = rowAndHeight[1];
-        const newHeight = oldHeight * (newWidth - totalGutterWidth) / (rowWidth - totalGutterWidth);
-        return [photos, newHeight];
-      }));
       setRowWidth(newWidth);
     }
   };
