@@ -37,20 +37,43 @@ function AlbumShow(props){
 
   let slides = album.photos.map((photo, index) => {
       const cardIdentity = (
-        <div className="card-identity">
-          <Link
-            className="user-avatar"
-            to={`/users/${photo.photographer._id}`}
-            style={{
-              backgroundImage: `url(${photo.photographer.avatarURL ||
-                "../../public/camera-avatar.png"})`
-            }}
-          />
-          <div>
-            <Link to={`/users/${photo.photographer._id}`}>
-              {photo.photographer.firstName} {photo.photographer.lastName}
-            </Link>
-            <span>Featured</span>
+        <div className="card-info">
+          <div className="card-identity">
+            <Link
+              className="user-avatar"
+              to={`/users/${photo.photographer._id}`}
+              style={{
+                backgroundImage: `url(${photo.photographer.avatarURL ||
+                  "../../public/camera-avatar.png"})`,
+                width: "60px",
+                height: "60px"
+              }}
+            />
+            <div id="name">
+              <Link to={`/users/${photo.photographer._id}`}>
+                {photo.photographer.firstName} {photo.photographer.lastName}
+              </Link>
+              <span>Featured</span>
+            </div>
+            <span></span>
+            <div className="photo-info">
+              <div>{photo.title}</div>
+              <div>
+                <p>{photo.description}</p>
+              </div>
+            </div>
+          </div>
+          <div className="stats-container">
+            <div className="stats">
+              <div>
+                {photo.views}
+                <h4>Views</h4>
+              </div>
+              <div>
+                {photo.comments.length}
+                <h4>Comments</h4>
+              </div>
+            </div>
           </div>
         </div>
       ); 
@@ -75,6 +98,7 @@ function AlbumShow(props){
           </li>
             <div className='card-comments'>
             {cardIdentity}
+            
             {comments}
             </div>
         </div>

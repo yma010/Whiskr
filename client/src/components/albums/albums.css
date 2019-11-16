@@ -23,6 +23,8 @@
 .card-comments{
   padding-top: 45px;
   align-self: flex-start;
+     margin-left: 5%;
+    margin-right: 5%;
 }
 
 .image-item{
@@ -81,4 +83,45 @@
 
 .card-identity{
   border-bottom: 1px solid #cfd6d9;
+  align-items: flex-start;
+    /* max-width: 50%; */
+    justify-content: space-around;
+    /* flex-direction: column; */
+    height: 100%;
+}
+
+#name {
+  font-size: 20px;
+}
+
+.photo-info p{
+  font-weight: 400;
+}
+
+.stats-container{
+    border-bottom: 1px solid #cfd6d9;
+    padding-bottom: 20px;
+    display: flex;
+}
+
+.stats {
+ font-weight: 400;
+    font-size: 20px;
+    line-height: 18px;
+    margin-right: 30px;
+    margin-top: 13px;
+    width: 100%;
+    display: -ms-flexbox;
+    display: inline-flex;
+}
+
+.card-info{
+display: flex;
+}
+
+.stats h4 {
+  display: block;
+    font-size: 14px;
+    font-weight: 400;
+    color: #898989;
 }
