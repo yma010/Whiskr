@@ -1,27 +1,33 @@
 .heigth-controller {
   height: 768px;
+  background: #212124;
 }
 .carousel-wrap{
   height: 668px;
   display: flex;
   position: relative;
-  background: #212124;
   user-select: none;
   margin: auto;
-  margin-top: 107px;
+  padding: 50px 0 50px 0;
 }
 
 .top-carousel {
-  margin: 150px;
   display: flex;
-  /* margin: auto;
-  margin-top: 107px; */
-      z-index: 0;
+   margin: auto;   
+  z-index: 0;
+  position: relative;
+  width: 100%;
+}
+
+.card-comments{
+  padding-top: 45px;
+  align-self: flex-start;
 }
 
 .image-item{
-  padding: 50px 0;
+  /* padding: 50px 0; */
     z-index: 102;
+    width: 100%;
 }
 
 .prev-next-button {
@@ -56,10 +62,25 @@
   margin-right: 10px;
 }
 
+
 .top-carousel img{
-    /* width: 445px;
-    height: 668px;
-    left: 475px;
-    top: 50px; */
-    /* position: absolute; */
+  width: auto;
+  height: 668px;
+  margin: 0 auto;
+}
+
+.image-elments{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-elments li{
+  margin: 0 auto;
+}
+
+.card-identity{
+  /* margin: -25px 0 0 72px; */
+    /* padding: 0 0 10px; */
+    border-bottom: 1px solid #cfd6d9;
 }

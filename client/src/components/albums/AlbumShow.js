@@ -67,16 +67,18 @@ function AlbumShow(props){
         comments = <div style={{display: 'none'}}></div>
     }
       return (
-        <div style={style}>
+        <div className="image-elements" style={style}>
           <li key={photo.id} style={style}>
             <img
               src={photo.imageURL}
               alt={photo.description}
               style={style}
             ></img>
+          </li>
+            <div className='card-comments'>
             {cardIdentity}
             {comments}
-          </li>
+            </div>
         </div>
       );
     });
@@ -89,7 +91,6 @@ function AlbumShow(props){
     return (
       <div className="heigth-controller">
         <div className="carousel-wrap">
-          <div className="top-carousel">
             <button
               className="prev-next-button"
               onClick={e => setIndex(activeIndex - 1)}
@@ -97,9 +98,11 @@ function AlbumShow(props){
             >
               <span className="prev-icon"></span>
             </button>
+          <div className="top-carousel">
             <div className="image-item">
               {slides}
             </div>
+          </div>
             <button
               className="prev-next-button"
               onClick={e => setIndex(activeIndex + 1)}
@@ -107,7 +110,6 @@ function AlbumShow(props){
             >
               <span className="next-icon"></span>
             </button>
-          </div>
         </div>
       </div>
     );
