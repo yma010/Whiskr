@@ -57,10 +57,6 @@ function CreateComment(props) {
       <div
         className="user-avatar"
         to={`/users/${currentUser._id}`}
-        style={{
-          backgroundImage: `url(${currentUser.avatarURL ||
-            "../../public/camera-avatar.png"})`
-        }}
       ></div>
       <form
         onSubmit={e => {

@@ -45,6 +45,7 @@
   background-size: cover;
   box-shadow: inset 0 0 20px rgba(0,0,0,.08);
   flex-grow: 0;
+  background-image: url("../../public/camera-avatar.png");
 }
 
 .comment-card a {

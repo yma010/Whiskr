@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useQuery} from "@apollo/react-hooks";
 import { FETCH_ALBUM_FROM_PHOTO} from '../../graphql/queries';
-import { printIntrospectionSchema } from "graphql";
 import PhotoComments from "../comments/PhotoComments";
 import ('./albums.css');
 
@@ -37,24 +36,24 @@ function AlbumShow(props){
   //renders buttons based on the active index
 
   let slides = album.photos.map((photo, index) => {
-    const cardIdentity = (
-      <div className="card-identity">
-        <Link
-          className="user-avatar"
-          to={`/users/${photo.photographer._id}`}
-          style={{
-            backgroundImage: `url(${photo.photographer.avatarURL ||
-              "../../public/camera-avatar.png"})`
-          }}
-        />
-        <div>
-          <Link to={`/users/${photo.photographer._id}`}>
-            {photo.photographer.firstName} {photo.photographer.lastName}
-          </Link>
-          <span>Featured</span>
+      const cardIdentity = (
+        <div className="card-identity">
+          <Link
+            className="user-avatar"
+            to={`/users/${photo.photographer._id}`}
+            style={{
+              backgroundImage: `url(${photo.photographer.avatarURL ||
+                "../../public/camera-avatar.png"})`
+            }}
+          />
+          <div>
+            <Link to={`/users/${photo.photographer._id}`}>
+              {photo.photographer.firstName} {photo.photographer.lastName}
+            </Link>
+            <span>Featured</span>
+          </div>
         </div>
-      </div>
-    ); 
+      ); 
 
     let style;
      style={ display: (index === activeIndex) ?  "block" : "none" }
