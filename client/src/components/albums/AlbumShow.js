@@ -38,7 +38,7 @@ function AlbumShow(props){
   let slides = album.photos.map((photo, index) => {
       const cardIdentity = (
         <div className="card-info">
-          <div className="card-identity">
+          <div className="card-identity2">
             <Link
               className="user-avatar"
               to={`/users/${photo.photographer._id}`}
@@ -88,7 +88,7 @@ function AlbumShow(props){
         comments = <div style={{display: 'none'}}></div>
     }
       return (
-        <div className="image-elements" style={style}>
+        <div className="image-elements"  key={index} style={style}>
           <li key={photo.id} style={style}>
             <img
               src={photo.imageURL}
@@ -98,7 +98,6 @@ function AlbumShow(props){
           </li>
             <div className='card-comments'>
             {cardIdentity}
-            
             {comments}
             </div>
         </div>
@@ -116,8 +115,7 @@ function AlbumShow(props){
             <button
               className="prev-next-button"
               onClick={e => setIndex(activeIndex - 1)}
-              style={styleP}
-            >
+              style={styleP}>
               <span className="prev-icon"></span>
             </button>
           <div className="top-carousel">
@@ -128,8 +126,7 @@ function AlbumShow(props){
             <button
               className="prev-next-button"
               onClick={e => setIndex(activeIndex + 1)}
-              style={styleN}
-            >
+              style={styleN}>
               <span className="next-icon"></span>
             </button>
         </div>

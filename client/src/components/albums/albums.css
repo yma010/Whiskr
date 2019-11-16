@@ -13,7 +13,7 @@
 
 .top-carousel {
   display: flex;
-   margin: auto;   
+  margin: auto;   
   z-index: 0;
   position: relative;
   width: 100%;
@@ -23,8 +23,8 @@
 .card-comments{
   padding-top: 45px;
   align-self: flex-start;
-     margin-left: 5%;
-    margin-right: 5%;
+  margin-left: 8%;
+  margin-right: 5%;
 }
 
 .image-item{
@@ -81,13 +81,19 @@
   margin: 0 auto;
 }
 
-.card-identity{
+.card-identity2{
   border-bottom: 1px solid #cfd6d9;
   align-items: flex-start;
-    /* max-width: 50%; */
-    justify-content: space-around;
-    /* flex-direction: column; */
-    height: 100%;
+  max-width: 50%;
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+.card-identity2 span {
+  font-size: 12px;
+  color: #b3b3b3;
+  font-weight: 400;
+  margin-top: 2px;
 }
 
 #name {
@@ -98,30 +104,43 @@
   font-weight: 400;
 }
 
+.photo-info {
+  margin-left: 82px;
+  padding-bottom: 21px;
+}
+
 .stats-container{
-    border-bottom: 1px solid #cfd6d9;
-    padding-bottom: 20px;
-    display: flex;
+  border-bottom: 1px solid #cfd6d9;
+  padding-bottom: 20px;
+  display: flex;
+  margin-left: 10%;
+  width: 20%;
+  align-items: center;
 }
 
 .stats {
- font-weight: 400;
-    font-size: 20px;
-    line-height: 18px;
-    margin-right: 30px;
-    margin-top: 13px;
-    width: 100%;
-    display: -ms-flexbox;
-    display: inline-flex;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 18px;
+  margin-right: 30px;
+  margin-top: 13px;
+  width: 100%;
+  display: -ms-flexbox;
+  display: inline-flex;
+  justify-content: space-around;
 }
 
 .card-info{
 display: flex;
 }
 
+.stats div {
+  text-align: center;
+}
 .stats h4 {
   display: block;
-    font-size: 14px;
-    font-weight: 400;
-    color: #898989;
+  font-size: 14px;
+  font-weight: 400;
+  color: #898989;
+  text-align: center;
 }
