@@ -21,7 +21,7 @@ const HeaderNav = () => {
 
   const youDropdown = (
     <ul className="header-dropdown">
-      <li><Link>Photostream</Link></li>       {/* link needs to be filled in */}
+      <li><Link to={`/users/${currentUser._id}/photos`}>Photostream</Link></li>
       <li><Link>Albums</Link></li>            {/* link needs to be filled in */}
       <li><Link>Faves</Link></li>             {/* link needs to be filled in */}
       <li><Link>Camera Roll</Link></li>       {/* link needs to be filled in */}
@@ -60,7 +60,7 @@ const HeaderNav = () => {
       <div className="profile-dropdown-container">
         <span className="profile-dropdown-arrow" />
         <div className="header-profile-dropdown">
-          <h4>Hi, <Link>{currentUser.firstName}!</Link></h4>
+          <h4>Hi, <Link to={`/users/${currentUser._id}/photos`}>{currentUser.firstName}!</Link></h4>
           <button onClick={e => {
             e.preventDefault();
             localStorage.removeItem("auth-token");
@@ -77,7 +77,7 @@ const HeaderNav = () => {
       </div>
     );
   }
-  console.log(currentUser);
+
   return (
     <div className="header-nav-container">
       <header className="header-nav">
