@@ -18,6 +18,7 @@ const App = () => {
         <Route exact path='/signup' component={SignUp}/>
         <Route path='/photo/:id/comments' component={PhotoComments}/>
         <Route exact path='/upload' component={Upload}/>
+        <Route path='/explore/:filter' component={ExplorePhotoIndex}/>
         <Route path='/explore' component={ExplorePhotoIndex}/>
         <Route path='/users/:_id/photos' component={ExplorePhotoIndex}/>
         <Route path='/search' component={ExplorePhotoIndex}/>

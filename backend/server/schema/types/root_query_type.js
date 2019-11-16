@@ -46,9 +46,10 @@ const RootQueryType = new GraphQLObjectType({
           limit: { type: GraphQLInt },
           offset: { type: GraphQLInt },
           user: { type: GraphQLID },
-          search: { type: GraphQLString }
+          search: { type: GraphQLString },
+          filter: { type: GraphQLString }
         },
-        resolve(_, { limit, offset, user, search }){
+        resolve(_, { limit, offset, user, search, filter }){
           if (user) {
             return Photo.find({ photographer: user }).skip(offset).limit(limit);
           } else if (search) {
@@ -61,7 +62,13 @@ const RootQueryType = new GraphQLObjectType({
             .skip(offset)
             .limit(limit);
           } else {
-            return Photo.find({}).skip(offset).limit(limit);
+            let sortFilter = {};
+            if (filter === "recent") {
+              sortFilter = { dateUploaded: -1 };
+            } else if (filter === "trending") {
+              sortFilter = { views: -1 };
+            }
+            return Photo.find({}).skip(offset).limit(limit).sort(sortFilter);
           }
         }
       },
