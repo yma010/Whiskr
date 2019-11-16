@@ -52,7 +52,14 @@ const RootQueryType = new GraphQLObjectType({
           if (user) {
             return Photo.find({ photographer: user }).skip(offset).limit(limit);
           } else if (search) {
-
+            return Photo.find({
+              $text: { $search: search }
+            }, {
+              score: { $meta: "textScore" }
+            })
+            .sort( { score: { $meta: "textScore" } } )
+            .skip(offset)
+            .limit(limit);
           } else {
             return Photo.find({}).skip(offset).limit(limit);
           }

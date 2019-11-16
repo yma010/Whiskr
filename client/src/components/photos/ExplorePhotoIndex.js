@@ -9,12 +9,16 @@ import "./photoindex.css";
 import "./explorePhotoIndex.css";
 
 const ExplorePhotoIndex = props => {
-  console.log(props);
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
 
   const photoBatch = 30;
   const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS, {
-    variables: { limit: photoBatch, offset: 0, user: props.match.params._id }
+    variables: { 
+      limit: photoBatch, 
+      offset: 0, 
+      user: props.match.params._id,
+      search: (new URLSearchParams(props.location.search)).get("text")
+    }
   });
 
   const maxRowHeight = 300;
@@ -61,9 +65,12 @@ const ExplorePhotoIndex = props => {
   }
 
   const groupTitle = function() {
+    const search = (new URLSearchParams(props.location.search)).get("text");
     if (props.match.params._id) {
       const { photographer } = data.photos[0]
       return `${photographer.firstName} ${photographer.lastName}'s Photos`;
+    } else if (search) {
+      return `Search results for "${search}"`
     } else {
       return "Explore";
     }

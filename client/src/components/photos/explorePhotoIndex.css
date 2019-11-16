@@ -1,6 +1,7 @@
 .explore-container {
   width: 100%;
   height: fit-content;
+  min-height: 100vh;
   background-color: #f3f5f6;
   margin-top: 50px;
 }

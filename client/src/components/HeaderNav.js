@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { useQuery, useApolloClient } from "@apollo/react-hooks";
 
 import { CURRENT_USER } from "../graphql/queries";
 import "../stylesheets/header_nav.css";
 
-const HeaderNav = () => {
+const HeaderNav = props => {
+  const [search, setSearch] = useState("");
   const [isYouDropdownOpen, setYouDropdownOpen] = useState(false);
   const [isExploreDropdownOpen, setExploreDropdownOpen] = useState(false);
   const [isSearchFocused, setSearchFocus] = useState(false);
@@ -36,11 +37,19 @@ const HeaderNav = () => {
   );
 
   const searchBar = (
-    <form className={isSearchFocused ? "header-search-bar focused" : "header-search-bar"}>
+    <form 
+      className={isSearchFocused ? "header-search-bar focused" : "header-search-bar"}
+      onSubmit={e => {
+        e.preventDefault();
+        props.history.push(`/search?text=${search}`)
+      }}
+    >
       <button className="search-icon" />
       <input
         onFocus={() => setSearchFocus(true)}
         onBlur={() => setSearchFocus(false)}
+        value={search}
+        onChange={e => setSearch(e.target.value)}
         type="text"
         placeholder="Cat photos"
       />
@@ -122,4 +131,4 @@ const HeaderNav = () => {
   );
 };
 
-export default HeaderNav;
+export default withRouter(HeaderNav);

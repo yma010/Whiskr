@@ -20,6 +20,7 @@ const App = () => {
         <Route exact path='/upload' component={Upload}/>
         <Route path='/explore' component={ExplorePhotoIndex}/>
         <Route path='/users/:_id/photos' component={ExplorePhotoIndex}/>
+        <Route path='/search' component={ExplorePhotoIndex}/>
         <Route path='/' component={PhotoIndex} />
       </Switch>
     </div>
