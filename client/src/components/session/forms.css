@@ -117,6 +117,20 @@ label.small {
   padding: 1.7rem 1rem .45rem 1rem;
   font-size: 16px;
   color: black;
+  background-color: transparent;
+  width: 100%;
+  border: none;
+}
+
+.card-input input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.card-input input:focus:invalid {
+  color: black;
+  border: none;
+  box-shadow: none;
 }
 
 .submit,
@@ -138,8 +152,14 @@ label.small {
 }
 
 .submit:hover,
-form a.demo-login:hover {
+form button.demo-login:hover {
   filter: brightness(105%);
+}
+
+.submit:focus,
+form button.demo-login:focus {
+  filter: brightness(95%);
+  box-shadow: inset 0 0 0.25rem rgba(0, 0, 0, 0.75);
 }
 
 .card-container a {
@@ -155,9 +175,12 @@ form a.demo-login:hover {
   width: 100%;
 }
 
-.card-container p {
+.card-container .card-content p {
   text-align: center;
   font-size: .875rem;
+  display: flex;
+  justify-content: center;
+  letter-spacing: 0;
 }
 
 .card-container p button {

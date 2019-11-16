@@ -36,6 +36,7 @@ function Login(props) {
             currentUser: {
               _id: data.login._id,
               firstName: data.login.firstName,
+              avatarURL: data.login.avatarURL,
               __typeName: "UserType"
             }
           }

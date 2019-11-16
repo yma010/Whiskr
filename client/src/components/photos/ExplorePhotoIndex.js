@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { withRouter } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { debounce } from 'lodash';
 
@@ -7,12 +8,17 @@ import ExplorePhotoIndexItem from "./ExplorePhotoIndexItem";
 import "./photoindex.css";
 import "./explorePhotoIndex.css";
 
-const ExplorePhotoIndex = () => {
+const ExplorePhotoIndex = props => {
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
 
-  const photoBatch = 45;
+  const photoBatch = 30;
   const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS, {
-    variables: { limit: photoBatch, offset: 0 }
+    variables: { 
+      limit: photoBatch, 
+      offset: 0, 
+      user: props.match.params._id,
+      search: (new URLSearchParams(props.location.search)).get("text")
+    }
   });
 
   const maxRowHeight = 300;
@@ -58,6 +64,18 @@ const ExplorePhotoIndex = () => {
     return <div>Error!</div>
   }
 
+  const groupTitle = function() {
+    const search = (new URLSearchParams(props.location.search)).get("text");
+    if (props.match.params._id) {
+      const { photographer } = data.photos[0]
+      return `${photographer.firstName} ${photographer.lastName}'s Photos`;
+    } else if (search) {
+      return `Search results for "${search}"`
+    } else {
+      return "Explore";
+    }
+  };
+
   const standardizedHeight = (photos, targetWidth) => {
     const widthsAtUnitHeight = photos.map(photo => photo.width / photo.height);
     const rowWidthAtUnitHeight = widthsAtUnitHeight.reduce((total, width) => total + width, 0);
@@ -88,11 +106,11 @@ const ExplorePhotoIndex = () => {
 
     return rowsAndRowHeights;
   }
-
+  
   return (
     <div className="explore-container">
       <ul className="explore-rows">
-      <h3>Explore</h3>
+      <h3>{groupTitle()}</h3>
       {constructRowsAndRowHeights(data.photos).map((rowAndHeight, idx) => (
         <ul className="explore-single-row" key={idx}>
         {rowAndHeight[0].map(photo => (
@@ -105,4 +123,4 @@ const ExplorePhotoIndex = () => {
   );
 };
 
-export default ExplorePhotoIndex;
+export default withRouter(ExplorePhotoIndex);

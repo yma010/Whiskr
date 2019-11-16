@@ -1,6 +1,12 @@
 const mongoose = require("mongoose");
 const graphql = require("graphql");
-const { GraphQLObjectType, GraphQLList, GraphQLID, GraphQLNonNull, GraphQLInt } = graphql;
+const { 
+  GraphQLObjectType, 
+  GraphQLList, 
+  GraphQLID, 
+  GraphQLNonNull, 
+  GraphQLInt,
+  GraphQLString } = graphql;
 
 const UserType = require("./user_type");
 const PhotoType = require("./photo_type");
@@ -38,10 +44,25 @@ const RootQueryType = new GraphQLObjectType({
         type: new GraphQLList(PhotoType),
         args: {
           limit: { type: GraphQLInt },
-          offset: { type: GraphQLInt }
+          offset: { type: GraphQLInt },
+          user: { type: GraphQLID },
+          search: { type: GraphQLString }
         },
-        resolve(_, { limit, offset }){
-          return Photo.find({}).skip(offset).limit(limit);
+        resolve(_, { limit, offset, user, search }){
+          if (user) {
+            return Photo.find({ photographer: user }).skip(offset).limit(limit);
+          } else if (search) {
+            return Photo.find({
+              $text: { $search: search }
+            }, {
+              score: { $meta: "textScore" }
+            })
+            .sort( { score: { $meta: "textScore" } } )
+            .skip(offset)
+            .limit(limit);
+          } else {
+            return Photo.find({}).skip(offset).limit(limit);
+          }
         }
       },
       photo: {

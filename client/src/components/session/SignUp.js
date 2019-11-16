@@ -51,6 +51,7 @@ function SignUp(props) {
             currentUser: {
               _id: data.login._id,
               firstName: data.login.firstName,
+              avatarURL: data.login.avatarURL,
               __typeName: "UserType"
             }
           }
@@ -73,6 +74,7 @@ function SignUp(props) {
         currentUser: {
           _id: data.signup._id,
           firstName: data.signup.firstName,
+          avatarURL: data.signup.avatarURL,
           __typeName: "UserType"
         }
       }

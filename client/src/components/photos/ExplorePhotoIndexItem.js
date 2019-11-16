@@ -8,11 +8,11 @@ const ExplorePhotoIndexItem = ({ photo, height }) => {
     <div className="card-identity">
       <Link
         className="user-avatar"
-        to={`/users/${photo.photographer._id}`}
+        to={`/users/${photo.photographer._id}/photos`}
         style={{ backgroundImage: `url(${photo.photographer.avatarURL || '../../public/camera-avatar.png'})` }}
       />
       <div>
-        <Link to={`/users/${photo.photographer._id}`}>
+        <Link to={`/users/${photo.photographer._id}/photos`}>
           {photo.photographer.firstName} {photo.photographer.lastName}
         </Link>
         <span>Featured</span>

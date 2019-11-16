@@ -88,6 +88,7 @@ if (token) {
           currentUser: {
             _id: data.verifyUser._id,
             firstName: data.verifyUser.firstName,
+            avatarURL: data.verifyUser.avatarURL,
             __typeName: "UserType"
           }
         }
