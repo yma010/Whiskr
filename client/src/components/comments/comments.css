@@ -80,19 +80,23 @@
   align-items: center;
   justify-content: space-between;
   flex-grow: 46;
-
+  position: relative;
+  width: 100%;
 }
 
 .add-comment{
-  margin: 0 0 0 61px;
+  margin: 0 0 0 30px;
   position: relative;
 }
 
 .new-comment-body{
-  position: relative;
   margin: 15px 0 0;
+  display: flex;
 }
 
+.new-comment-body form {
+  width: 100%;
+}
 
 .new-comment-body textarea{
   top: -1px;
@@ -117,8 +121,8 @@
   width: 10px;
   height: 21px;
   overflow: hidden;
-  top: 10px;
-  left: -9px;   
+  top: 0px;
+  left: 36px;   
 }
 
 .comment-arrow:before{
@@ -165,9 +169,8 @@
   cursor: pointer;
   filter: invert(1);
   display: flex;
-      margin-top: 40px;
-    /* margin-left: 44%; */
-    flex-grow: 1;
+  margin-top: 40px;
+  flex-grow: 1;
 }
 
 .delete .avatar {

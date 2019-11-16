@@ -17,6 +17,7 @@
   z-index: 0;
   position: relative;
   width: 100%;
+  padding: 24px 0px;
 }
 
 .card-comments{
@@ -25,9 +26,8 @@
 }
 
 .image-item{
-  /* padding: 50px 0; */
-    z-index: 102;
-    width: 100%;
+  z-index: 102;
+  width: 100%;
 }
 
 .prev-next-button {
@@ -80,7 +80,5 @@
 }
 
 .card-identity{
-  /* margin: -25px 0 0 72px; */
-    /* padding: 0 0 10px; */
-    border-bottom: 1px solid #cfd6d9;
+  border-bottom: 1px solid #cfd6d9;
 }

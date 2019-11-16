@@ -35,8 +35,7 @@ function AlbumShow(props){
   // }
 
   //renders buttons based on the active index
-  
-  
+
   let slides = album.photos.map((photo, index) => {
     const cardIdentity = (
       <div className="card-identity">

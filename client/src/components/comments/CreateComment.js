@@ -53,31 +53,43 @@ function CreateComment(props) {
   };
   
   return (
-    <div className='new-comment-body'>
-      <form onSubmit={e => {
-        e.preventDefault();
-        if (currentUser){
-          newComment({
-            variables: { 
-              body: Inputbody,
-              photo: props.photoId,
-              author: currentUser._id
-            }
-          })
-        } else {
-          console.log('not logged in!')
-        }
-      }}>
-        <textarea  type="text" 
-          onChange={(e)=> setBody(e.target.value)} 
-          name="body" value={Inputbody}  
-          placeholder="Add a comment">
-        </textarea>
-        <div className='comment-arrow'></div>
+    <div className="new-comment-body">
+      <div
+        className="user-avatar"
+        to={`/users/${currentUser._id}`}
+        style={{
+          backgroundImage: `url(${currentUser.avatarURL ||
+            "../../public/camera-avatar.png"})`
+        }}
+      ></div>
+      <form
+        onSubmit={e => {
+          e.preventDefault();
+          if (currentUser) {
+            newComment({
+              variables: {
+                body: Inputbody,
+                photo: props.photoId,
+                author: currentUser._id
+              }
+            });
+          } else {
+            console.log("not logged in!");
+          }
+        }}
+      >
+        <textarea
+          type="text"
+          onChange={e => setBody(e.target.value)}
+          name="body"
+          value={Inputbody}
+          placeholder="Add a comment"
+        ></textarea>
+        <div className="comment-arrow"></div>
         <button type="submit">Comment</button>
       </form>
     </div>
-  )
+  );
 
 };
 
