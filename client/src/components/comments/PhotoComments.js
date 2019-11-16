@@ -51,8 +51,7 @@ function PhotoComments (props) {
                 className="user-avatar"
                 to={`/users/${comment.author._id}`}
                 style={{
-                  backgroundImage: `url(${comment.author.avatarURL ||
-                    "../../public/camera-avatar.png"})`
+                  backgroundImage: `url(${comment.author.avatarURL})`
                 }}
               />
             </div>
