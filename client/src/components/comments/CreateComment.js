@@ -56,7 +56,7 @@ function CreateComment(props) {
     <div className="new-comment-body">
       <div
         className="user-avatar"
-        to={`/users/${currentUser._id}`}
+        to={currentUser ? `/users/${currentUser._id}` : ""}
       ></div>
       <form
         onSubmit={e => {

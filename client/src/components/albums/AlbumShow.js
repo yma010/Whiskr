@@ -54,12 +54,11 @@ function AlbumShow(props){
                 {photo.photographer.firstName} {photo.photographer.lastName}
               </Link>
               <span>Featured</span>
-            </div>
-            <span></span>
-            <div className="photo-info">
-              <div>{photo.title}</div>
-              <div>
-                <p>{photo.description}</p>
+              <div className="photo-info">
+                <div>{photo.title}</div>
+                <div>
+                  <p>{photo.description}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -67,11 +66,11 @@ function AlbumShow(props){
             <div className="stats">
               <div>
                 {photo.views}
-                <h4>Views</h4>
+                <h4>views</h4>
               </div>
               <div>
                 {photo.comments.length}
-                <h4>Comments</h4>
+                <h4>comments</h4>
               </div>
             </div>
           </div>
@@ -105,30 +104,28 @@ function AlbumShow(props){
     });
 
     let styleP;
-    styleP = { display: activeIndex === 0 ? "none" : "block" };
+    styleP = { display: activeIndex === 0 ? "none" : "flex" };
     let styleN;
-    styleN = { display: activeIndex === album.photos.length - 1 ? "none" : "block" };
+    styleN = { display: activeIndex === album.photos.length - 1 ? "none" : "flex" };
 
     return (
-      <div className="heigth-controller">
+      <div className="height-controller">
         <div className="carousel-wrap">
-            <button
-              className="prev-next-button"
-              onClick={e => setIndex(activeIndex - 1)}
-              style={styleP}>
-              <span className="prev-icon"></span>
-            </button>
-          <div className="top-carousel">
-            <div className="image-item">
-              {slides}
-            </div>
+          <button
+            className="prev-next-button"
+            onClick={e => setIndex(activeIndex - 1)}
+            style={styleP}>
+            <span className="prev-icon"></span>
+          </button>
+          <div className="image-item">
+            {slides}
           </div>
-            <button
-              className="prev-next-button"
-              onClick={e => setIndex(activeIndex + 1)}
-              style={styleN}>
-              <span className="next-icon"></span>
-            </button>
+          <button
+            className="prev-next-button"
+            onClick={e => setIndex(activeIndex + 1)}
+            style={styleN}>
+            <span className="next-icon"></span>
+          </button>
         </div>
       </div>
     );
