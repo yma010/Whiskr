@@ -21,7 +21,7 @@
 .comment-card{
   display: flex;
   margin: 5px 0 0;
-  padding: 5px 0 5px 40px;
+  padding: 5px 0 5px 10px;
   min-height: 32px;
   -webkit-transition: background-color .15s ease-in-out;
   transition: background-color .15s ease-in-out;
@@ -30,6 +30,12 @@
   display: list-item;
   text-align: -webkit-match-parent;
 }
+
+.comment-card:hover {
+  background: white;
+  border-radius: 2px;
+}
+
 .comment-card li {
   display: flex;
 }
@@ -46,20 +52,35 @@
   box-shadow: inset 0 0 20px rgba(0,0,0,.08);
   flex-grow: 0;
   background-image: url("../../public/camera-avatar.png");
+  cursor: pointer;
+}
+
+.comment-card .user-avatar {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.comment-card {
+  letter-spacing: 0;
 }
 
 .comment-card a {
   font-weight: 600;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 2px;
+  margin-bottom: 4px;
+  line-height: 1.3;
+  cursor: pointer;
 }
 
 .comment-card p {
-  background-color: white;
+  line-height: 18px;
+  margin-right: 17px;
+  margin-bottom: 5px;
 }
 
 .comment-author-identity{
   display: flex;
+  justify-content: space-between;
   margin: 2px 0 2px 0px;
   line-height: 1.3;
   color: #006dac;
@@ -86,8 +107,17 @@
 }
 
 .add-comment{
-  margin: 0 0 0 30px;
+  margin: 0 0 0 10px;
   position: relative;
+}
+
+.add-comment .user-avatar {
+  flex: 0 0 auto;
+  cursor: default;
+}
+
+.add-comment .user-avatar:hover {
+  box-shadow: none;
 }
 
 .new-comment-body{
@@ -96,6 +126,10 @@
 }
 
 .new-comment-body form {
+  width: 100%;
+}
+
+.new-comment-body form:focus {
   width: 100%;
 }
 
@@ -115,15 +149,24 @@
   background-color: #fff;
   resize: none;
   -webkit-appearance: none;
+  transition: none;
+}
+
+.new-comment-body textarea:focus {
+  box-shadow: inset 0 0 0 1px #008ddf;
+}
+
+.new-comment-body textarea:focus + .comment-arrow:before {
+  border-color: #008ddf;
 }
 
 .comment-arrow{
   position: absolute;
-  width: 10px;
+  width: 11px;
   height: 21px;
   overflow: hidden;
-  top: 0px;
-  left: 36px;   
+  top: 10px;
+  left: 38px;
 }
 
 .comment-arrow:before{
@@ -155,23 +198,41 @@
   min-width: 100px;
   padding: 0 20px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 400;
   background: #0091dc;
   color: #fff;
   border-color: transparent;
   border-radius: 3px;
 }
 
-.delete-button{
+.new-comment-body button:active {
+  background-color: rgb(23, 129, 194);
+}
+
+.new-comment-body button:focus {
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 50, 0.4);
+}
+
+.delete-button {
+  opacity: 0;
+  transition: opacity .15s ease-in-out;
+}
+
+.comment-card:hover .delete-button{
   background-image: url('../../public/sprites.png');
   background-position: -414px -156px;
   width: 20px;
   height: 20px;
   cursor: pointer;
-  filter: invert(1);
+  filter: invert(1) opacity(0.3);
   display: flex;
-  margin-top: 40px;
   flex-grow: 1;
+  margin-right: 8px;
+  opacity: 1;
+}
+
+.comment-card:hover .delete-button:hover {
+  filter: invert(1) opacity(0.6);
 }
 
 .delete .avatar {

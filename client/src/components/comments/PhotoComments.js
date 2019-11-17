@@ -60,12 +60,12 @@ function PhotoComments (props) {
                 <Link to={`/users/${comment.author._id}`}>
                   {comment.author.firstName} {comment.author.lastName}
                 </Link>
+              <div className="delete">{deleteButton}</div>
               </div>
               <div className="comment-body">
                 <p>{comment.body}</p>
               </div>
             </div>
-            <div className="delete">{deleteButton}</div>
           </li>
         </div>
       );
