@@ -8,27 +8,17 @@ import './comments.css'
 
 
 function PhotoComments (props) {
-  const { loading, error, data } = useQuery(FETCH_PHOTO_COMMENTS,
-    { variables: { _id: props.match.params.id }});
   const { data: {currentUser} } = useQuery(CURRENT_USER);
   const [DeleteComment] = useMutation(DELETE_COMMENT, 
     { 
       refetchQueries: [{query: FETCH_PHOTO_COMMENTS, 
         variables: {
-          _id: props.match.params.id
+          _id: props.photoId
         }
       }],
     });
-    
-    if (loading) {
-      return <div>Loading...</div>
-    }
-    if (error) {
-      console.log(error);
-      return <div>Error!</div>
-    }
 
-    let { comments } = data.photo;
+    let  comments  = props.comments;
     if (!comments){
       return (
         <div id='comments'>
@@ -61,8 +51,7 @@ function PhotoComments (props) {
                 className="user-avatar"
                 to={`/users/${comment.author._id}`}
                 style={{
-                  backgroundImage: `url(${comment.author.avatarURL ||
-                    "../../public/camera-avatar.png"})`
+                  backgroundImage: `url(${comment.author.avatarURL})`
                 }}
               />
             </div>
@@ -87,7 +76,7 @@ function PhotoComments (props) {
         <ul>
           {photoComments}
           <div className="add-comment">
-            <CreateComment photoId={data.photo._id} />   
+            <CreateComment photoId={props.photoId} />   
           </div>
         </ul>
         </div>

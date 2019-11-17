@@ -54,21 +54,55 @@ export const CURRENT_USER = gql`
 `;
 
 export const FETCH_PHOTO_COMMENTS = gql`
-         query FetchPhotoComments($_id: ID!) {
+ query FetchPhotoComments($_id: ID!){
+    photo(_id: $_id){
+      _id
+      comments{
+        _id
+        photo {
+          _id
+        }
+        author {
+          _id
+          firstName
+          lastName
+          avatarURL
+        }
+        body
+      }
+    }
+  }
+`
+
+export const FETCH_ALBUM_FROM_PHOTO = gql`
+         query FetchAlbum($_id: ID!) {
            photo(_id: $_id) {
-             _id
-             comments {
-               _id
-               photo {
+             
+             albums {
+               photos {
                  _id
+                 title
+                 views
+                 isPublic
+                 imageURL
+                 description
+                 photographer {
+                   _id
+                   firstName
+                   lastName
+                   avatarURL
+                 }
+                 comments {
+                   _id
+                   author {
+                     _id
+                     firstName
+                     lastName
+                     avatarURL
+                   }
+                   body
+                 }
                }
-               author {
-                 _id
-                 firstName
-                 lastName
-                 avatarURL
-               }
-               body
              }
            }
          }
