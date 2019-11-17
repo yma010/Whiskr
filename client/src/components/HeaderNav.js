@@ -20,14 +20,14 @@ const HeaderNav = props => {
     }
   });
 
-  const youDropdown = (
+  const youDropdown = currentUser ? (
     <ul className="header-dropdown">
       <li><Link to={`/users/${currentUser._id}/photos`}>Photostream</Link></li>
       <li><Link>Albums</Link></li>            {/* link needs to be filled in */}
       <li><Link>Faves</Link></li>             {/* link needs to be filled in */}
       <li><Link>Camera Roll</Link></li>       {/* link needs to be filled in */}
     </ul>
-  );
+  ) : "";
 
   const exploreDropdown = (
     <ul className="header-dropdown">
