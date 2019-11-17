@@ -50,7 +50,7 @@ const ExplorePhotoIndexItem = ({ photo, height }) => {
       onMouseLeave={() => setInfoDisplayed(false)}
     >
       <div className={isInfoDisplayed ? "photo-lightbox-info" : "photo-lightbox-info hidden"}>
-        <Link to={`/photos/${photo._id}`} title={photo.description} className="photo-lightbox-link" />
+        <Link to={`/photo/${photo._id}/album`} title={photo.description} className="photo-lightbox-link" />
         {cardIdentity}
         {cardInfo}
       </div>
