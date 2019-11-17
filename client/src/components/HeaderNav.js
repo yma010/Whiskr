@@ -31,8 +31,8 @@ const HeaderNav = props => {
 
   const exploreDropdown = (
     <ul className="header-dropdown">
-      <li><Link to="/explore">Recent Photos</Link></li>       {/* link needs to be filled in */}
-      <li><Link>Trending</Link></li>            {/* link needs to be filled in */}
+      <li><Link to="/explore/recent">Recent Photos</Link></li>
+      <li><Link to="/explore/trending">Trending</Link></li>
     </ul>
   );
 

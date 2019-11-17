@@ -25,6 +25,7 @@ const PhotoType = new GraphQLObjectType({
     width: { type: GraphQLFloat },
     isPublic: { type: GraphQLBoolean },
     imageURL: { type: GraphQLString },
+    dateUploaded: { type: GraphQLString },
     photographer: {
       type: require("./user_type"),
       resolve(parentValue) {

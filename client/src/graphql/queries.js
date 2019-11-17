@@ -7,8 +7,14 @@ export const IS_LOGGED_IN = gql`
 `;
 
 export const FETCH_PHOTOS = gql`
- query FetchPhotos($limit: Int, $offset: Int, $search: String, $user: ID) {
-   photos(limit: $limit, offset: $offset, search: $search, user: $user) {
+ query FetchPhotos($limit: Int, $offset: Int, $search: String, $user: ID, $filter: String) {
+    photos(
+      limit: $limit, 
+      offset: $offset, 
+      search: $search, 
+      user: $user,
+      filter: $filter
+    ) {
      _id
      title
      views

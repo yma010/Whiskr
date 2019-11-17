@@ -10,14 +10,15 @@ import "./explorePhotoIndex.css";
 
 const ExplorePhotoIndex = props => {
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
-
+  
   const photoBatch = 30;
   const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS, {
     variables: { 
       limit: photoBatch, 
       offset: 0, 
       user: props.match.params._id,
-      search: (new URLSearchParams(props.location.search)).get("text")
+      search: (new URLSearchParams(props.location.search)).get("text"),
+      filter: props.match.params.filter
     }
   });
 
@@ -42,7 +43,13 @@ const ExplorePhotoIndex = props => {
           console.log("refetching");
           window.onscroll = null;
           fetchMore({
-            variables: { limit: photoBatch, offset: data.photos.length },
+            variables: {
+              limit: photoBatch,
+              offset: data.photos.length,
+              user: props.match.params._id,
+              search: (new URLSearchParams(props.location.search)).get("text"),
+              filter: props.match.params.filter
+            },
             updateQuery: (prev, { fetchMoreResult }) => {
               if (!fetchMoreResult) return prev;
               return Object.assign({}, prev, {
@@ -71,6 +78,8 @@ const ExplorePhotoIndex = props => {
       return `${photographer.firstName} ${photographer.lastName}'s Photos`;
     } else if (search) {
       return `Search results for "${search}"`
+    } else if (props.match.params.filter) {
+      return props.match.params.filter === "recent" ? "Recent" : "Trending";
     } else {
       return "Explore";
     }
