@@ -29,6 +29,10 @@
   background-repeat: no-repeat;
 }
 
+.explore-single-photo .card-info {
+  display: block;
+}
+
 .explore-single-photo .photo-title-description p:last-of-type {
   display: none;
 }
