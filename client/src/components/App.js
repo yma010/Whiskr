@@ -8,6 +8,7 @@ import PhotoIndex from './photos/PhotoIndex';
 import ExplorePhotoIndex from './photos/ExplorePhotoIndex';
 import "../stylesheets/reset.css";
 import PhotoComments from './comments/PhotoComments';
+import AlbumShow from './albums/AlbumShow';
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route exact path='/signup' component={SignUp}/>
         <Route path='/photo/:id/comments' component={PhotoComments}/>
         <Route exact path='/upload' component={Upload}/>
+        <Route exact path='/photo/:id/album' component={AlbumShow}/>
         <Route path='/explore' component={ExplorePhotoIndex}/>
         <Route path='/users/:_id/photos' component={ExplorePhotoIndex}/>
         <Route path='/search' component={ExplorePhotoIndex}/>

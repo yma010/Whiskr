@@ -26,7 +26,8 @@ const UserSchema = new Schema({
     max: 32
   },
   avatarURL: {
-    type: String
+    type: String,
+    default: `url("../../public/camera-avatar.png")`
   },
   date: {
     type: Date,

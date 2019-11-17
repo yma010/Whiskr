@@ -16,10 +16,11 @@ function PhotoIndex() {
 
   useEffect(() => {
     if (noScroll) {
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "auto"
+      document.body.style.overflow = "auto";
     }
+    return () => document.body.style.overflow = "auto";
   });
 
   useEffect(function() {
@@ -45,11 +46,11 @@ function PhotoIndex() {
 
   if (loading){
     return <div>Loading...</div>
-  }
+  };
   if (error){
     console.log(error);
     return <div>Error!</div>
-  }
+  };
   
   const leftColumnPhotos = [], rightColumnPhotos = [];
   
