@@ -33,8 +33,8 @@ const PhotoIndexItem = ({ photo, setNoScroll }) => {
       </div>
       <div className="photo-actions">
         <div className="activity-card-counts">
-          <span className="view-count">{photo.views} Views</span>
           <span>{photo.comments.length} Comments</span>
+          <span className="view-count">{photo.views} Views</span>
         </div>
         <div className="photo-actions-links">
           <Link to={`/photo/${photo._id}/comments`}>

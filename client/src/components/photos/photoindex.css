@@ -91,10 +91,11 @@
   height: auto;
 }
 
-.card-info{
+.single-card .card-info {
   font-weight: bold;
   padding: 0;
   box-sizing: border-box;
+  display: block;
 }
 
 .single-card a {
@@ -117,7 +118,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  font-weight: 400;
 }
 
 .photo-title-description p:last-of-type {
