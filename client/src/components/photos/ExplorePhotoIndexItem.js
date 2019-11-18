@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 const ExplorePhotoIndexItem = ({ photo, height }) => {
   const [isInfoDisplayed, setInfoDisplayed] = useState(false);
@@ -28,11 +28,13 @@ const ExplorePhotoIndexItem = ({ photo, height }) => {
       </div>
       <div className="photo-actions">
         <div className="activity-card-counts">
+          <span><Link smooth to={`/photo/${photo._id}/album#comments`}>{photo.comments.length} Comments</Link></span>
           <span className="view-count">{photo.views} Views</span>
-          <span>{photo.comments.length} Comments</span>
         </div>
         <div className="photo-actions-links">
-          <i className="photo-actions-comment-icon" />
+          <Link smooth to={`/photo/${photo._id}/album#new-comment`}>
+            <i className="photo-actions-comment-icon" />
+          </Link>
         </div>
       </div>
     </div>

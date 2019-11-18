@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import { HashLink as Link } from "react-router-hash-link";
 
 const PhotoIndexItem = ({ photo, setNoScroll }) => {
   const img = useRef(null);
@@ -33,12 +33,12 @@ const PhotoIndexItem = ({ photo, setNoScroll }) => {
       </div>
       <div className="photo-actions">
         <div className="activity-card-counts">
-          <span>{photo.comments.length} Comments</span>
+          <span><Link smooth to={`/photo/${photo._id}/album#comments`}>{photo.comments.length} Comments</Link></span>
           <span className="view-count">{photo.views} Views</span>
         </div>
         <div className="photo-actions-links">
-          <Link to={`/photo/${photo._id}/comments`}>
-            <i className="photo-actions-comment-icon"   />
+          <Link smooth to={`/photo/${photo._id}/album#new-comment`}>
+            <i className="photo-actions-comment-icon" />
           </Link>
         </div>
       </div>

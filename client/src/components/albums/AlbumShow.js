@@ -95,7 +95,7 @@ function AlbumShow(props){
               style={style}
             ></img>
           </li>
-            <div className='card-comments'>
+          <div className='card-comments'>
             {cardIdentity}
             {comments}
             </div>

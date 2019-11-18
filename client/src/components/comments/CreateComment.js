@@ -53,7 +53,7 @@ function CreateComment(props) {
   };
   
   return (
-    <div className="new-comment-body">
+    <div className="new-comment-body" id="new-comment">
       <div
         className="user-avatar"
         to={currentUser ? `/users/${currentUser._id}` : ""}

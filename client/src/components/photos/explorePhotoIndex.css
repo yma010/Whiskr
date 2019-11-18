@@ -56,3 +56,7 @@
 .explore-single-photo .photo-actions-comment-icon:hover {
   filter: brightness(0) invert(1);
 }
+
+.explore-single-photo .activity-card-counts a:hover {
+  color: white;
+}
