@@ -20,13 +20,14 @@
 
 .explore-single-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   margin-top: 4px;
 }
 
 .explore-single-photo {
   background-size: cover;
   background-repeat: no-repeat;
+  margin-right: 4px;
 }
 
 .explore-single-photo .card-info {

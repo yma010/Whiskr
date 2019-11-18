@@ -73,8 +73,12 @@ const ExplorePhotoIndex = props => {
   const groupTitle = function() {
     const search = (new URLSearchParams(props.location.search)).get("text");
     if (props.match.params._id) {
-      const { photographer } = data.photos[0]
-      return `${photographer.firstName} ${photographer.lastName}'s Photos`;
+      if (data.photos[0]) {
+        const { photographer } = data.photos[0]
+        return `${photographer.firstName} ${photographer.lastName}'s Photos`;
+      } else {
+        return "You have no public photos.";
+      }
     } else if (search) {
       return `Search results for "${search}"`
     } else if (props.match.params.filter) {

@@ -86,7 +86,7 @@ const HeaderNav = props => {
       </div>
     );
   }
-
+  
   return (
     <div className="header-nav-container">
       <header className="header-nav">
@@ -117,7 +117,7 @@ const HeaderNav = props => {
           <li className="header-avatar-button">
             <button 
               style={{
-                backgroundImage: `url(${currentUser.avatarURL || "../public/camera-avatar.png"})`
+                backgroundImage: `url(${currentUser.avatarURL})`
               }}
               onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}
             />

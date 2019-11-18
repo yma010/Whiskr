@@ -49,7 +49,7 @@ function PhotoComments (props) {
             <div className="avatar">
               <Link
                 className="user-avatar"
-                to={`/users/${comment.author._id}`}
+                to={`/users/${comment.author._id}/photos`}
                 style={{
                   backgroundImage: `url(${comment.author.avatarURL})`
                 }}
@@ -57,7 +57,7 @@ function PhotoComments (props) {
             </div>
             <div className="comment-content">
               <div className="comment-author-identity">
-                <Link to={`/users/${comment.author._id}`}>
+                <Link to={`/users/${comment.author._id}/photos`}>
                   {comment.author.firstName} {comment.author.lastName}
                 </Link>
               <div className="delete">{deleteButton}</div>
