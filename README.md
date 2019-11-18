@@ -15,7 +15,7 @@ Whiskrians can upload pictures of their lovely, furry friends and share them wit
 * User auth
     *  Users can sign up and sign in
 *  Photos
-    *  Users can view photos.
+    *  Users can view photos with infinite scroll.
     *  Logged in users can upload photos.
 *  Albums
     *  Users can view albums of photos.
@@ -51,7 +51,7 @@ User can create an account or sign in to the site via the login page.
 #### Photo Index
 ![alt text](https://i.imgur.com/7t7k6Dt.png)
 
-Photo Index offers  the users  a collection of photos with easy access to the photographer's photostream and the photo show page modal and comments.
+Photo Index offers  the users  a collection of photos with easy access to the photographer's photostream and the photo show page modal and comments. Photo index includes infinite scroll.
 
 #### Photo Show Page
 ![alt text](https://i.imgur.com/DNWry13.png)
@@ -63,7 +63,7 @@ Users open the modal show page by clicking on the picture: this action displays 
 
 ![alt text](https://i.imgur.com/9c3bhtF.png)
 
-Explore offers users the most recent photos in the site or  the most trendy. The user can explore the page by clicking on the pictures and visiting the album for that photo.	
+Explore offers users the most recent photos in the site or  the most trendy. The user can explore the page by clicking on the pictures and visiting the album for that photo.	Explore also includes infinite scroll.
 
 
 --------------
