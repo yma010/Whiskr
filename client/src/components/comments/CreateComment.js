@@ -19,6 +19,8 @@ function CreateComment(props) {
     });
     
   const {loading, error, data} = useQuery(CURRENT_USER);
+  console.log(loading);
+  console.log(error);
     let {currentUser} = data;
   const [Inputbody, setBody] = useState('');
 
