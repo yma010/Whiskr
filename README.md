@@ -28,7 +28,7 @@ Whiskrians can upload pictures of their lovely, furry friends and share them wit
 
 ## Technologies and Technical Challenges
  * AWS S3 -- for photo storage
- * MERN stack (MongoDb, Express, React and Node)
+ * MERN stack (MongoDB, Express, React and Node)
  * React hooks 
  * Apollo
  * GraphQL
@@ -36,7 +36,7 @@ Whiskrians can upload pictures of their lovely, furry friends and share them wit
 
 #### Challenges
 
-Time contraints, workload and lack of resources on documentation for GraphQL-AWS file upload. 
+Time constraints, workload and lack of resources on documentation for GraphQL-AWS file upload. 
 
 ---------------
 
@@ -51,12 +51,12 @@ User can create an account or sign in to the site via the login page.
 #### Photo Index
 ![alt text](https://i.imgur.com/7t7k6Dt.png)
 
-Photo Index offers  the users  a collection of photos with easy access to the photographer photostream and the photo show page modal and comments.
+Photo Index offers  the users  a collection of photos with easy access to the photographer's photostream and the photo show page modal and comments.
 
 #### Photo Show Page
 ![alt text](https://i.imgur.com/DNWry13.png)
 
-Users open the modal show page by clicking on the picture, this action displays  the image in a larger format, the photo’s information is displayed on hover.
+Users open the modal show page by clicking on the picture: this action displays  the image in a larger format, and the photo’s information is displayed on hover.
 
 
 #### Explore, Recent Photos and Trending
