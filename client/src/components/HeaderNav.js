@@ -98,21 +98,21 @@ const HeaderNav = props => {
               onMouseEnter={() => setYouDropdownOpen(true)}
               onMouseLeave={() => setYouDropdownOpen(false)}
             >
-              <Link><span>You</span></Link>               {/* link needs to be filled in */}
+              <Link to={`/users/${currentUser._id}/photos`}><span>You</span></Link>          
               {isYouDropdownOpen ? youDropdown : ""}
             </li>) : ""}
             <li
               onMouseEnter={() => setExploreDropdownOpen(true)}
               onMouseLeave={() => setExploreDropdownOpen(false)}
             >
-              <Link to="/explore"><span>Explore</span></Link>      {/* link needs to be filled in */}
+              <Link to="/explore"><span>Explore</span></Link>
               {isExploreDropdownOpen ? exploreDropdown : ""}
             </li>
           </ul>
         </div>
         <ul className="header-nav-right">
           <li>{searchBar}</li>
-          <li className="header-upload-button"><Link to='upload' /></li>    {/* link needs to be filled in */}
+          <li className="header-upload-button"><Link to='/upload' /></li>  
           {currentUser ? (
           <li className="header-avatar-button">
             <button 
