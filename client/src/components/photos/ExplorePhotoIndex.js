@@ -40,7 +40,6 @@ const ExplorePhotoIndex = props => {
     if (data) {
       window.onscroll = debounce(() => {
         if (document.body.clientHeight - window.scrollY < 3000) {
-          console.log("refetching");
           window.onscroll = null;
           fetchMore({
             variables: {
