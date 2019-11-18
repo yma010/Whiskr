@@ -81,26 +81,13 @@ export const UPLOAD_FILE_STREAM = gql `
   }
 `;
 
-export const NEW_PHOTO = gql `
-  mutation newPhoto( 
-    $title: String!,
-    $description: String!, 
-    $albums: String!, 
-    $tags: String!, 
-    $imageURL: String!,
-    $isPublic: Boolean!
-    ) {
-      newPhoto
-      (
-        title: $title,
-        description: $description,
-        albums: $albums,
-        imageURL: $imageURL,
-        isPublic: $isPublic
-      ) {
+export const NEW_PHOTO = gql`
+  mutation newPhoto( $title: String!, $description: String!, $albums: String!, $tags: String!, $imageURL: String!, $isPublic: Boolean!) {
+      newPhoto(title: $title, description: $description, albums: $albums, imageURL: $imageURL, isPublic: $isPublic) {
         title,
         description,
         albums,
+        imageURL,
         isPublic
     }
   }

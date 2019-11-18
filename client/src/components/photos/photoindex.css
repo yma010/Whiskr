@@ -1,3 +1,7 @@
+img {
+  image-orientation: from-image;
+}
+
 .feed-container {
   width: 100%;
   margin: auto;

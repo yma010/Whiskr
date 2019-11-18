@@ -1,12 +1,20 @@
+
 .pictureUpload {
   margin-top: 100px;
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 10px;
-  grid-row-gap: 10px;
   height: auto;
   width: auto;
+}
+
+#photoCreate {
+  padding: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  margin-left: 20px;
+  margin-right: 20px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.33);
+  background-color: rgba(21, 21, 23, .95);
+  border-radius: 4px;
+  color: white;
+  height: auto;
 }
 
 #upload-subheader {
@@ -24,16 +32,32 @@
 
 button.upload{
   display: flex;
-  color: #bbb;
+  color: #fff;
   margin-right: 20px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  margin-top: 5px;
+  padding: 5px 10px 5px 10px;
   z-index: 2;
+  height: fit-content;
+  vertical-align: middle;
 }
 button.upload-active{
   display: flex;
-  color: blue;
-  border: 1px solid blue;
+  color: #fff;
+  background: #0063dc;
   margin-right: 20px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  margin-top: 5px;
+  padding: 5px 10px 5px 10px;
   z-index: 2;
+  height: fit-content;
+  vertical-align: middle;
 }
 
 .secondary-inputs{
@@ -85,6 +109,70 @@ button.upload-active{
 }
 
 .upload-preview {
-    grid-column-start: 2;
-    grid-column-end: 2;
+  height: auto;
+  width: 100%;
+  
+  padding: 15px;
 }
+
+.photo-editor {
+  display: flex;
+  margin: 14px 0 0 14px;
+  justify-content: flex-start;
+  max-height: 300px;
+  position: absolute;
+  
+  
+}
+
+.title-desc{
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  text-shadow: 0 1px 0 #000;
+}
+
+.title-input {
+  font-size: 20px;
+}
+
+.desc-input {
+  font-size: 14px;
+  padding-top: 10px;
+}
+
+.tags-input{
+  font-size: 14px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-left: 10px;
+}
+
+.albums-input{
+  font-size: 14px;
+  padding-top: 5px;
+  padding-left: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.image-card {
+  border: 1px solid rgba(95, 95, 255, 0.05);
+  border-radius: 4px;
+  width: 200px;
+  background-color: rgba(21, 21, 23, .95);
+}
+
+.tags{
+  padding-left: 10px;
+  font-size: 12px;
+}
+
+.albums{
+  padding-left: 10px;
+  font-size: 12px;
+}
+
+

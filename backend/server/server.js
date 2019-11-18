@@ -48,7 +48,6 @@ const resolvers = {
           filename,
           mimetype
         } = file
-
         const fileStream = createReadStream()
 
         fileStream.pipe(fs.createWriteStream(`./uploadedFiles/${filename}`))
@@ -65,7 +64,7 @@ const resolvers = {
         mimetype
       } = file
       const fileStream = createReadStream()
-
+      
       const uploadParams = {
         Bucket: 'whiskr-seeds',
         Key: filename,
