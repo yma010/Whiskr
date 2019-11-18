@@ -13,9 +13,7 @@ Whiskr is a site inspired by Flickr to unite the internet’s legions of cat lov
     *  Users can sign up and sign in
 *  Photos
     *  Users can view photos.
-    *  Logged in users can  upload photos.
-*  Tags
-    *  Logged in users can tag photos on upload.
+    *  Logged in users can upload photos.
 *  Albums
     *  Users can view albums of photos.
     *  Logged in users can create albums of photos.
