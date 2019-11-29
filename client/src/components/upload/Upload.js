@@ -1,6 +1,7 @@
 import React from 'react';
 import { UPLOAD_FILE_STREAM, NEW_PHOTO} from '../../graphql/mutations';
-import { Mutation } from 'react-apollo';
+import { CURRENT_USER } from '../../graphql/queries';
+import { Mutation, Query } from 'react-apollo';
 import './upload.css';
 
 
@@ -11,6 +12,7 @@ class Upload extends React.Component {
     this.state = {
       file: [],
       filePrev: [],
+      photographer: '',
       title: '',
       description: '',
       albums: '',
@@ -21,7 +23,10 @@ class Upload extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    console.log(this.props);
+    console.log(this.state);
   }
+
 
   handleChange(e) {
     e.persist();
@@ -29,11 +34,27 @@ class Upload extends React.Component {
     const file = e.target.files[0];
     const newFileName = this.formateName(file.name)
 
+    const photographer = () => (
+      <Query
+        query={CURRENT_USER}
+      >
+        {({loading, error, data}) => {
+          if (loading) return null;
+          if (error) return `Error! ${error}`;
+
+          return (data.currentUser._id);
+        }}
+        
+      </Query>
+    )
+
     this.setState({
+          photographer,
           file,
           filePrev,
           imageURL: `https://whiskr-seeds.s3-us-west-1.amazonaws.com/${newFileName}`
     });
+
   }
 
   update(field) {
