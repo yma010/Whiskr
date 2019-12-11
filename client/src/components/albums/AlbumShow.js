@@ -41,7 +41,7 @@ function AlbumShow(props){
           <div className="card-identity2">
             <Link
               className="user-avatar"
-              to={`/users/${photo.photographer._id}`}
+              to={`/users/${photo.photographer._id}/photos`}
               style={{
                 backgroundImage: `url(${photo.photographer.avatarURL ||
                   "../../public/camera-avatar.png"})`,
@@ -50,7 +50,7 @@ function AlbumShow(props){
               }}
             />
             <div id="name">
-              <Link to={`/users/${photo.photographer._id}`}>
+              <Link to={`/users/${photo.photographer._id}/photos`}>
                 {photo.photographer.firstName} {photo.photographer.lastName}
               </Link>
               <span>Featured</span>

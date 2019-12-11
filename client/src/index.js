@@ -31,11 +31,11 @@ const cache = new InMemoryCache({
 });
 
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql"
+  uri: process.env.NODE_ENV === "production" ? "/graphql" : "http://localhost:5000/graphql"
 });
 
 const uploadLink = createUploadLink({
-  uri: 'http://localhost:4000', 
+  uri: process.env.NODE_ENV === "production" ? "/file_upload" : 'http://localhost:4000', 
   headers: {
     "keep-alive": "true"
   }

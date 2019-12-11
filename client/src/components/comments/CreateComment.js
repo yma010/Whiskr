@@ -19,10 +19,17 @@ function CreateComment(props) {
     });
     
   const {loading, error, data} = useQuery(CURRENT_USER);
-  console.log(loading);
-  console.log(error);
+
     let {currentUser} = data;
   const [Inputbody, setBody] = useState('');
+
+  if (loading) {
+    return <div>Loading...</div>
+  }
+  if (error) {
+    console.log(error);
+    return <div>Error!</div>
+  }
 
 
   const updateCache = (cache, {data}) => {

@@ -91,7 +91,7 @@
 }
 
 .image-elements li{
-  width: fit-content;
+  width: 100%;
 }
 
 .card-identity2{
@@ -120,6 +120,7 @@
 #name {
   font-size: 20px;
   padding-top: 2px;
+  width: 100%;
 }
 
 #name a {

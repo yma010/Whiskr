@@ -27,7 +27,6 @@ function PhotoIndex() {
     if (data) {
       window.onscroll = debounce(() => {
         if (document.body.clientHeight - window.scrollY < 3000) {
-          console.log("refetching");
           window.onscroll = null;
           fetchMore({
             variables: { limit: photoBatch, offset: data.photos.length },

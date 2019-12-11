@@ -240,6 +240,6 @@ flex-grow: 1;
 }
 
 .comment-content{
-flex-grow: 111;
+  width: 100%;
 }
 

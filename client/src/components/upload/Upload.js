@@ -110,7 +110,7 @@ class Upload extends React.Component {
                     file: this.state.file     
                   }
                 });  
-                console.log("Success")
+                // console.log("Success")
               }
             }>
               <div id="upload-subheader">
