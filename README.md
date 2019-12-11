@@ -8,6 +8,14 @@ Whiskr is a site inspired by Flickr to unite the internet’s legions of cat lov
 
 Whiskrians can upload pictures of their lovely, furry friends and share them with the other millions of cat lovers around the world!
 
+## Technologies 
+ * AWS S3 -- for photo storage
+ * MERN stack (MongoDB, Express, React and Node)
+ * React hooks 
+ * Apollo
+ * GraphQL
+ * Docker
+
 --------------------
 
 ## Functionality and MVP
@@ -26,13 +34,6 @@ Whiskrians can upload pictures of their lovely, furry friends and share them wit
 
 -----------------
 
-## Technologies and Technical Challenges
- * AWS S3 -- for photo storage
- * MERN stack (MongoDB, Express, React and Node)
- * React hooks 
- * Apollo
- * GraphQL
- * Docker
 
 #### Challenges
 
@@ -67,35 +68,77 @@ Explore offers users the most recent photos in the site or  the most trendy. The
 
 
 --------------
+### Code Sample
 
-## Group Members and Work Breakdown
+The following code uses a useState React hook to implement a carousel photo display.
+```javascript
+ const [activeIndex, setIndex] = useState();
+  const {loading, error, data} = useQuery(FETCH_ALBUM_FROM_PHOTO, {
+    variables: { _id: props.match.params.id }
+  });
+  
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    console.log(error);
+    return <div>Error!</div>;
+  }
+  let {albums } = data.photo;
+  let album = albums[albums.length - 1];
+  let start = album.photos.findIndex(obj => obj._id === props.match.params.id);
+  
+  if(activeIndex === undefined){
+    setIndex(start);
+  }
+
+  ...
+```
+<!-- Add more information -->
+Fetching all the photos of our site is time and space consuming, this is why we created a function to help with a gradual fetching to achieve infinite scroll functionality.
+```javascript
+useEffect(function() {
+    if (data) {
+      window.onscroll = debounce(() => {
+        if (document.body.clientHeight - window.scrollY < 3000) {
+          window.onscroll = null;
+          fetchMore({
+            variables: { limit: photoBatch, offset: data.photos.length },
+            updateQuery: (prev, { fetchMoreResult }) => {
+              if (!fetchMoreResult) return prev;
+              return Object.assign({}, prev, {
+                photos: [...prev.photos, ...fetchMoreResult.photos]
+              });
+            }
+          })
+        }
+      }, 200);
+    }
+    return () => window.onscroll = null;
+  });
+```
+<!-- Add more information about Upload -->
+ GraphQL mutation for upload. 
+```javascript
+
+export const UPLOAD_FILE_STREAM = gql `
+  mutation SingleUploadStream($file: Upload!) {
+    singleUploadStream(file: $file) {
+      filename
+      mimetype
+      encoding
+    }
+  }
+`;
+```
+
+
+--------------
+
+## Group Members
 
 [Noah Levin](https://github.com/nllevin)
 
 [Marvin Ma](https://github.com/yma010)
 
 [Frida Pulido](https://github.com/FridaPolished)
-
-* Day 1
-    * Database setup
-    * User Auth
-    * Backend models and GraphQL Schema
-* Day 2
-    * Navbar component
-    * Session forms
-* Day 3
-    * Photo Index component
-    * Dockerfile
-    * Photo upload
-* Day 4
-    * Comments component
-    * PhotoIndexItem
-    * Seeding
-    * Photo upload
-* Day 5
-    * Explore 
-    * Album component
-    * Photo upload
-* Day 6 and 7
-    * Album component
-    * Reviews and corrections
