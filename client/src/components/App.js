@@ -9,12 +9,14 @@ import ExplorePhotoIndex from './photos/ExplorePhotoIndex';
 import "../stylesheets/reset.css";
 import PhotoComments from './comments/PhotoComments';
 import AlbumShow from './albums/AlbumShow';
+import Splash from './splash/Splash';
 
 const App = () => {
   return (
     <div>
       <HeaderNav />
       <Switch>
+        <Route path='/splash' component={Splash}/>
         <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
         <Route path='/photo/:id/comments' component={PhotoComments}/>
