@@ -333,3 +333,94 @@ form.header-search-bar input {
   background-color: #1c9be9;
   box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.6);
 }
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: #000;
+  opacity: .5;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  outline: 0;
+}
+
+.modal {
+  z-index: 100;
+  background: rgb(251, 251, 248);
+  border-radius: 32px;
+  max-width: 500px;
+  padding: 2rem;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0px 5px;
+    border-bottom: 1px solid #eee;
+}
+
+.modal-close-button {
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1;
+  color: #000;
+  opacity: .3;
+  cursor: pointer;
+  border: none;
+}
+
+button {
+  font-size: .9rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem 1rem;
+  margin-left: .5rem;
+}
+
+.devs {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+
+.devs h2 a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.devs a:hover {
+  color:rgb(0, 81, 255);
+  text-decoration: none;
+}
+
+.devs-title{
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
+}
+
+.social{
+  display: flex;
+  justify-content: space-evenly;
+  min-width: 90px;
+}
+
+.social a {
+  cursor: pointer;
+}
+
+.social a:hover{
+  background-color: white;
+  color:rgb(0, 81, 255);
+}
