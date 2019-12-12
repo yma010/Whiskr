@@ -1,5 +1,82 @@
-.splash-main {
+.splash-image {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  z-index: -1;
   background-repeat: no-repeat;
   background-size: cover;
+  transition: background-image .3s ease-in-out
+}
+
+.splash-image img {
+  position: absolute;
   height: 100vh;
+}
+
+.splash-attribution {
+  width: 100%;
+  position: absolute;
+  bottom: 30px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 14px;
+  z-index: 5;
+}
+
+.splash-attribution p {
+  margin-bottom: 6px;
+}
+
+.splash-attribution p:last-of-type {
+  margin-bottom: 0;
+}
+
+.splash-text {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.splash-text h1 {
+  color: white;
+  font-size: 56px;
+  font-weight: 700;
+  margin-bottom: 26px;
+}
+
+.splash-text h3 {
+  color: white;
+  font-size: 26px;
+  margin-bottom: 50px;
+  max-width: 640px;
+}
+
+.splash-text a {
+  height: 64px;
+  line-height: 64px;
+  font-size: 24px;
+  font-weight: 800;
+  background-color: white;
+  color: black;
+  transition: color .15s ease-in-out;
+  min-width: 200px;
+  padding: 0 20px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.splash-text a:hover {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.splash-text a:focus {
+  color: black;
+  text-decoration: none;
+  box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.6);
 }
