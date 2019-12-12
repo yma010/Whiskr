@@ -42,7 +42,7 @@ function SignUp(props) {
         const { token } = data.login;
         localStorage.setItem("auth-token", token);
         setIsDisappearing(true); 
-        setTimeout(() => props.history.push("/"), 300);
+        setTimeout(() => props.history.push("/featured-photos"), 300);
       },
       update(client, { data }) {
         client.writeData({

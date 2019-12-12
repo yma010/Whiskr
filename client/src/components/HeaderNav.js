@@ -79,6 +79,7 @@ const HeaderNav = props => {
                 currentUser: null
               }
             });
+            props.history.push("/");
           }}>
             Log out
           </button>

@@ -16,7 +16,6 @@ const App = () => {
     <div>
       <HeaderNav />
       <Switch>
-        <Route path='/splash' component={Splash}/>
         <Route exact path='/login' component={Login}/>
         <Route exact path='/signup' component={SignUp}/>
         <Route path='/photo/:id/comments' component={PhotoComments}/>
@@ -26,7 +25,8 @@ const App = () => {
         <Route path='/explore' component={ExplorePhotoIndex}/>
         <Route path='/users/:_id/photos' component={ExplorePhotoIndex}/>
         <Route path='/search' component={ExplorePhotoIndex}/>
-        <Route path='/' component={PhotoIndex} />
+        <Route path='/featured-photos' component={PhotoIndex} />
+        <Route path='/' component={Splash}/>
       </Switch>
     </div>
   );
