@@ -124,13 +124,6 @@ export const FETCH_ALBUM_FROM_PHOTO = gql`
                  }
                  comments {
                    _id
-                   author {
-                     _id
-                     firstName
-                     lastName
-                     avatarURL
-                   }
-                   body
                  }
                }
              }
