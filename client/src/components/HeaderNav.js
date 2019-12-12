@@ -4,6 +4,8 @@ import { useQuery, useApolloClient } from "@apollo/react-hooks";
 
 import { CURRENT_USER } from "../graphql/queries";
 import "../stylesheets/header_nav.css";
+import Modal from './modal/Modal';
+import useModal from './utilities/useModal'
 
 const HeaderNav = props => {
   const [search, setSearch] = useState("");
@@ -86,7 +88,8 @@ const HeaderNav = props => {
       </div>
     );
   }
-  
+  const { isShowing, toggle } = useModal();
+
   return (
     <div className="header-nav-container">
       <header className="header-nav">
@@ -107,6 +110,10 @@ const HeaderNav = props => {
             >
               <Link to="/explore"><span>Explore</span></Link>
               {isExploreDropdownOpen ? exploreDropdown : ""}
+            </li>
+            <li>
+              <Modal isShowing={isShowing} hide={toggle} />
+              <button className="button-default" onClick={toggle}>About us</button>
             </li>
           </ul>
         </div>
