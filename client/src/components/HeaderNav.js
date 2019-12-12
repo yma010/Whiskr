@@ -113,7 +113,8 @@ const HeaderNav = props => {
             </li>
             <li>
               <Modal isShowing={isShowing} hide={toggle} />
-              <button className="button-default" onClick={toggle}>About us</button>
+              {/* uncomment the following line to add Developers information */}
+              {/* <button className="button-default" onClick={toggle}>About us</button> */}
             </li>
           </ul>
         </div>

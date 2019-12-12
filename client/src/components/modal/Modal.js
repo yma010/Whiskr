@@ -11,55 +11,31 @@ const Modal = ({ isShowing, hide }) => isShowing ? ReactDOM.createPortal(
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <span className="devs-title">The developers</span>
+        <span className="devs-title">The Developers</span>
         <div className="devs">
         <div>
-          <h2>Frida Pulido</h2>
+            <h2><a href="https://fridapulido.dev/">Frida Pulido</a></h2>
           <div className="social">
-            <i className="fab fa-angellist"></i>
-            <a href="https://angel.co/frida-pulido">Angelist</a>
-          </div>
-          <div className="social">
-            <i className="fab fa-github-square"></i>
-            <a href="https://github.com/FridaPolished">Github</a> 
-          </div>
-          <div className="social">
-            <i className="fab fa-linkedin"></i> 
-            <a href="https://www.linkedin.com/in/frida-pulido/">Linkedin</a>
-          </div>
-          <a href="https://fridapulido.dev/">Portfolio</a>
+              <a href="https://angel.co/frida-pulido"><i className="fab fa-angellist fa-2x"></i></a>
+              <a href="https://github.com/FridaPolished"><i className="fab fa-github-square fa-2x"></i></a> 
+              <a href="https://www.linkedin.com/in/frida-pulido/"><i className="fab fa-linkedin fa-2x"></i> </a>
+          </div>     
         </div>
         <div>
-          <h2>Noah Levin</h2>
+            <h2><a href="nllevin.com">Noah Levin</a></h2>
             <div className="social">
-              <i className="fab fa-angellist"></i>
-              <a href="https://angel.co/noah-levin-2">Angelist</a>
-            </div>
-            <div className="social">
-              <i className="fab fa-github-square"></i>
-              <a href="https://github.com/nllevin">Github</a> 
-            </div>
-            <div className="social">
-              <i className="fab fa-linkedin"></i> 
-              <a href="https://www.linkedin.com/in/noah-levin">Linkedin</a>
-            </div> 
-          <a href="nllevin.com">Portfolio</a>
+              <a href="https://angel.co/noah-levin-2"><i className="fab fa-angellist fa-2x"></i></a>
+              <a href="https://github.com/nllevin"><i className="fab fa-github-square fa-2x"></i></a> 
+              <a href="https://www.linkedin.com/in/noah-levin"><i className="fab fa-linkedin fa-2x"></i></a>
+            </div>   
         </div>
         <div>
-          <h2>Marvin Ma</h2>
+            <h2><a href="www.marvinma.dev">Marvin Ma</a></h2>
           <div className="social">
-            <i className="fab fa-angellist"></i>
-            <a href="https://angel.co/marvin-ma-2">Angelist</a>
+              <a href="https://angel.co/marvin-ma-2"><i className="fab fa-angellist fa-2x"></i></a>
+              <a href="https://github.com/yma010"><i className="fab fa-github-square fa-2x"></i></a> 
+              <a href="https://www.linkedin.com/in/marvin-ma"> <i className="fab fa-linkedin fa-2x"></i></a>
           </div>
-          <div className="social">
-            <i className="fab fa-github-square"></i>
-            <a href="https://github.com/yma010">Github</a> 
-          </div>
-          <div className="social">
-            <i className="fab fa-linkedin"></i> 
-            <a href="https://www.linkedin.com/in/marvin-ma">Linkedin</a>
-          </div>
-          <a href="www.marvinma.dev">Portfolio</a>
         </div>
         </div>
       </div>

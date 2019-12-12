@@ -351,19 +351,13 @@ form.header-search-bar input {
   top: 0;
   left: 0;
   z-index: 1050;
-  /* width: 100%; */
-  /* height: 100%; */
-  /* overflow-x: hidden; */
-  /* overflow-y: auto; */
   outline: 0;
 }
 
 .modal {
   z-index: 100;
-  background: white;
-  /* position: relative;
-  margin: 1.75rem auto; */
-  border-radius: 3px;
+  background: rgb(251, 251, 248);
+  border-radius: 32px;
   max-width: 500px;
   padding: 2rem;
 }
@@ -371,6 +365,8 @@ form.header-search-bar input {
 .modal-header {
   display: flex;
   justify-content: flex-end;
+  padding: 0px 5px;
+    border-bottom: 1px solid #eee;
 }
 
 .modal-close-button {
@@ -394,22 +390,37 @@ button {
 
 .devs {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   padding: 10px;
 }
 
-.devs h2 {
-  font-weight: 600;;
+.devs h2 a {
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.devs a:hover {
+  color:rgb(0, 81, 255);
+  text-decoration: none;
 }
 
 .devs-title{
   font-weight: 600;
+  text-align: center;
+  padding: 10px;
 }
 
 .social{
   display: flex;
+  justify-content: space-evenly;
+  min-width: 90px;
 }
 
 .social a {
   cursor: pointer;
+}
+
+.social a:hover{
+  background-color: white;
+  color:rgb(0, 81, 255);
 }
