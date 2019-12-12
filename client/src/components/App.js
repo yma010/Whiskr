@@ -9,6 +9,7 @@ import ExplorePhotoIndex from './photos/ExplorePhotoIndex';
 import "../stylesheets/reset.css";
 import PhotoComments from './comments/PhotoComments';
 import AlbumShow from './albums/AlbumShow';
+import Splash from './splash/Splash';
 
 const App = () => {
   return (
@@ -24,7 +25,8 @@ const App = () => {
         <Route path='/explore' component={ExplorePhotoIndex}/>
         <Route path='/users/:_id/photos' component={ExplorePhotoIndex}/>
         <Route path='/search' component={ExplorePhotoIndex}/>
-        <Route path='/' component={PhotoIndex} />
+        <Route path='/featured-photos' component={PhotoIndex} />
+        <Route path='/' component={Splash}/>
       </Switch>
     </div>
   );
