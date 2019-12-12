@@ -11,7 +11,7 @@ const Album = require('../server/models/Album');
 const Photo = require('../server/models/Photo');
 const User = require('../server/models/User');
 
-const numSeedPhotos = 95;
+const numSeedPhotos = 96;
 const seedPhotoIds = [];
 for (let i = 0; i < numSeedPhotos; i++) {
   if (i !== 31) {
@@ -23,7 +23,7 @@ const seedPhotos = seedPhotoIds.map(photoId => {
   return {
     width,
     height,
-    imageURL: `https://whiskr-seeds.s3-us-west-1.amazonaws.com/whiskr_photos/whiskr${photoId}.jpg`
+    imageURL: `http://d1mzd77eo6nj57.cloudfront.net/whiskr_photos/whiskr${photoId}.jpg`
   };
 });
 
