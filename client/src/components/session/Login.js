@@ -89,7 +89,7 @@ function Login(props) {
             <div className="card-input">
               <label className={inputs.password ? "small" : ""}>Password</label>
               <input required type="password" onChange={handleInputChange} name="password" value={inputs.password} />
-              {errors['password'] || errors["validation"] ? <p>{errors["password"], errors["validation"]}</p> : null} 
+              {errors['password'] || errors["validation"] ? <p>{errors["password"]|| errors["validation"]}</p> : null} 
             </div>
               <button type="submit" className="submit">Sign in</button>
               
