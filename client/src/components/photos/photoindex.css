@@ -186,7 +186,7 @@ img {
   align-items: center;
   justify-content: center;
   z-index: 999;
-  background-color: rgba(255, 255, 255, 0.99);
+  background-color: rgba(255, 255, 255, 0.98);
   transition: background-color .6s ease-in;
 }
 
