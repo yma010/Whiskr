@@ -16,31 +16,6 @@ Whiskrians can upload pictures of their lovely, furry friends and share them wit
  * GraphQL
  * Docker
 
---------------------
-
-## Functionality and MVP
-
-* User auth
-    *  Users can sign up and sign in
-*  Photos
-    *  Users can view photos with infinite scroll.
-    *  Logged in users can upload photos.
-*  Albums
-    *  Users can view albums of photos.
-    *  Logged in users can create albums of photos.
-*  Comments
-    *  Users can view comments.
-    *  Logged in users can comment on photos.
-
------------------
-
-
-#### Challenges
-
-Time constraints, workload and lack of resources on documentation for GraphQL-AWS file upload. 
-
----------------
-
 ## Features
 
 #### Users
