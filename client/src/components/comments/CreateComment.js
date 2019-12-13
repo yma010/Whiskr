@@ -72,7 +72,6 @@ function CreateComment(props) {
       <div
         className="user-avatar"
         style ={style}
-        // to={currentUser ? `/users/${currentUser._id}` : ""}
       ></div>
       <form
         onSubmit={e => {
