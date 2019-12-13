@@ -52,11 +52,11 @@ const login = async data => {
     const { email, password } = data;
     const user = await User.findOne({ email });
     if (!user) {
-      throw new Error("wrong username/password combination");
+      throw new Error("$validation$wrong email/password combination");
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) throw new Error("wrong username/password combination");
+    if (!isMatch) throw new Error("$validation$wrong email/password combination");
 
     const token = jwt.sign({ _id: user._id }, keys.secretOrKey);
     return { token, loggedIn: true, ...user._doc, password: null };

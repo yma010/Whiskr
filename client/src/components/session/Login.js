@@ -20,6 +20,10 @@ function Login(props) {
     password: ""
   });
   
+  const [errors, setErrors] = useState({
+
+  })
+
   const [loginUser] = useMutation(
     LOGIN_USER, 
     {
@@ -28,6 +32,18 @@ function Login(props) {
         localStorage.setItem("auth-token", token);
         setIsDisappearing(true); 
         setTimeout(() => props.history.push("/featured-photos"), 300);
+      },
+      onError: (error) => {
+        let err = error.message.split("$").slice(1)
+        // console.log(error.message)
+        const errors = {};
+        let i = 0;
+        while (i < err.length) {
+          errors[err[i]] = err[i + 1];
+          i += 3;
+        }
+        setErrors(errors);
+      // console.log(errors)
       },
       update(client, { data }) {
         client.writeData({
@@ -68,10 +84,12 @@ function Login(props) {
             <div className="card-input">
               <label className={inputs.email ? "small" : ""}>Email address</label>
               <input required type="text" onChange={handleInputChange} name="email" value={inputs.email} />
+              {errors['email'] ? <p>{errors['email']}</p> : null}
             </div>
             <div className="card-input">
               <label className={inputs.password ? "small" : ""}>Password</label>
               <input required type="password" onChange={handleInputChange} name="password" value={inputs.password} />
+              {errors['password'] || errors["validation"] ? <p>{errors["password"], errors["validation"]}</p> : null} 
             </div>
               <button type="submit" className="submit">Sign in</button>
               
