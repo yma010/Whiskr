@@ -61,11 +61,18 @@ function CreateComment(props) {
     }
   };
   
+  let style;
+  if (currentUser.avatarURL) {
+    style = {
+      backgroundImage: `url(${currentUser.avatarURL})`
+    }
+  }
   return (
     <div className="new-comment-body" id="new-comment">
       <div
         className="user-avatar"
-        to={currentUser ? `/users/${currentUser._id}` : ""}
+        style ={style}
+        // to={currentUser ? `/users/${currentUser._id}` : ""}
       ></div>
       <form
         onSubmit={e => {
