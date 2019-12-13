@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { useQuery } from '@apollo/react-hooks';
 import { debounce } from 'lodash';
 
-import { FETCH_PHOTOS } from '../../graphql/queries';
+import { FETCH_PHOTOS_SLIM } from '../../graphql/queries';
 import ExplorePhotoIndexItem from "./ExplorePhotoIndexItem";
 import "./photoindex.css";
 import "./explorePhotoIndex.css";
@@ -12,7 +12,7 @@ const ExplorePhotoIndex = props => {
   const [rowWidth, setRowWidth] = useState(0.8 * window.innerWidth);
   
   const photoBatch = 30;
-  const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS, {
+  const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS_SLIM, {
     variables: { 
       limit: photoBatch, 
       offset: 0, 

@@ -40,7 +40,37 @@ export const FETCH_PHOTOS = gql`
      }
    }
  }
-`
+`;
+
+export const FETCH_PHOTOS_SLIM = gql`
+ query FetchPhotos($limit: Int, $offset: Int, $search: String, $user: ID, $filter: String) {
+    photos(
+      limit: $limit, 
+      offset: $offset, 
+      search: $search, 
+      user: $user,
+      filter: $filter
+    ) {
+     _id
+     title
+     views
+     height
+     width
+     isPublic
+     imageURL
+     description
+     photographer {
+       _id
+      firstName
+      lastName
+      avatarURL
+     }
+     comments {
+       _id
+     }
+   }
+ }
+`;
 
 export const CURRENT_USER = gql`
   query CurrentUser {
@@ -94,13 +124,6 @@ export const FETCH_ALBUM_FROM_PHOTO = gql`
                  }
                  comments {
                    _id
-                   author {
-                     _id
-                     firstName
-                     lastName
-                     avatarURL
-                   }
-                   body
                  }
                }
              }

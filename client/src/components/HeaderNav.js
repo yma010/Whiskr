@@ -92,7 +92,7 @@ const HeaderNav = props => {
   const { isShowing, toggle } = useModal();
 
   let style;
-  if (currentUser && currentUser.avatarURL != null){
+  if (currentUser && currentUser.avatarURL !== null){
    style =  { backgroundImage: `url(${currentUser.avatarURL})` }
   }
   

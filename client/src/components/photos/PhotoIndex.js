@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {useQuery} from '@apollo/react-hooks';
 import { debounce } from 'lodash';
 
-import {FETCH_PHOTOS} from '../../graphql/queries';
+import { FETCH_PHOTOS_SLIM } from '../../graphql/queries';
 import PhotoIndexItem from "./PhotoIndexItem";
 import './photoindex.css'
 
@@ -10,7 +10,7 @@ function PhotoIndex() {
   const [noScroll, setNoScroll] = useState(false);
 
   const photoBatch = 12;
-  const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS, {
+  const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS_SLIM, {
     variables: { limit: photoBatch, offset: 0 }
   });
 

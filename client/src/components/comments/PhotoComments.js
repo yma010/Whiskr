@@ -9,6 +9,9 @@ import './comments.css'
 
 function PhotoComments (props) {
   const { data: {currentUser} } = useQuery(CURRENT_USER);
+  const { data } = useQuery(FETCH_PHOTO_COMMENTS, {
+    variables: { _id: props.photoId }
+  });
   const [DeleteComment] = useMutation(DELETE_COMMENT, 
     { 
       refetchQueries: [{query: FETCH_PHOTO_COMMENTS, 
@@ -18,17 +21,12 @@ function PhotoComments (props) {
       }],
     });
 
-    let  comments  = props.comments;
-    if (!comments){
-      return (
-        <div id='comments'>
-        <p>No comments to show</p>
-      </div>
-    )
+  if (!data){
+      return null;
   } else {
     let photoComments;
     let deleteButton;
-    photoComments = comments.map( (comment, i) => {
+    photoComments = data.photo.comments.map( (comment, i) => {
      if (currentUser && currentUser._id === comment.author._id) {
        deleteButton = (
          <button
