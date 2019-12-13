@@ -41,6 +41,12 @@ function PhotoComments (props) {
        deleteButton = <div></div>;
      }
 
+     let style;
+      if (comment.author.avatarURL){
+        style = {
+          backgroundImage: `url(${comment.author.avatarURL})`
+        }
+      }
       return (
         <div key={i} className="comment-card">
           <li key={comment._id}>
@@ -48,9 +54,7 @@ function PhotoComments (props) {
               <Link
                 className="user-avatar"
                 to={`/users/${comment.author._id}/photos`}
-                style={{
-                  backgroundImage: `url(${comment.author.avatarURL})`
-                }}
+                style={style}
               />
             </div>
             <div className="comment-content">

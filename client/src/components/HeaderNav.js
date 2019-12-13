@@ -91,6 +91,11 @@ const HeaderNav = props => {
   }
   const { isShowing, toggle } = useModal();
 
+  let style;
+  if (currentUser && currentUser.avatarURL !== null){
+   style =  { backgroundImage: `url(${currentUser.avatarURL})` }
+  }
+  
   return (
     <div className="header-nav-container">
       <header className="header-nav">
@@ -125,9 +130,7 @@ const HeaderNav = props => {
           {currentUser ? (
           <li className="header-avatar-button">
             <button 
-              style={{
-                backgroundImage: `url(${currentUser.avatarURL})`
-              }}
+                style={style}
               onClick={() => setProfileDropdownOpen(!isProfileDropdownOpen)}
             />
             {isProfileDropdownOpen ? profileDropdown : "" }

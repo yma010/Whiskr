@@ -209,6 +209,7 @@ form.header-search-bar input {
 }
 
 .header-avatar-button > button {
+  background-image: url("../public/camera-avatar.png");
   height: 33px;
   width: 33px;
   background-size: cover;
