@@ -61,3 +61,8 @@
 .explore-single-photo .activity-card-counts a:hover {
   color: white;
 }
+
+.explore-photo-index-loading {
+  width: 80vw;
+  margin: 75px auto 0;
+}

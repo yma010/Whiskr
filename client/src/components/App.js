@@ -6,6 +6,7 @@ import Login from './session/Login';
 import SignUp from './session/SignUp';
 import PhotoIndex from './photos/PhotoIndex';
 import ExplorePhotoIndex from './photos/ExplorePhotoIndex';
+import UserPhotoIndex from './photos/UserPhotoIndex';
 import "../stylesheets/reset.css";
 import PhotoComments from './comments/PhotoComments';
 import AlbumShow from './albums/AlbumShow';
@@ -23,7 +24,7 @@ const App = () => {
         <Route exact path='/photo/:id/album' component={AlbumShow}/>
         <Route path='/explore/:filter' component={ExplorePhotoIndex}/>
         <Route path='/explore' component={ExplorePhotoIndex}/>
-        <Route path='/users/:_id/photos' component={ExplorePhotoIndex}/>
+        <Route path='/users/:_id/photos' component={UserPhotoIndex}/>
         <Route path='/search' component={ExplorePhotoIndex}/>
         <Route path='/featured-photos' component={PhotoIndex} />
         <Route path='/' component={Splash}/>
