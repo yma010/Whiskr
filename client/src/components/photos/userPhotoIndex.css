@@ -1,0 +1,58 @@
+.user-header-container {
+  background-image: url("../../public/cover-photo.jpg");
+  margin-top: 50px;
+  height: 120px; 
+  box-sizing: content-box;
+  width: 100%;
+  padding-top: 130px;
+  background-size: 100%;
+  background-position: 50% 50%;
+  margin-bottom: -50px;
+}
+
+.user-header-overlay {
+  position: absolute;
+  top: 50px;
+  height: 120px; 
+  box-sizing: content-box;
+  width: 100%;
+  padding-top: 130px;
+  background: linear-gradient(
+    180deg,
+    transparent 0,
+    rgba(0,0,0,.03) 8%,
+    rgba(0,0,0,.11) 21%,
+    rgba(0,0,0,.61) 78%,
+    rgba(0,0,0,.7) 95%,
+    rgba(0,0,0,.7)
+  );
+}
+
+.user-header-content {
+  max-width: 80%;
+  margin: 0 auto;
+  display: flex;
+}
+
+.user-header-content .large-user-avatar {
+  margin-right: 30px;
+  width: 100px;
+  height: 100px;
+  border-radius: 100%;
+  background-image: url("../../public/camera-avatar.png");
+  background-size: cover;
+}
+
+.user-header-info h1 {
+  line-height: 1em;
+  margin: 21px 0 13px;
+  font-size: 36px;
+  color: white;
+  font-weight: 300;
+}
+
+.user-header-info h3 {
+  font-size: 16px;
+  color: white;
+  font-weight: 300;
+}
