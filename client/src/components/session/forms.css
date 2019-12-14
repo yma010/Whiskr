@@ -189,3 +189,9 @@ form button.demo-login:focus {
   white-space: pre;
   color: #006DAC;
 }
+
+
+.errors {
+  transition: border .1s ease;
+  color: #e2292b;
+}
