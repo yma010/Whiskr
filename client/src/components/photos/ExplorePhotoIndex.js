@@ -14,7 +14,7 @@ const ExplorePhotoIndex = props => {
   const photoBatch = 30;
   const { loading, error, data, fetchMore } = useQuery(FETCH_PHOTOS_SLIM, {
     variables: { 
-      limit: photoBatch, 
+      limit: 20, 
       offset: 0, 
       user: props.match.params._id,
       search: (new URLSearchParams(props.location.search)).get("text"),
@@ -63,7 +63,7 @@ const ExplorePhotoIndex = props => {
   });
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div className="explore-photo-index-loading">Loading...</div>;
   }
   if (error) {
     console.log(error);
@@ -74,10 +74,11 @@ const ExplorePhotoIndex = props => {
     const search = (new URLSearchParams(props.location.search)).get("text");
     if (props.match.params._id) {
       if (data.photos[0]) {
-        const { photographer } = data.photos[0]
-        return `${photographer.firstName} ${photographer.lastName}'s Photos`;
+        // const { photographer } = data.photos[0]
+        // return `${photographer.firstName} ${photographer.lastName}'s Photos`;
+        return "";
       } else {
-        return "You have no public photos.";
+        return "You have no public photos. Please consider adding some soon!";
       }
     } else if (search) {
       return `Search results for "${search}"`

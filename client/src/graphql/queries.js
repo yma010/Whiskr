@@ -130,3 +130,18 @@ export const FETCH_ALBUM_FROM_PHOTO = gql`
            }
          }
        `;
+
+export const FETCH_USER = gql`
+  query FetchUser($_id: ID!) {
+    user(_id: $_id) {
+      _id
+      firstName
+      lastName
+      email
+      avatarURL
+      photos {
+        _id
+      }
+    }
+  }
+`;
