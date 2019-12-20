@@ -20,6 +20,10 @@ function Login(props) {
     password: ""
   });
   
+  const [errors, setErrors] = useState({
+
+  })
+
   const [loginUser] = useMutation(
     LOGIN_USER, 
     {
@@ -28,6 +32,18 @@ function Login(props) {
         localStorage.setItem("auth-token", token);
         setIsDisappearing(true); 
         setTimeout(() => props.history.push("/featured-photos"), 300);
+      },
+      onError: (error) => {
+        let err = error.message.split("$").slice(1)
+        // console.log(error.message)
+        const errors = {};
+        let i = 0;
+        while (i < err.length) {
+          errors[err[i]] = err[i + 1];
+          i += 3;
+        }
+        setErrors(errors);
+      // console.log(errors)
       },
       update(client, { data }) {
         client.writeData({
@@ -50,6 +66,15 @@ function Login(props) {
     setInputs(inputs => ({ ...inputs, [event.target.name]: event.target.value }));
   };
 
+  let style;
+  let style2;
+  if(errors["email"]){
+    style = {color: "red"}
+  } else if (errors["email"] || errors["validation"] ){
+    style = {color: "red"}
+    style2 = {color: "red"}
+  }
+
   return (
     <div className="card-container">
       <div className={isAppearing || isDisappearing ? 'card hidden' : 'card'}>
@@ -65,14 +90,16 @@ function Login(props) {
               variables: { email: inputs.email, password: inputs.password }
             });
           }}>
-            <div className="card-input">
+            <div className="card-input" style={style}>
               <label className={inputs.email ? "small" : ""}>Email address</label>
               <input required type="text" onChange={handleInputChange} name="email" value={inputs.email} />
             </div>
-            <div className="card-input">
+            <div className="card-input" style={style2}>
               <label className={inputs.password ? "small" : ""}>Password</label>
               <input required type="password" onChange={handleInputChange} name="password" value={inputs.password} />
             </div>
+              {errors["validation"] ? <p className="errors">{errors["validation"]}</p> : null} 
+              {errors['email'] ? <p className="errors">{errors["email"] || errors["validation"]}</p> : null}
               <button type="submit" className="submit">Sign in</button>
               
               <button 

@@ -109,6 +109,18 @@
 .add-comment{
   margin: 0 0 0 10px;
   position: relative;
+} 
+
+.links-auth {
+  display: inline-flex;
+  white-space: pre;
+}
+.links-auth a {
+  font-weight: 600;
+}
+
+.links-auth a:hover{
+  color: black;
 }
 
 .add-comment .user-avatar {

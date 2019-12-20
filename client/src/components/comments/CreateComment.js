@@ -11,24 +11,25 @@ function CreateComment(props) {
     {
       onCompleted: (data) => { 
         setBody('')},
-      update: (cache, data) => { updateCache(cache, data)},
-      refetchQueries: [{query: FETCH_PHOTO_COMMENTS, 
-        variables: {
-          _id: props.photoId
-        }}]
-    });
-    
-  const {loading, error, data} = useQuery(CURRENT_USER);
-
-    let {currentUser} = data;
-  const [Inputbody, setBody] = useState('');
-
-  if (loading) {
-    return <div>Loading...</div>
-  }
-  if (error) {
-    console.log(error);
-    return <div>Error!</div>
+        update: (cache, data) => { updateCache(cache, data)},
+        refetchQueries: [{query: FETCH_PHOTO_COMMENTS, 
+          variables: {
+            _id: props.photoId
+          }}]
+        });
+        
+        const {loading, error, data} = useQuery(CURRENT_USER);
+        
+        let {currentUser} = data;
+        const [Inputbody, setBody] = useState('');
+        
+        if (loading) {
+          return <div>Loading...</div>
+        }
+        if (error) {
+          console.log(error);
+          return (<div>Error!</div>)
+          // onError: (error) => { alert(`Something went wrong: ${error.message.split('GraphQL error: ')[1]}`) },
   }
 
 
@@ -62,7 +63,7 @@ function CreateComment(props) {
   };
   
   let style;
-  if (currentUser.avatarURL) {
+  if (currentUser && currentUser.avatarURL) {
     style = {
       backgroundImage: `url(${currentUser.avatarURL})`
     }
@@ -72,7 +73,6 @@ function CreateComment(props) {
       <div
         className="user-avatar"
         style ={style}
-        // to={currentUser ? `/users/${currentUser._id}` : ""}
       ></div>
       <form
         onSubmit={e => {

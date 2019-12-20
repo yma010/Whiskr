@@ -21,6 +21,10 @@ function SignUp(props) {
     email: "",
     password: ""
   });
+
+  const [errors, setErrors] = useState( {
+
+  })
   
   const [signUpUser] = useMutation(
     SIGNUP_USER, 
@@ -30,6 +34,18 @@ function SignUp(props) {
         setIsDisappearing(true); 
         setTimeout(() => props.history.push("/"), 300);
       },
+      onError: (error) => { 
+        let err = error.message.split("$").slice(1)
+        // console.log(error.message)
+      const errors = {};
+      let i = 0;
+      while( i < err.length) {
+        errors[err[i]] = err[i+1];
+        i += 3;
+      }
+      setErrors(errors);
+      // console.log(errors)
+    },
       update: (client, data) => updateCache(client, data)
     }
   );
@@ -85,7 +101,7 @@ function SignUp(props) {
     event.persist();
     setInputs(inputs => ({ ...inputs, [event.target.name]: event.target.value }));
   };
-  
+
   return (
     <div className="card-container">
       <div className={isAppearing || isDisappearing ? 'card hidden' : 'card'}>
@@ -116,11 +132,13 @@ function SignUp(props) {
             <div className="card-input">
               <label className={inputs.email ? "small" : ""}>Email address</label>
               <input required type="text" onChange={handleInputChange} name="email"  values={inputs.email} />
+              {errors['email'] ? <p>{errors['email']}</p> : null }
             </div>
             <div className="card-input">
               <label className={inputs.password ? "small" : ""}>Password</label>
               <input required type="password" onChange={handleInputChange} name="password" values={inputs.password} />
-            </div>
+              {errors['password'] ? <p>{errors["password"]}</p> : null } 
+              </div>
               <button type="submit" className="submit">Sign up</button>
               <button type="submit" className="demo-login" onClick={e => { e.preventDefault(); demoLogin(); }}>Demo login</button>
             <div className='grey-bar'></div>

@@ -18,7 +18,7 @@ module.exports = function validateSignupInput(data) {
   }
 
   if (!Validator.isEmail(data.email)) {
-    errors.email = 'Invalid email';
+    errors.email = '$email$Invalid email$';
   }
 
   if (Validator.isEmpty(data.email)) {
@@ -30,7 +30,7 @@ module.exports = function validateSignupInput(data) {
   }
 
   if (!Validator.isLength(data.password, { min: 12, max: 32 })) {
-    errors.password = 'Password must be at least 12 characters';
+    errors.password = '$password$Password must be at least 12 characters$';
   }
 
   if (!data.age) {
@@ -38,7 +38,7 @@ module.exports = function validateSignupInput(data) {
   }
 
   if (typeof data.age !== "number") {
-    errors.age = "Age must be a number"
+    errors.age = "$age$Age must be a number$"
   }
 
   return {

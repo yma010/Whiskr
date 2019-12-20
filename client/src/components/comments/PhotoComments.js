@@ -78,7 +78,11 @@ function PhotoComments (props) {
         <ul>
           {photoComments}
           <div className="add-comment">
-            <CreateComment photoId={props.photoId} />   
+            {currentUser ? 
+            <CreateComment photoId={props.photoId} /> : 
+            <div className="links-auth">
+              <Link to="/login">Log in </Link> or <Link to="/signup"> Sign up </Link> to add a comment.
+              </div>}  
           </div>
         </ul>
         </div>
